@@ -16,9 +16,9 @@ public class HomeController {
 		return "about";
 	}
 	
-	@GetMapping(path = {"/courses"})
+	@GetMapping(path = {"/news"})
 	public String courses() {
-		return "courses";
+		return "news";
 	}
 	
 	@GetMapping(path = {"/portfolio"})
