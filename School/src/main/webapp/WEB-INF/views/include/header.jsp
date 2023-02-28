@@ -9,6 +9,26 @@
 <body>
 	<%-- HEADER --%>
 	<header>
+		<div class="login-navbar">
+			<!-- <c:choose>
+			<c:when>
+			<div class="login_before">
+				
+			</div>
+			</c:when>
+			<c:otherwise>
+			<div class="login_after">
+			
+			</div>
+			</c:otherwise>
+			</c:choose> -->
+			<div class="login_before">
+				<ul class="">
+					<li><a href="">로그인</a></li>
+					<li><a href="">회원가입</a></li>
+				</ul>
+			</div>
+		</div>
 		<div class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -27,7 +47,7 @@
 						<li class="dropdown" onmouseover="showDropdownAbout()" onmouseout="hideDropdownAbout()">
 							<a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">학교소개<span class="caret"></span></a>
 							<ul class="dropdown-menu" id="dropdown-about">
-								<li><a href="about">교직원 인사말</a></li>
+								<li><a href="about">교직원 소개</a></li>
 								<li><a href="">교육 목표</a></li>
 								<li><a href="">학교연혁</a></li>
 								<li><a href="">학교상징</a></li>
@@ -43,9 +63,9 @@
 								<li><a href="#">1</a></li>
 							</ul>
 						</li>
-						<li><a href="portfolio">교사마당</a></li>
-						<li><a href="pricing">학부모마당</a></li>
-						<li><a href="pricing">학생마당</a></li>
+						<li><a href="teacherBoard">교사마당</a></li>
+						<li><a href="parentBoard">학부모마당</a></li>
+						<li><a href="studentBoard">학생마당</a></li>
 						<li><a href="contact">문의</a></li>
 					</ul>
 				</div>

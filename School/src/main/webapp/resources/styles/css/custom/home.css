@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-img .school-image {
+.school-image {
 	width: 1400px;
-	height: 520px;
+	height: auto;
 }

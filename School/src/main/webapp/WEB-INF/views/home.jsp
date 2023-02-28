@@ -13,6 +13,7 @@
 <link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
 <!-- <link href="/resources/styles/js/owl-carousel/owl.carousel.css" rel="stylesheet"> -->
 <link href="/resources/styles/css/style.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/home.css" rel="stylesheet" />
 <%-- END OF CSS --%>
 

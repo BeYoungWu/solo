@@ -17,18 +17,23 @@ public class HomeController {
 	}
 	
 	@GetMapping(path = {"/news"})
-	public String courses() {
+	public String news() {
 		return "news";
 	}
 	
-	@GetMapping(path = {"/portfolio"})
-	public String portfolio() {
-		return "portfolio";
+	@GetMapping(path = {"/teacherBoard"})
+	public String teacherBoard() {
+		return "teacherBoard";
 	}
 	
-	@GetMapping(path = {"/pricing"})
-	public String pricing() {
-		return "pricing";
+	@GetMapping(path = {"/parentBoard"})
+	public String parentBoard() {
+		return "parentBoard";
+	}
+	
+	@GetMapping(path = {"/studentBoard"})
+	public String studentBoard() {
+		return "studentBoard";
 	}
 	
 	@GetMapping(path = {"/contact"})
