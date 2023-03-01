@@ -1,8 +1,25 @@
 @charset "UTF-8";
 
-.login_before {
-	text-align: right;
+.login_before ul {
+	display: flex;
+	justify-content: right;
+	list-style: none;
+	font-size: 10px;
 }
 
-.login_after {
+.login_before li {
+	color: red;
+	margin-right: 10px;
+}
+
+.login_after ul {
+	display: flex;
+	justify-content: right;
+	list-style: none;
+	font-size: 10px;
+}
+
+.login_after li {
+	color: black;
+	margin-right: 5px;
 }
