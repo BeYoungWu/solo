@@ -1,8 +1,8 @@
 (목표 : 1일 최소 1잔디)
 
-해놓은 것 : header 최상단에 로그인,회원가입 navbar 추가 마무리, header 구성 수정 및 필요한 jsp들 생성
+해놓은 것 : db설계 하는 중
 ==============================================
-해야할 것 : db 설계, db create table, spring mysql 연동, 로그인/회원가입 구현
+해야할 것 : db 설계 마무리 , db create table, spring mysql 연동, 로그인/회원가입 구현
 
 
 
