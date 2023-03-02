@@ -3,6 +3,7 @@
 - 템플릿 : git 무료 공유 템플릿 - (https://github.com/learning-zone/website-templates)
 - 벤치마킹 : 신암중학교 홈페이지 - (https://sinam.sen.ms.kr/)
 - 작업 기간 : 2023/02/24 ~ 
+- DB 설계 : ERD cloud - (https://www.erdcloud.com/d/cSa6tA8x443kLq7PJ)
 - 구성 :
      - 사용자 화면
         - 비로그인시 정보 열람 (일부 제한), 문의 가능 가능
