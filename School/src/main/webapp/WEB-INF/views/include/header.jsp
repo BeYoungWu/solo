@@ -63,6 +63,7 @@
 								<li><a href="#">가정통신문</a></li>
 								<li><a href="#">학교일정</a></li>
 								<li><a href="#">학교행사</a></li>
+								<li><a href="#">급식표</a></li>
 								<li><a href="#">교육복지특별지원사업</a></li>
 							</ul>
 						</li>
@@ -83,7 +84,6 @@
 								<li><a href="#">과목별학습자료실</a></li>
 								<li><a href="#">방과후학교</a></li>
 								<li><a href="#">도서실</a></li>
-								<li><a href="#">급식실</a></li>
 							</ul>
 						</li>
 						<li>
