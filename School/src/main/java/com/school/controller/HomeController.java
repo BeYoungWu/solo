@@ -11,6 +11,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	////////////////////////////////////////////////////////////
+	
 	// 학교소개 (교직원소개)
 	@GetMapping(path = { "/about" })
 	public String about() {

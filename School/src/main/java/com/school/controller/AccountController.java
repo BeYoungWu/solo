@@ -8,16 +8,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AccountController {
 
 	// 로그인 페이지 이동
-	@GetMapping(path = { "login" })
+	@GetMapping(path = { "/login" })
 	public String showLoginForm() {
 		return "account/login";
 	}
 	
 	// 로그인
-	@PostMapping(path = { "login" })
+	@PostMapping(path = { "/login" })
 	public String login() {
 		return "redirect:/home";
 	}
 	
+	// 회원가입 페이지 이동
+	@GetMapping(path = { "/register" })
+	public String showRegisterForm() {
+		return "account/register";
+	}
+	
 	// 회원가입
+	@PostMapping(path = { "/register" })
+	public String register() {
+		return "redirect:/login";
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
