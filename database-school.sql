@@ -2,13 +2,13 @@ CREATE DATABASE school;
 
 USE school;
 
-CREATE TABLE member
+CREATE TABLE userInfo
 (
 	id VARCHAR(20) PRIMARY KEY,
     passwd VARCHAR(100) NOT NULL,
 	usertype int
 );
--- member 테이블과 commonBoard 테이블 FOREIGN KEY 설정 필요
+
 CREATE TABLE commonBoard
 (
 	boardNo INT PRIMARY KEY AUTO_INCREMENT,
@@ -17,7 +17,8 @@ CREATE TABLE commonBoard
     writer VARCHAR(20) NOT NULL,
     writeDate DATETIME DEFAULT NOW(),
     userFileName VARCHAR(1000) NOT NULL,
-    savedFileName VARCHAR(100) NOT NULL
+    savedFileName VARCHAR(100) NOT NULL,
+    FOREIGN KEY (writer) REFERENCES userInfo (id)
 );
 
 CREATE TABLE about
@@ -27,5 +28,14 @@ CREATE TABLE about
     userFileName VARCHAR(1000) NOT NULL,
     savedFileName VARCHAR(100) NOT NULL
 );
+
+
+
+
+
+
+
+
+
 
 
