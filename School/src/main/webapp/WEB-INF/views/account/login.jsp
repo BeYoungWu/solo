@@ -33,7 +33,19 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				ㅁㄴㅇㄹ
+				<div class="items">
+					<form>
+						<div class="item">
+							<label for="userId">아이디</label>
+							<input type="text" name="userId" id="userId">
+						</div>
+						<div class="item">
+							<label for="passwd">비밀번호</label>
+							<input type="password" name="passwd" id="passwd">
+						</div>
+						<button type="submit" class="btn btn-success">로그인</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

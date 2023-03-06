@@ -2,4 +2,26 @@
 
 .text-center {
 	margin-top: 50px;
+	border: 1px solid lightgray;
+	width: 50%;
+	height: 300px;
+}
+
+.items {
+	margin-top: 50px;
+	align-items: center;
+}
+
+.item {
+	margin-top: 5px;
+	text-align: center;
+}
+
+label {
+	width: 80px;
+	text-align: left;
+}
+
+input {
+	margin-left: 50px;
 }
