@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>비밀번호 찾기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -25,7 +25,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2 class="pageTitle">로그인</h2>
+					<h2 class="pageTitle">비밀번호 찾기</h2>
 				</div>
 			</div>
 		</div>
@@ -33,27 +33,7 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="items">
-					<form>
-						<div class="item">
-							<label for="userId">아이디</label>
-							<input type="text" name="userId" id="userId">
-						</div>
-						<div class="item">
-							<label for="passwd">비밀번호</label>
-							<input type="password" name="passwd" id="passwd">
-						</div>
-						<button type="submit" id="login_btn">로그인</button>
-					</form>
-					<br><hr>
-					<div class="find">
-						<div>
-							<a href="/account/findId">아이디 찾기</a>
-							/
-							<a href="/account/findPasswd">비밀번호 찾기</a>
-						</div>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 	</div>

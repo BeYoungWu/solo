@@ -24,7 +24,7 @@
 			</c:choose> -->
 			<div class="login_before">
 				<ul class="">
-					<li><a href="login">로그인</a></li>
+					<li><a href="/account/login">로그인</a></li>
 					<li><a href="">회원가입</a></li>
 				</ul>
 			</div>
@@ -37,29 +37,29 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="home">
+					<a class="navbar-brand" href="/home">
 						<img src="/resources/styles/img/logo.png" alt="logo" />
 					</a>
 				</div>
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="home">Home</a></li>
+						<li class="active"><a href="/home">Home</a></li>
 						<li class="dropdown" onmouseover="showDropdownAbout()" onmouseout="hideDropdownAbout()">
-							<a href="about">학교소개</a>
+							<a href="/about">학교소개</a>
 							<ul class="dropdown-menu" id="dropdown-about">
-								<li><a href="about">교직원소개</a></li>
-								<li><a href="purpose">교육목표</a></li>
-								<li><a href="history">학교연혁</a></li>
-								<li><a href="current">학교현황</a></li>
-								<li><a href="symbol">학교상징</a></li>
-								<li><a href="song">학교교가</a></li>
-								<li><a href="plan">학교교육계획</a></li>
+								<li><a href="/about">교직원소개</a></li>
+								<li><a href="/purpose">교육목표</a></li>
+								<li><a href="/history">학교연혁</a></li>
+								<li><a href="/current">학교현황</a></li>
+								<li><a href="/symbol">학교상징</a></li>
+								<li><a href="/song">학교교가</a></li>
+								<li><a href="/plan">학교교육계획</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownNews()" onmouseout="hideDropdownNews()">
-							<a href="news">알림마당</a>
+							<a href="/news">알림마당</a>
 							<ul class="dropdown-menu" id="dropdown-news">
-								<li><a href="news">공지사항</a></li>
+								<li><a href="/news">공지사항</a></li>
 								<li><a href="#">가정통신문</a></li>
 								<li><a href="#">학교일정</a></li>
 								<li><a href="#">학교행사</a></li>
@@ -71,23 +71,23 @@
 							<a href="teacherBoard">교사마당</a>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownParent()" onmouseout="hideDropdownParent()">
-							<a href="parentBoard">학부모마당</a>
+							<a href="/parentBoard">학부모마당</a>
 							<ul class="dropdown-menu" id="dropdown-parent">
-								<li><a href="parentBoard">학부모회</a>
+								<li><a href="/parentBoard">학부모회</a>
 								<li><a href="#">자료실</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownStudent()" onmouseout="hideDropdownStudent()">
-							<a href="studentBoard">학생마당</a>
+							<a href="/studentBoard">학생마당</a>
 							<ul class="dropdown-menu" id="dropdown-student">
-								<li><a href="studentBoard">학생회</a></li>
+								<li><a href="/studentBoard">학생회</a></li>
 								<li><a href="#">과목별학습자료실</a></li>
 								<li><a href="#">방과후학교</a></li>
 								<li><a href="#">도서실</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="contact">문의</a>
+							<a href="/contact">문의</a>
 						</li>
 					</ul>
 				</div>
