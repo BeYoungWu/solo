@@ -17,7 +17,7 @@
 3) 관리자 페이지에서 (
 4) JPA 방식으로 (이유 : 기업에서 선호, 게시판이 여러개일 경우 용이할 것으로 판단)
 5) 해당 템플릿 부트스트랩 버전 : 3.0.1 (resources - js - bootstrap.js 파일 열면 스프링 터짐 열지말것)
-
+6) maven update 하면 build path에 exclude를 remove 해주지 않으면 오류 발생
 
 
 
