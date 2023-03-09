@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.school.common.Util;
 import com.school.dto.AccountDto;
+import com.school.entity.AccountEntity;
 import com.school.repository.AccountRepository;
 
 @Service("accountService")
@@ -23,9 +24,10 @@ public class AccountServiceImpl implements AccountService {
 	public AccountDto findUserByIdAndPasswd(String userId, String passwd) {
 		
 		passwd = Util.getHashedString(passwd, "SHA-256");
-		AccountDto accountDto = accountRepository.findByIdAndPasswd(userId, passwd);
+		AccountEntity accountEntity = accountRepository.findByUserIdAndPasswd(userId, passwd);
+		AccountDto accountDto = accountEntityToDto(accountEntity);
 		
-		return null;
+		return accountDto;
 	}
 	
 	

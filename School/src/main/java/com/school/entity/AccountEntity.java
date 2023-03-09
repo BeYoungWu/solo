@@ -24,6 +24,7 @@ public class AccountEntity {
 	public AccountEntity(AccountDto account) {
 		this.userId = account.getUserId();
 		this.passwd = account.getPasswd();
+		this.wantType = account.getWantType();
 		this.userType = account.getUserType();
 	}
 	
@@ -31,6 +32,7 @@ public class AccountEntity {
 		AccountDto account = new AccountDto();
 		account.setUserId(userId);
 		account.setPasswd(passwd);
+		account.setWantType(wantType);
 		account.setUserType(userType);
 		
 		return account;
@@ -41,6 +43,9 @@ public class AccountEntity {
 	
 	@Column(nullable = false)
 	private String passwd;
+	
+	@Column(nullable = false)
+	private int wantType;
 	
 	@Column(nullable = false)
 	private int userType;

@@ -25,7 +25,7 @@
 			<div class="login_before">
 				<ul class="">
 					<li><a href="/account/login">로그인</a></li>
-					<li><a href="">회원가입</a></li>
+					<li><a href="/account/register">회원가입</a></li>
 				</ul>
 			</div>
 		</div>

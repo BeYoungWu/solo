@@ -6,5 +6,7 @@ import com.school.entity.AccountEntity;
 
 public interface AccountRepository extends JpaRepository<AccountEntity, Integer> {
 
+	AccountEntity findByUserIdAndPasswd(String userId, String passwd);
+
 	
 }

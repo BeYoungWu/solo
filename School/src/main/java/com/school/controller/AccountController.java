@@ -21,6 +21,18 @@ public class AccountController {
 	@Qualifier("accountService")
 	private AccountService accountService;
 	
+	// 회원가입 페이지 이동
+	@GetMapping(path = { "/register" })
+	public String showRegisterForm() {
+		return "account/register";
+	}
+	
+	// 회원가입
+	@PostMapping(path = { "/register" })
+	public String register() {
+		return "redirect:/login";
+	}
+	
 	// 로그인 페이지 이동
 	@GetMapping(path = { "/login" })
 	public String showLoginForm() {
@@ -34,18 +46,6 @@ public class AccountController {
 		AccountDto account = accountService.findUserByIdAndPasswd(userId, passwd);
 		
 		return "redirect:/home";
-	}
-	
-	// 회원가입 페이지 이동
-	@GetMapping(path = { "/register" })
-	public String showRegisterForm() {
-		return "account/register";
-	}
-	
-	// 회원가입
-	@PostMapping(path = { "/register" })
-	public String register() {
-		return "redirect:/login";
 	}
 	
 	// 아이디 찾기 페이지 이동
