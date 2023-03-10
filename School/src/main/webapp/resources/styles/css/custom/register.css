@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+form {
+	margin-top: 100px;
+	border: 1px solid lightgray;
+}
+
+ol {
+	list-style: none;
+}
+
+ol li {
+	margin-right: 50px;
+}
+
+button {
+	margin-bottom: 20px;
+}
+
+.wantType {
+	display: flex;
+	justify-content: center;
+}
+
+.information {
+	margin-bottom: 10px;
+}
+
+
+
