@@ -79,7 +79,21 @@
 							<input type="text" name="address" id="address" placeholder="주소API로 변경 예정">
 						</div>
 						<div class="information">
-						
+							<label for="phone1">전화번호</label>
+							<select name="phone1" class="form-select" aria-label="Default select example" style="width: 80px">
+											<option selected value="010">010</option>
+											<option value="011">011</option>
+											<option value="012">012</option>
+											<option value="013">013</option>
+											<option value="014">014</option>
+											<option value="015">015</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="018">018</option>
+											<option value="019">019</option>
+										</select> &nbsp;&nbsp; <input type="number" name="phone2" maxlength="4" oninput="maxLengthCheck(this)">
+										&nbsp;&nbsp;
+										<input type="number" name="phone3" maxlength="4" oninput="maxLengthCheck(this)">
 						</div>
 						<div class="information">
 						
