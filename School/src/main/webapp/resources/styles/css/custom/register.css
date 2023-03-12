@@ -34,8 +34,24 @@ input[type=number] {
 	justify-content: center;
 }
 
+.informations {
+	align-items: center;
+}
+
 .information {
-	margin-bottom: 10px;
+	width: 400px;
+	height: 30px;
+	margin: auto;
+	margin-bottom: 30px;
+	flex: float;
+}
+
+.information-left {
+	float: left;
+}
+
+.information-right {
+	float: right;
 }
 
 

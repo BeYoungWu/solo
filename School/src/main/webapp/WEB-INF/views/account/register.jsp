@@ -33,7 +33,7 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form>
+				<form action="register" method="post">
 					<div class="wantTypeRadio">
 						<h3>회원유형</h3>
 						<ol class="wantType">
@@ -63,37 +63,60 @@
 					<div class="informations">
 						<h3>회원정보</h3>
 						<div class="information">
-							<label for="userId">아이디</label>
-							<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
+							<div class="information-left">
+								<label for="userId">아이디</label>
+							</div>
+							<div class="information-right">
+								<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
+								<button type="button">중복확인</button>
+							</div>
 						</div>
 						<div class="information">
-							<label for="passwd">비밀번호</label>
-							<input type="password" name="passwd" id="passwd" placeholder="최소 4자리 입력" minlength="4">
+							<div class="information-left">
+								<label for="passwd">비밀번호</label>
+							</div>
+							<div class="information-right">
+								<input type="password" name="passwd" id="passwd" placeholder="최소 4자리 입력" minlength="4">
+							</div>
 						</div>
 						<div class="information">
-							<label for="checkPasswd">비밀번호 확인</label>
-							<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리 입력" minlength="4">
+							<div class="information-left">
+								<label for="checkPasswd">비밀번호 확인</label>
+							</div>
+							<div class="information-right">
+								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리 입력" minlength="4">
+							</div>
 						</div>
 						<div class="information">
-							<label for="address">주소</label>
-							<input type="text" name="address" id="address" placeholder="주소API로 변경 예정">
+							<div class="information-left">
+								<label for="address">주소</label>
+							</div>
+							<div class="information-right">
+								<input type="text" name="address" id="address" placeholder="주소API로 변경 예정">
+							</div>
 						</div>
 						<div class="information">
-							<label for="phone1">전화번호</label>
-							<select name="phone1" class="form-select" aria-label="Default select example" style="width: 80px">
-											<option selected value="010">010</option>
-											<option value="011">011</option>
-											<option value="012">012</option>
-											<option value="013">013</option>
-											<option value="014">014</option>
-											<option value="015">015</option>
-											<option value="016">016</option>
-											<option value="017">017</option>
-											<option value="018">018</option>
-											<option value="019">019</option>
-										</select> &nbsp;&nbsp; <input type="number" name="phone2" maxlength="4" oninput="maxLengthCheck(this)">
-										&nbsp;&nbsp;
-										<input type="number" name="phone3" maxlength="4" oninput="maxLengthCheck(this)">
+							<div class="information-left">
+								<label for="phone1">전화번호</label>
+							</div>
+							<div class="information-right">
+								<select name="phone1" class="form-select" aria-label="Default select example" style="width: 80px">
+									<option selected value="010">010</option>
+									<option value="011">011</option>
+									<option value="012">012</option>
+									<option value="013">013</option>
+									<option value="014">014</option>
+									<option value="015">015</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+								</select>
+								&nbsp;&nbsp;
+								<input type="number" name="phone2" maxlength="4" oninput="maxLengthCheck(this)">
+								&nbsp;&nbsp;
+								<input type="number" name="phone3" maxlength="4" oninput="maxLengthCheck(this)">
+							</div>
 						</div>
 						<div class="information">
 						
