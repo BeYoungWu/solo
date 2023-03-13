@@ -17,7 +17,16 @@ public class AccountServiceImpl implements AccountService {
 	private AccountRepository accountRepository;
 
 	// 회원가입
-	
+	@Override
+	public void register(AccountDto account) {
+		
+		String passwd = Util.getHashedString(account.getPasswd(), "SHA-256");
+		account.setPasswd(passwd); // 암호화된 패스워드를 account에 저장
+		
+		AccountEntity accountEntity = accountDtoToEntity(account);
+		accountRepository.save(accountEntity);
+		
+	}
 	
 	// 로그인
 	@Override
@@ -27,8 +36,10 @@ public class AccountServiceImpl implements AccountService {
 		AccountEntity accountEntity = accountRepository.findByUserIdAndPasswd(userId, passwd);
 		AccountDto accountDto = accountEntityToDto(accountEntity);
 		
-		return accountDto;
+		return accountDto != null ? accountEntity.exportAccountDto() : null;
 	}
+
+	
 	
 	
 }

@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="items">
-					<form>
+					<form action="login" method="post" id="login">
 						<div class="item">
 							<label for="userId">아이디</label>
 							<input type="text" name="userId" id="userId">
@@ -58,5 +58,17 @@
 		</div>
 	</div>
 </div>
+
+<%-----------------------------------------------------------------------------------------------------------------------------------------------------%-->
+
+<%-- JS --%>
+<script type="text/javascript">
+$(function() {
+	<c:if test="${ not empty loginfail }">
+	alert('로그인 실패 : 아이디와 패스워드를 확인하세요');
+	</c:if>
+});
+</script>
+<%-- JS END --%>
 </body>
 </html>

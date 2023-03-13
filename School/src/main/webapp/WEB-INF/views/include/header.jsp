@@ -1,34 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Header</title>
-</head>
-<body>
+	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+	
 	<%-- HEADER --%>
 	<header>
 		<div class="login-navbar">
-			<!-- <c:choose>
-			<c:when>
+			<c:choose>
+			<c:when test="${ empty loginuser }">
 			<div class="login_before">
-				
-			</div>
-			</c:when>
-			<c:otherwise>
-			<div class="login_after">
-			
-			</div>
-			</c:otherwise>
-			</c:choose> -->
-			<div class="login_before">
-				<ul class="">
+				<ul>
 					<li><a href="/account/login">로그인</a></li>
 					<li><a href="/account/register">회원가입</a></li>
 				</ul>
 			</div>
-		</div>
+			</c:when>
+			<c:otherwise>
+			<div class="login_after">
+				<ul>
+					<li><a href="/account/logout">로그아웃</a></li>
+				</ul>
+			</div>
+			</c:otherwise>
+			</c:choose>
+			</div>
 		<div class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -135,5 +130,3 @@
 		
 	</script>
 	<%-- END OF HEADER JS --%>
-</body>
-</html>

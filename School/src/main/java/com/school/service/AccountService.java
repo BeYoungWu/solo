@@ -30,10 +30,12 @@ public interface AccountService {
 	}
 	
 	// 회원가입
-	
+	void register(AccountDto account);
 	
 	// 로그인
 	AccountDto findUserByIdAndPasswd(String userId, String passwd);
+
+	
 
 	
 }

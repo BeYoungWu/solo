@@ -33,7 +33,7 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form action="register" method="post">
+				<form action="register" method="post" id="register">
 					<div class="wantTypeRadio">
 						<h3>회원유형</h3>
 						<ol class="wantType">
@@ -68,7 +68,7 @@
 							</div>
 							<div class="information-right">
 								<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
-								<button type="button">중복확인</button>
+								<button type="button" id="checkId">중복확인</button>
 							</div>
 						</div>
 						<div class="information">
@@ -128,6 +128,45 @@
 		</div>
 	</div>
 </div>
+
+<%-----------------------------------------------------------------------------------------------------------------------------------------------------%-->
+
+<%-- JS --%>
+<script type="text/javascript">
+	// input type number maxlength (전화번호 4자리)
+	function maxLengthCheck(object) {
+		if (object.value.length > object.maxLength) {
+			// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
+			object.value = object.value.slice(	0, object.maxLength);
+		}
+	}
+	
+	// 아이디 중복 확인 (ajax 비동기 방식)
+	/* $(function() {
+		$('#checkId').on('click', function(event) {
+			const userId = $('#register input[name=userId]');
+			
+			$.ajax({
+				// ajax로 데이터 조회 -> 조회된 결과를 띄움
+				$.ajax({
+					"method":"POST",
+					"url":"/account/checkId",
+					"data": {userId: userId},
+					"success":function(data, xhr, status ){
+						$('#register input[name=]').val(data.prodId);
+						$('#register div[id=]').html(data.userFileName);
+					},
+					"error":function(xhr, status, err){
+						alert("오류")
+					}
+				});
+			});
+		});
+	}); */
+	
+</script>
+<%-- JS END --%>
+
 </body>
 </html>
 
