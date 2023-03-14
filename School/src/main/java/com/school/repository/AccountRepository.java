@@ -8,5 +8,7 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Integer>
 
 	AccountEntity findByUserIdAndPasswd(String userId, String passwd);
 
+	AccountEntity findByUserId(String userId);
+
 	
 }

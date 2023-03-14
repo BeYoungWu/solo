@@ -46,6 +46,16 @@ public class AccountController {
 		return "redirect:/account/login";
 	}
 	
+	// 중복아이디 체크
+	@PostMapping(path = { "/checkId" })
+	public AccountDto checkId(String userId) {
+		
+		System.out.println(userId);
+		AccountDto account = accountService.checkId(userId);
+		
+		return account;
+	}
+	
 	// 로그인 페이지 이동
 	@GetMapping(path = { "/login" })
 	public String showLoginForm() {

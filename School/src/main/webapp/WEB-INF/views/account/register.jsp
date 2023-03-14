@@ -70,6 +70,9 @@
 								<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
 								<button type="button" id="checkId">중복확인</button>
 							</div>
+							<div class="information-right-bottom">
+								<input type="text" id="checkIdResult" readonly>
+							</div>
 						</div>
 						<div class="information">
 							<div class="information-left">
@@ -142,9 +145,9 @@
 	}
 	
 	// 아이디 중복 확인 (ajax 비동기 방식)
-	/* $(function() {
+	$(function() {
 		$('#checkId').on('click', function(event) {
-			const userId = $('#register input[name=userId]');
+			const userId = $('#register input[name=userId]').val();
 			
 			$.ajax({
 				// ajax로 데이터 조회 -> 조회된 결과를 띄움
@@ -153,8 +156,11 @@
 					"url":"/account/checkId",
 					"data": {userId: userId},
 					"success":function(data, xhr, status ){
-						$('#register input[name=]').val(data.prodId);
-						$('#register div[id=]').html(data.userFileName);
+						if (data.userId != null) {
+							$('#register input[name=checkIdResult]').val("이미 존재하는 아이디입니다");
+						} else {
+							$('#register input[name=checkIdResult]').val("사용 가능한 아이디입니다");							
+						}
 					},
 					"error":function(xhr, status, err){
 						alert("오류")
@@ -162,7 +168,7 @@
 				});
 			});
 		});
-	}); */
+	});
 	
 </script>
 <%-- JS END --%>

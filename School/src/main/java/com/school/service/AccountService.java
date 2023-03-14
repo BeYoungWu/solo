@@ -32,8 +32,13 @@ public interface AccountService {
 	// 회원가입
 	void register(AccountDto account);
 	
+	// 중복아이디 체크
+	AccountDto checkId(String userId);
+	
 	// 로그인
 	AccountDto findUserByIdAndPasswd(String userId, String passwd);
+
+	
 
 	
 

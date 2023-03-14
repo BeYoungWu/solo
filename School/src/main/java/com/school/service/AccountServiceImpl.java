@@ -28,6 +28,16 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 	
+	// 중복아이디 체크
+	@Override
+	public AccountDto checkId(String userId) {
+			
+		AccountEntity accountEntity = accountRepository.findByUserId(userId);
+		AccountDto account = accountEntityToDto(accountEntity);
+		
+		return account;
+	}
+	
 	// 로그인
 	@Override
 	public AccountDto findUserByIdAndPasswd(String userId, String passwd) {
@@ -38,6 +48,8 @@ public class AccountServiceImpl implements AccountService {
 		
 		return accountDto != null ? accountEntity.exportAccountDto() : null;
 	}
+
+	
 
 	
 	
