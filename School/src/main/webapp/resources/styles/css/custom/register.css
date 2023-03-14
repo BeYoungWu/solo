@@ -13,7 +13,7 @@ ol li {
 	margin-right: 50px;
 }
 
-button {
+button[type=submit] {
 	margin-bottom: 20px;
 }
 
@@ -46,6 +46,13 @@ input[type=number] {
 	flex: float;
 }
 
+.information-except {
+	width: 400px;
+	height: 30px;
+	margin: auto;
+	flex: float;
+}
+
 .information-left {
 	float: left;
 }
@@ -54,5 +61,11 @@ input[type=number] {
 	float: right;
 }
 
+.checkIdResult {
+	width: 250px;
+	border: none;
+}
 
-
+.checkIdResult:focus {
+	outline: none;
+}

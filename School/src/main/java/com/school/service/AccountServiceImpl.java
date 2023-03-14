@@ -33,7 +33,12 @@ public class AccountServiceImpl implements AccountService {
 	public AccountDto checkId(String userId) {
 			
 		AccountEntity accountEntity = accountRepository.findByUserId(userId);
-		AccountDto account = accountEntityToDto(accountEntity);
+		AccountDto account = new AccountDto();
+		if (accountEntity != null) {
+			account = accountEntityToDto(accountEntity);
+		} else {
+			account = null;
+		}
 		
 		return account;
 	}

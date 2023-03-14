@@ -11,14 +11,15 @@
 <!-- css -->
 <link href="/resources/styles/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/resources/styles/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="/resources/styles/css/jcarousel.css" rel="stylesheet" />
 <link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
 <link href="/resources/styles/css/style.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/register.css" rel="stylesheet" />
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 </head>
-<body>
+<body>0
 <div id="wrapper">
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<section id="inner-headline">
@@ -62,16 +63,20 @@
 					<hr>
 					<div class="informations">
 						<h3>회원정보</h3>
-						<div class="information">
+						<div class="information-except">
 							<div class="information-left">
 								<label for="userId">아이디</label>
 							</div>
 							<div class="information-right">
 								<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
-								<button type="button" id="checkId">중복확인</button>
+								<button type="button" class="checkId-btn">중복확인</button>
 							</div>
-							<div class="information-right-bottom">
-								<input type="text" id="checkIdResult" readonly>
+						</div>
+						<div class="information-except">
+							<div class="information-left">
+							</div>
+							<div class="information-right">
+								<input type="text" class="checkIdResult" name="checkIdResult" readonly>
 							</div>
 						</div>
 						<div class="information">
@@ -136,40 +141,43 @@
 
 <%-- JS --%>
 <script type="text/javascript">
-	// input type number maxlength (전화번호 4자리)
-	function maxLengthCheck(object) {
-		if (object.value.length > object.maxLength) {
-			// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
-			object.value = object.value.slice(	0, object.maxLength);
-		}
-	}
-	
-	// 아이디 중복 확인 (ajax 비동기 방식)
 	$(function() {
-		$('#checkId').on('click', function(event) {
-			const userId = $('#register input[name=userId]').val();
+		// input type number maxlength (전화번호 4자리)
+		function maxLengthCheck(object) {
+			if (object.value.length > object.maxLength) {
+				// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
+				object.value = object.value.slice(0, object.maxLength);
+			}
+		}
+		
+		// 아이디 중복 확인 (ajax 비동기 방식)
+		$('.checkId-btn').on('click', function(event) {
+			const userId = $('input[name=userId]').val();
 			
+			// ajax로 데이터 조회 -> 조회된 결과를 띄움
 			$.ajax({
-				// ajax로 데이터 조회 -> 조회된 결과를 띄움
-				$.ajax({
-					"method":"POST",
-					"url":"/account/checkId",
-					"data": {userId: userId},
-					"success":function(data, xhr, status ){
-						if (data.userId != null) {
-							$('#register input[name=checkIdResult]').val("이미 존재하는 아이디입니다");
-						} else {
-							$('#register input[name=checkIdResult]').val("사용 가능한 아이디입니다");							
-						}
-					},
-					"error":function(xhr, status, err){
-						alert("오류")
+				"method":"POST",
+				"url":"/account/checkId",
+				"data": {userId: userId},
+				"success":function(data, xhr, status ){
+					if (data.userId != null) {
+						$('input[name=checkIdResult]').val("이미 존재하는 아이디입니다");
+						$('input[name=checkIdResult]').css({
+							'color': 'red'
+						});
+					} else {
+						$('input[name=checkIdResult]').val("사용 가능한 아이디입니다");
+						$('input[name=checkIdResult]').css({
+							'color': 'green'
+						});
 					}
-				});
+				},
+				"error":function(xhr, status, err){
+					alert("오류");
+				}
 			});
 		});
 	});
-	
 </script>
 <%-- JS END --%>
 

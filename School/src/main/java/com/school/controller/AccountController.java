@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -39,8 +40,6 @@ public class AccountController {
 			return "account/register";
 		}
 		
-		System.out.println(account);
-		
 		accountService.register(account);
 		
 		return "redirect:/account/login";
@@ -48,9 +47,9 @@ public class AccountController {
 	
 	// 중복아이디 체크
 	@PostMapping(path = { "/checkId" })
+	@ResponseBody
 	public AccountDto checkId(String userId) {
 		
-		System.out.println(userId);
 		AccountDto account = accountService.checkId(userId);
 		
 		return account;
