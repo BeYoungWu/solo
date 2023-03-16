@@ -34,7 +34,7 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form action="register" method="post" id="register">
+				<form action="register" method="post" name="register">
 					<div class="wantTypeRadio">
 						<h3>회원유형</h3>
 						<ol class="wantType">
@@ -68,7 +68,7 @@
 								<label for="userId">아이디</label>
 							</div>
 							<div class="information-right">
-								<input type="text" name="userId" id="userId" placeholder="최소 4자리 입력" minlength="4">
+								<input type="text" name="userId" id="userId" placeholder="최소 4자리 (영어숫자조합)" minlength="4">
 								<button type="button" class="checkId-btn">중복확인</button>
 							</div>
 						</div>
@@ -76,7 +76,7 @@
 							<div class="information-left">
 							</div>
 							<div class="information-right">
-								<input type="text" class="checkIdResult" name="checkIdResult" readonly>
+								<input type="text" class="checkIdResult" name="checkIdResult" id="checkIdResult" readonly>
 							</div>
 						</div>
 						<div class="information">
@@ -84,7 +84,7 @@
 								<label for="passwd">비밀번호</label>
 							</div>
 							<div class="information-right">
-								<input type="password" name="passwd" id="passwd" placeholder="최소 4자리 입력" minlength="4">
+								<input type="password" name="passwd" id="passwd" placeholder="최소 4자리" minlength="4">
 							</div>
 						</div>
 						<div class="information">
@@ -92,7 +92,7 @@
 								<label for="checkPasswd">비밀번호 확인</label>
 							</div>
 							<div class="information-right">
-								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리 입력" minlength="4">
+								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리" minlength="4">
 							</div>
 						</div>
 						<div class="information">
@@ -130,7 +130,7 @@
 						
 						</div>
 					</div>
-					<button type="submit">가입하기</button>
+					<button type="button" id="register-btn" onclick="registerCheck();">가입하기</button>
 				</form>
 			</div>
 		</div>
@@ -142,6 +142,7 @@
 <%-- JS --%>
 <script type="text/javascript">
 	$(function() {
+		
 		// input type number maxlength (전화번호 4자리)
 		function maxLengthCheck(object) {
 			if (object.value.length > object.maxLength) {
@@ -152,7 +153,19 @@
 		
 		// 아이디 중복 확인 (ajax 비동기 방식)
 		$('.checkId-btn').on('click', function(event) {
+			
 			const userId = $('input[name=userId]').val();
+
+			// 아무것도 입력하지 않았을 경우
+			if (!userId) {
+				alert("아이디를 입력해주세요");
+				return false;
+			}
+			
+			// 영어, 숫자 외에 입력했을 경우
+			if () {
+				
+			}
 			
 			// ajax로 데이터 조회 -> 조회된 결과를 띄움
 			$.ajax({
@@ -177,6 +190,30 @@
 				}
 			});
 		});
+		
+		// 유효성 검사
+		function registerCheck() {
+			
+			var userId = document.getElementById("userId");
+			var checkIdResult = document.getElementById("checkIdResult");
+			var passwd = document.getElementById("passwd");
+			var checkPasswd = document.getElementById("checkPasswd");
+			var address = document.getElementById("address");
+			var phone2 = document.getElementById("phone2");
+			var phone3 = document.getElementById("phone3");
+
+			alert("asdf");
+			
+			if(!userId.value) {
+				alert("아이디를 입력하세요")
+				userId.focus();
+				return false;
+			}
+			
+			return document.register.submit();
+		}
+		
+		
 	});
 </script>
 <%-- JS END --%>
