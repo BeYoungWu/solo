@@ -34,7 +34,7 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form action="register" method="post" name="register">
+				<form action="register" method="post">
 					<div class="wantTypeRadio">
 						<h3>회원유형</h3>
 						<ol class="wantType">
@@ -121,16 +121,16 @@
 									<option value="019">019</option>
 								</select>
 								&nbsp;&nbsp;
-								<input type="number" name="phone2" maxlength="4" oninput="maxLengthCheck(this)">
+								<input type="number" name="phone2" id="phone2" maxlength="4" oninput="maxLengthCheck(this)">
 								&nbsp;&nbsp;
-								<input type="number" name="phone3" maxlength="4" oninput="maxLengthCheck(this)">
+								<input type="number" name="phone3" id="phone3" maxlength="4" oninput="maxLengthCheck(this)">
 							</div>
 						</div>
 						<div class="information">
 						
 						</div>
 					</div>
-					<button type="button" id="register-btn" onclick="registerCheck();">가입하기</button>
+					<button type="submit" class="register">가입하기</button>
 				</form>
 			</div>
 		</div>
@@ -140,16 +140,18 @@
 <%-----------------------------------------------------------------------------------------------------------------------------------------------------%-->
 
 <%-- JS --%>
+<script>
+	//input type number maxlength (전화번호 4자리)
+	function maxLengthCheck(object) {
+		if (object.value.length > object.maxLength) {
+			// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
+			object.value = object.value.slice(0, object.maxLength);
+		}
+	}
+</script>
+
 <script type="text/javascript">
 	$(function() {
-		
-		// input type number maxlength (전화번호 4자리)
-		function maxLengthCheck(object) {
-			if (object.value.length > object.maxLength) {
-				// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
-				object.value = object.value.slice(0, object.maxLength);
-			}
-		}
 		
 		// 아이디 중복 확인 (ajax 비동기 방식)
 		$('.checkId-btn').on('click', function(event) {
@@ -163,9 +165,6 @@
 			}
 			
 			// 영어, 숫자 외에 입력했을 경우
-			if () {
-				
-			}
 			
 			// ajax로 데이터 조회 -> 조회된 결과를 띄움
 			$.ajax({
@@ -192,7 +191,7 @@
 		});
 		
 		// 유효성 검사
-		function registerCheck() {
+		$('.register').on('click', function(event) {
 			
 			var userId = document.getElementById("userId");
 			var checkIdResult = document.getElementById("checkIdResult");
@@ -202,16 +201,63 @@
 			var phone2 = document.getElementById("phone2");
 			var phone3 = document.getElementById("phone3");
 
-			alert("asdf");
-			
+			// 입력창이 비어있거나 제대로 입력되지 않은 경우
 			if(!userId.value) {
 				alert("아이디를 입력하세요")
 				userId.focus();
 				return false;
 			}
+			if(userId.value.length < 4) {
+				alert("영어, 숫자 조합으로 4자리 이상 입력하세요")
+				userId.focus();
+				return false;
+			}
+			if(!checkIdResult.value) {
+				alert("중복확인을 하세요")
+				return false;
+			}
+			if(!passwd.value) {
+				alert("비밀번호를 입력하세요")
+				passwd.focus();
+				return false;
+			}
+			if(!checkPasswd.value) {
+				alert("비밀번호 확인을 입력하세요")
+				checkPasswd.focus();
+				return false;
+			}
+			if(passwd.value.length < 4 || checkPasswd.value.length < 4) {
+				alert("4자리 이상 입력하세요")
+				passwd.focus();
+				return false;
+			}
+			if(!address.value) {
+				alert("주소를 입력하세요")
+				address.focus();
+				return false;
+			}
+			if(!phone2.value || phone2.value.length < 4) {
+				alert("전화번호를 입력하세요")
+				phone2.focus();
+				return false;
+			}
+			if(!phone3.value || phone3.value.length < 4) {
+				alert("전화번호를 입력하세요")
+				phone3.focus();
+				return false;
+			}
+			
+			// 중복확인 결과 이미 존재하는 아이디인 경우
+			if(checkIdResult.value=="이미 존재하는 아이디입니다") {
+				alert("사용할 수 없는 아이디입니다")
+				return false;
+			}
+			
+			// 비밀번호 확인 결과 일치하지 않는 경우
+			
 			
 			return document.register.submit();
-		}
+		});
 		
 		
 	});
