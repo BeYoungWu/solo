@@ -87,12 +87,19 @@
 								<input type="password" name="passwd" id="passwd" placeholder="최소 4자리" minlength="4">
 							</div>
 						</div>
-						<div class="information">
+						<div class="information-except">
 							<div class="information-left">
 								<label for="checkPasswd">비밀번호 확인</label>
 							</div>
 							<div class="information-right">
-								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리" minlength="4">
+								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리" minlength="4" onchange="passwdSameCheck();">
+							</div>
+						</div>
+						<div class="information-except">
+							<div class="information-left">
+							</div>
+							<div class="information-right">
+								<input type="text" class="passwdSameCheck" name="passwdSameCheck" id="passwdSameCheck" readonly>
 							</div>
 						</div>
 						<div class="information">
@@ -146,6 +153,27 @@
 		if (object.value.length > object.maxLength) {
 			// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
 			object.value = object.value.slice(0, object.maxLength);
+		}
+	}
+	
+	// 비밀번호 일치 확인 (onchange)
+	function passwdSameCheck() {
+		var passwd = document.getElementById("passwd").value;
+		var checkPasswd = document.getElementById("checkPasswd").value;
+		
+		if (passwd != '' && checkPasswd != '') {
+			if (passwd == checkPasswd) {
+				$('input[name=passwdSameCheck]').val("일치합니다");
+				$('input[name=passwdSameCheck]').css({
+					'color': 'green'
+				});
+			}
+			else {
+				$('input[name=passwdSameCheck]').val("일치하지 않습니다.");
+				$('input[name=passwdSameCheck]').css({
+					'color': 'red'
+				});
+			}
 		}
 	}
 </script>
@@ -247,18 +275,17 @@
 				return false;
 			}
 			
-			// 중복확인 결과 이미 존재하는 아이디인 경우
+			// 중복확인 결과 이미 존재하는 아이디인데 가입 누른 경우
 			if(checkIdResult.value=="이미 존재하는 아이디입니다") {
 				alert("사용할 수 없는 아이디입니다")
 				return false;
 			}
 			
-			// 비밀번호 확인 결과 일치하지 않는 경우
+			// 비밀번호 확인 결과 일치하지 않는데 가입 누른 경우
 			
 			
 			return document.register.submit();
 		});
-		
 		
 	});
 </script>

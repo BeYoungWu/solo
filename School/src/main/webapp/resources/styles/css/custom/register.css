@@ -69,3 +69,17 @@ input[type=number] {
 .checkIdResult:focus {
 	outline: none;
 }
+
+.passwdSameCheck {
+	width: 250px;
+	border: none;
+}
+
+.passwdSameCheck:focus {
+	outline: none;
+}
+
+
+
+
+
