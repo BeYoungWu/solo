@@ -53,6 +53,13 @@ input[type=number] {
 	flex: float;
 }
 
+.information-except {
+	width: 400px;
+	height: 30px;
+	margin: auto;
+	flex: float;
+}
+
 .information-left {
 	float: left;
 }
@@ -71,7 +78,7 @@ input[type=number] {
 }
 
 .passwdSameCheck {
-	width: 250px;
+	width: 173px;
 	border: none;
 }
 

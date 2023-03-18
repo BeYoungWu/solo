@@ -79,12 +79,12 @@
 								<input type="text" class="checkIdResult" name="checkIdResult" id="checkIdResult" readonly>
 							</div>
 						</div>
-						<div class="information">
+						<div class="information-except">
 							<div class="information-left">
 								<label for="passwd">비밀번호</label>
 							</div>
 							<div class="information-right">
-								<input type="password" name="passwd" id="passwd" placeholder="최소 4자리" minlength="4">
+								<input type="password" class="passwd" name="passwd" id="passwd" placeholder="최소 4자리" minlength="4">
 							</div>
 						</div>
 						<div class="information-except">
@@ -92,7 +92,7 @@
 								<label for="checkPasswd">비밀번호 확인</label>
 							</div>
 							<div class="information-right">
-								<input type="password" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리" minlength="4" onchange="passwdSameCheck();">
+								<input type="password" class="checkPasswd" name="checkPasswd" id="checkPasswd" placeholder="최소 4자리" minlength="4">
 							</div>
 						</div>
 						<div class="information-except">
@@ -155,27 +155,6 @@
 			object.value = object.value.slice(0, object.maxLength);
 		}
 	}
-	
-	// 비밀번호 일치 확인 (onchange)
-	function passwdSameCheck() {
-		var passwd = document.getElementById("passwd").value;
-		var checkPasswd = document.getElementById("checkPasswd").value;
-		
-		if (passwd != '' && checkPasswd != '') {
-			if (passwd == checkPasswd) {
-				$('input[name=passwdSameCheck]').val("일치합니다");
-				$('input[name=passwdSameCheck]').css({
-					'color': 'green'
-				});
-			}
-			else {
-				$('input[name=passwdSameCheck]').val("일치하지 않습니다.");
-				$('input[name=passwdSameCheck]').css({
-					'color': 'red'
-				});
-			}
-		}
-	}
 </script>
 
 <script type="text/javascript">
@@ -186,13 +165,24 @@
 			
 			const userId = $('input[name=userId]').val();
 
-			// 아무것도 입력하지 않았을 경우
-			if (!userId) {
-				alert("아이디를 입력해주세요");
+			// 아무것도 입력하지 않았을 경우 + 4자리 미만 입력시
+			if (userId.length < 4) {
+				$('input[name=checkIdResult]').val("4자리 이상 입력해주십시오");
+				$('input[name=checkIdResult]').css({
+					'color': 'red'
+				});
 				return false;
 			}
 			
 			// 영어, 숫자 외에 입력했을 경우
+			var regType = /^[A-Za-z0-9]*$/;
+			if (!regType.test(userId)) {
+				$('input[name=checkIdResult]').val("영문, 숫자만 가능합니다");
+				$('input[name=checkIdResult]').css({
+					'color': 'red'
+				});
+				return false;
+			}
 			
 			// ajax로 데이터 조회 -> 조회된 결과를 띄움
 			$.ajax({
@@ -208,7 +198,7 @@
 					} else {
 						$('input[name=checkIdResult]').val("사용 가능한 아이디입니다");
 						$('input[name=checkIdResult]').css({
-							'color': 'green'
+							'color': 'blue'
 						});
 					}
 				},
@@ -276,15 +266,48 @@
 			}
 			
 			// 중복확인 결과 이미 존재하는 아이디인데 가입 누른 경우
-			if(checkIdResult.value=="이미 존재하는 아이디입니다") {
+			if (checkIdResult.value=="이미 존재하는 아이디입니다") {
 				alert("사용할 수 없는 아이디입니다")
 				return false;
 			}
 			
 			// 비밀번호 확인 결과 일치하지 않는데 가입 누른 경우
-			
+			if (passwd.value != checkPasswd.value) {
+				alert("비밀번호가 일치하지 않습니다");
+				checkPasswd.focus();
+				return false;
+			}
 			
 			return document.register.submit();
+		});
+		
+		// 비밀번호 일치 확인 + 유효성 검사 (onchange)
+		$('.checkPasswd').on('change', function(event) {
+			var passwd = document.getElementById("passwd").value;
+			var checkPasswd = document.getElementById("checkPasswd").value;
+			
+			if (passwd != '' && checkPasswd != '') {
+				// 비밀번호 일치 확인
+				if (passwd == checkPasswd) {
+					$('input[name=passwdSameCheck]').val("일치합니다");
+					$('input[name=passwdSameCheck]').css({
+						'color': 'blue'
+					});
+				}
+				else {
+					$('input[name=passwdSameCheck]').val("일치하지 않습니다");
+					$('input[name=passwdSameCheck]').css({
+						'color': 'red'
+					});
+				}
+				// 4자리 미만 입력시
+				if (passwd.length < 4 || checkPasswd < 4) {
+					$('input[name=passwdSameCheck]').val("4자리 이상 입력해주십시오");
+					$('input[name=passwdSameCheck]').css({
+						'color': 'red'
+					});
+				}
+			}
 		});
 		
 	});
