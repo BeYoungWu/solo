@@ -26,6 +26,9 @@ public class AccountEntity {
 		this.passwd = account.getPasswd();
 		this.wantType = account.getWantType();
 		this.userType = account.getUserType();
+		this.postCode = account.getPostCode();
+		this.address = account.getAddress();
+		this.phone = account.getPhone1() + account.getPhone2() + account.getPhone3();
 	}
 	
 	public AccountDto exportAccountDto() {
@@ -34,6 +37,11 @@ public class AccountEntity {
 		account.setPasswd(passwd);
 		account.setWantType(wantType);
 		account.setUserType(userType);
+		account.setPostCode(postCode);
+		account.setAddress(address);
+		account.setPhone1(phone.substring(0,3));
+		account.setPhone2(phone.substring(3,4));
+		account.setPhone3(phone.substring(7,4));
 		
 		return account;
 	}
@@ -49,5 +57,14 @@ public class AccountEntity {
 	
 	@Column(nullable = false)
 	private int userType;
+	
+	@Column(nullable = false)
+	private String postCode;
+	
+	@Column(nullable = false)
+	private String address;
+	
+	@Column(nullable = false)
+	private String phone;
 	
 }

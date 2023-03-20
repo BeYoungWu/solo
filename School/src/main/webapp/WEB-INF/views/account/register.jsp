@@ -19,7 +19,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </head>
-<body>0
+<body>
 <div id="wrapper">
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<section id="inner-headline">
@@ -108,10 +108,11 @@
 							</div>
 							<div class="information-right-except">
 								<input type="text" name="postCode" id="sample6_postcode" placeholder="우편번호" style="width:100px;">
+								<input type="hidden" name="address" id="address">
 								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" name="address1" id="sample6_address" placeholder="주소"><br>
-								<input type="text" name="address2" id="sample6_detailAddress" placeholder="상세주소"><br>
-								<input type="text" name="address3" id="sample6_extraAddress" placeholder="참고항목">
+								<input type="text" id="sample6_address" placeholder="주소"><br>
+								<input type="text" id="sample6_detailAddress" placeholder="상세주소"><br>
+								<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 							</div>
 						</div>
 						<div class="information">
@@ -119,6 +120,7 @@
 								<label for="phone1">전화번호</label>
 							</div>
 							<div class="information-right">
+								<input type="hidden" name="phone">
 								<select name="phone1" class="form-select" aria-label="Default select example" style="width:80px">
 									<option selected value="010">010</option>
 									<option value="011">011</option>
@@ -221,7 +223,10 @@
 			var checkPasswd = document.getElementById("checkPasswd");
 			var passwdSameCheck = document.getElementById("passwdSameCheck");
 			var postCode = document.getElementById("sample6_postcode");
+			var address1 = document.getElementById("sample6_address");
 			var address2 = document.getElementById("sample6_detailAddress");
+			var address3 = document.getElementById("sample6_extraAddress");
+			var phone1 = document.getElementById("phone1");
 			var phone2 = document.getElementById("phone2");
 			var phone3 = document.getElementById("phone3");
 			
@@ -268,7 +273,7 @@
 				phone2.focus();
 				return false;
 			}
-			if(!phone3.value || phone2.value.length < 4) {
+			if(!phone3.value || phone3.value.length < 4) {
 				alert("전화번호를 입력하세요")
 				phone3.focus();
 				return false;
@@ -286,7 +291,9 @@
 				checkPasswd.focus();
 				return false;
 			}
-			
+
+			$('input[name=address]').val(address1.value + " " + address2.value + address3.value);
+				
 			return document.register.submit();
 		});
 		

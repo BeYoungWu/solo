@@ -13,6 +13,11 @@ public interface AccountService {
 		accountDto.setPasswd(accountEntity.getPasswd());
 		accountDto.setWantType(accountEntity.getWantType());
 		accountDto.setUserType(accountEntity.getUserType());
+		accountDto.setPostCode(accountEntity.getPostCode());
+		accountDto.setAddress(accountEntity.getAddress());
+		accountDto.setPhone1((accountEntity.getPhone()).substring(0,3));
+		accountDto.setPhone1((accountEntity.getPhone()).substring(3,4));
+		accountDto.setPhone1((accountEntity.getPhone()).substring(7,4));
 		
 		return accountDto;
 	}
@@ -24,6 +29,9 @@ public interface AccountService {
 												   .passwd(accountDto.getPasswd())
 												   .wantType(accountDto.getWantType())
 												   .userType(accountDto.getUserType())
+												   .postCode(accountDto.getPostCode())
+												   .address(accountDto.getAddress())
+												   .phone(accountDto.getPhone1() + accountDto.getPhone2() + accountDto.getPhone3())
 												   .build();
 		
 		return accountEntity;

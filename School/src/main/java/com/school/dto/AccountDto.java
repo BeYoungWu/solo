@@ -9,10 +9,8 @@ public class AccountDto {
 	private String passwd;
 	private int wantType;
 	private int userType;
-	private int postCode;
-	private String address1;
-	private String address2;
-	private String address3;
+	private String postCode;
+	private String address;
 	private String phone1;
 	private String phone2;
 	private String phone3;
