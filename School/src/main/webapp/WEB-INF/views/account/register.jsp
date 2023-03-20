@@ -102,12 +102,16 @@
 								<input type="text" class="passwdSameCheck" name="passwdSameCheck" id="passwdSameCheck" readonly>
 							</div>
 						</div>
-						<div class="information">
+						<div class="information-except2">
 							<div class="information-left">
 								<label for="address">주소</label>
 							</div>
-							<div class="information-right">
-								<input type="text" name="address" id="address" placeholder="주소API로 변경 예정">
+							<div class="information-right-except">
+								<input type="text" name="postCode" id="sample6_postcode" placeholder="우편번호" style="width:100px;">
+								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="text" name="address1" id="sample6_address" placeholder="주소"><br>
+								<input type="text" name="address2" id="sample6_detailAddress" placeholder="상세주소"><br>
+								<input type="text" name="address3" id="sample6_extraAddress" placeholder="참고항목">
 							</div>
 						</div>
 						<div class="information">
@@ -115,7 +119,7 @@
 								<label for="phone1">전화번호</label>
 							</div>
 							<div class="information-right">
-								<select name="phone1" class="form-select" aria-label="Default select example" style="width: 80px">
+								<select name="phone1" class="form-select" aria-label="Default select example" style="width:80px">
 									<option selected value="010">010</option>
 									<option value="011">011</option>
 									<option value="012">012</option>
@@ -137,7 +141,7 @@
 						
 						</div>
 					</div>
-					<button type="submit" class="register">가입하기</button>
+					<button type="submit" class="register-btn">가입하기</button>
 				</form>
 			</div>
 		</div>
@@ -209,29 +213,31 @@
 		});
 		
 		// 유효성 검사
-		$('.register').on('click', function(event) {
+		$('.register-btn').on('click', function(event) {
 			
 			var userId = document.getElementById("userId");
 			var checkIdResult = document.getElementById("checkIdResult");
 			var passwd = document.getElementById("passwd");
 			var checkPasswd = document.getElementById("checkPasswd");
-			var address = document.getElementById("address");
+			var passwdSameCheck = document.getElementById("passwdSameCheck");
+			var postCode = document.getElementById("sample6_postcode");
+			var address2 = document.getElementById("sample6_detailAddress");
 			var phone2 = document.getElementById("phone2");
 			var phone3 = document.getElementById("phone3");
-
+			
 			// 입력창이 비어있거나 제대로 입력되지 않은 경우
 			if(!userId.value) {
 				alert("아이디를 입력하세요")
 				userId.focus();
 				return false;
 			}
-			if(userId.value.length < 4) {
-				alert("영어, 숫자 조합으로 4자리 이상 입력하세요")
-				userId.focus();
-				return false;
-			}
 			if(!checkIdResult.value) {
 				alert("중복확인을 하세요")
+				return false;
+			}
+			if(checkIdResult.value != "사용 가능한 아이디입니다") {
+				alert("아이디를 확인해주세요")
+				userId.focus();
 				return false;
 			}
 			if(!passwd.value) {
@@ -244,14 +250,17 @@
 				checkPasswd.focus();
 				return false;
 			}
-			if(passwd.value.length < 4 || checkPasswd.value.length < 4) {
-				alert("4자리 이상 입력하세요")
-				passwd.focus();
+			if(passwdSameCheck.value == "일치하지 않습니다") {
+				alert("비밀번호가 일치하지 않습니다");
 				return false;
 			}
-			if(!address.value) {
-				alert("주소를 입력하세요")
-				address.focus();
+			if(!postCode.value) {
+				alert("주소를 선택하세요")
+				return false;
+			}
+			if(!address2.value) {
+				alert("상세주소를 입력하세요")
+				address2.focus();
 				return false;
 			}
 			if(!phone2.value || phone2.value.length < 4) {
@@ -259,20 +268,20 @@
 				phone2.focus();
 				return false;
 			}
-			if(!phone3.value || phone3.value.length < 4) {
+			if(!phone3.value || phone2.value.length < 4) {
 				alert("전화번호를 입력하세요")
 				phone3.focus();
 				return false;
 			}
 			
 			// 중복확인 결과 이미 존재하는 아이디인데 가입 누른 경우
-			if (checkIdResult.value=="이미 존재하는 아이디입니다") {
+			if (checkIdResult.value == "이미 존재하는 아이디입니다") {
 				alert("사용할 수 없는 아이디입니다")
 				return false;
 			}
 			
 			// 비밀번호 확인 결과 일치하지 않는데 가입 누른 경우
-			if (passwd.value != checkPasswd.value) {
+			if (passwdSameCheck.value == "일치하지 않습니다") {
 				alert("비밀번호가 일치하지 않습니다");
 				checkPasswd.focus();
 				return false;
@@ -311,6 +320,58 @@
 		});
 		
 	});
+</script>
+
+<%-- KAKAO 주소 API --%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("sample6_extraAddress").value = extraAddr;
+            
+            } else {
+                document.getElementById("sample6_extraAddress").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("sample6_address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("sample6_detailAddress").focus();
+        }
+    }).open();
+}
 </script>
 <%-- JS END --%>
 

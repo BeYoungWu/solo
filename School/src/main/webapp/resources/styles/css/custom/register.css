@@ -39,7 +39,7 @@ input[type=number] {
 }
 
 .information {
-	width: 400px;
+	width: 450px;
 	height: 30px;
 	margin: auto;
 	margin-bottom: 30px;
@@ -47,16 +47,17 @@ input[type=number] {
 }
 
 .information-except {
-	width: 400px;
+	width: 450px;
 	height: 30px;
 	margin: auto;
 	flex: float;
 }
 
-.information-except {
-	width: 400px;
-	height: 30px;
+.information-except2 {
+	width: 450px;
+	height: 150px;
 	margin: auto;
+	margin-bottom: 30px;
 	flex: float;
 }
 
@@ -66,6 +67,23 @@ input[type=number] {
 
 .information-right {
 	float: right;
+}
+
+.information-right-except {
+	float: right;
+}
+
+.sample4_postcode {
+	width: 100px;
+}
+
+.information-right input[name=userId], input[name=passwd], input[name=checkPasswd] {
+	width: 173px;
+}
+
+.information-right-except input[type=text] {
+	width: 208px;
+	margin-bottom: 5px;
 }
 
 .checkIdResult {
@@ -85,6 +103,8 @@ input[type=number] {
 .passwdSameCheck:focus {
 	outline: none;
 }
+
+
 
 
 
