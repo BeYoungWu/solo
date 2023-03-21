@@ -31,6 +31,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
@@ -68,7 +69,7 @@
 								<label for="userId">아이디</label>
 							</div>
 							<div class="information-right">
-								<input type="text" name="userId" id="userId" placeholder="최소 4자리 (영어숫자조합)" minlength="4">
+								<input type="text" class="userId" name="userId" id="userId" placeholder="최소 4자리 (영어숫자조합)" minlength="4">
 								<button type="button" class="checkId-btn">중복확인</button>
 							</div>
 						</div>
@@ -216,7 +217,7 @@
 		
 		// 유효성 검사
 		$('.register-btn').on('click', function(event) {
-			
+
 			var userId = document.getElementById("userId");
 			var checkIdResult = document.getElementById("checkIdResult");
 			var passwd = document.getElementById("passwd");
@@ -297,8 +298,19 @@
 			return document.register.submit();
 		});
 		
+		// input[name=userId] 변화 감지 유효성 검사 (onchange)
+		$('.userId').on('change', function(event) {
+			
+			$('input[name=checkIdResult]').val("중복확인을 해주세요");
+			$('input[name=checkIdResult]').css({
+				'color': 'red'
+			});
+			
+		});
+		
 		// 비밀번호 일치 확인 + 유효성 검사 (onchange)
 		$('.checkPasswd').on('change', function(event) {
+			
 			var passwd = document.getElementById("passwd").value;
 			var checkPasswd = document.getElementById("checkPasswd").value;
 			

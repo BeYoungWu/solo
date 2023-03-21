@@ -2,6 +2,7 @@ package com.school.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
@@ -48,6 +49,21 @@ public class HomeController {
 	public String plan() {
 		return "about/plan";
 	}
+	////////////////////////////////////////////////////////////
+	
+	// 글쓰기 폼
+	@GetMapping(path = { "/write" })
+	public String showWriteForm() {
+		return "write";
+	}
+	
+	// 글 게시하기
+//	@PostMapping(path = { "/write" })
+//	public String write() {
+//		return "";
+//	}
+	
+	
 	////////////////////////////////////////////////////////////
 	
 	// 알림마당

@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학교소식</title>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<title>글쓰기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -31,57 +34,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">알림마당</h2>
+				<h2 class="pageTitle">글쓰기</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	
-	<div class="container text-center">	
+	<div class="container text-center">		 
 		<div class="row">
-			<div class="write-btn">
-				<button onclick=" location.href='write' ">글쓰기</button>
-			</div>
 			<div class="col-lg-12">
 			<form>
-				<table class="table">
-					<thead>
-					<tr>
-						<th style="width:70px;">번호</th>
-						<th style="width:60%;">제목</th>
-						<th>작성일</th>
-						<th>작성자</th>
-						<th style="width:70px">조회수</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td><span class="badge rounded-pill text-bg-primary">공지</span></td>
-						<td style="text-align:left;">일이삼사오육칠팔구1일이삼사오육칠팔구2일이삼사오육칠팔구3일이삼사오<span class="badge bg-secondary">New</span></h6></td>
-						<td>2023/03/04</td>
-						<td>홍길동</td>
-						<td>1000</td>
-					</tr>
-					<tr>
-						<td>1000</td>
-						<td style="text-align:left;">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</td>
-						<td>2023/03/04</td>
-						<td>홍길동</td>
-						<td>1000</td>
-					</tr>
-					<!--
-					<c:forEach var="board" items="${ boards }">
-					<tr>
-						<td>${ board.boardNo }</td>
-						<td>${ board.title }</td>
-						<td>${ board.writeDate }</td>
-						<td>${ board.writer }</td>
-						<td>${ board.readCount }</td>
-					</tr>
-					</c:forEach>
-					 -->
-					</tbody>
-				</table>
+			
+				
+				
 			</form>
 			</div>
 		</div>
