@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>학교소식</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -64,7 +67,10 @@
 					</tr>
 					<tr>
 						<td>1000</td>
-						<td style="text-align:left;">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</td>
+						<td style="text-align:left;">
+						일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"><path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/></svg>
+						</td>
 						<td>2023/03/04</td>
 						<td>홍길동</td>
 						<td>1000</td>

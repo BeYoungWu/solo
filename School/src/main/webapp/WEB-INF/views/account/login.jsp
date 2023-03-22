@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>로그인</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -16,6 +19,8 @@
 <link href="/resources/styles/css/style.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/login.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>

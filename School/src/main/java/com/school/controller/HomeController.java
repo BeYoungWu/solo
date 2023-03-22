@@ -59,7 +59,7 @@ public class HomeController {
 	
 	// 글 게시하기
 //	@PostMapping(path = { "/write" })
-//	public String write() {
+//	public String write() {	
 //		return "";
 //	}
 	

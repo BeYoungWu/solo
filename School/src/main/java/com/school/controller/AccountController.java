@@ -66,7 +66,7 @@ public class AccountController {
 	public String login(String userId, String passwd, HttpSession session, Model model) {
 		
 		AccountDto account = accountService.findUserByIdAndPasswd(userId, passwd);
-		System.out.println(account);
+
 		if (account != null) {
 			session.setAttribute("loginuser", account);
 		} else {

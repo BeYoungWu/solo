@@ -49,9 +49,14 @@ public class AccountServiceImpl implements AccountService {
 		
 		passwd = Util.getHashedString(passwd, "SHA-256");
 		AccountEntity accountEntity = accountRepository.findByUserIdAndPasswd(userId, passwd);
-		AccountDto accountDto = accountEntityToDto(accountEntity);
+		AccountDto account = new AccountDto(); 
+		if (accountEntity != null) {
+			accountEntityToDto(accountEntity);
+		} else {
+			account = null;
+		}
 		
-		return accountDto != null ? accountEntity.exportAccountDto() : null;
+		return account;
 	}
 
 	

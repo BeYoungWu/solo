@@ -4,9 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <title>글쓰기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -17,7 +14,7 @@
 <link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
 <link href="/resources/styles/css/style.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/news.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/write.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -44,9 +41,39 @@
 		<div class="row">
 			<div class="col-lg-12">
 			<form>
-			
-				
-				
+			<table class="table table-bordered">
+				<tr>
+					<td>제목</td>
+					<td><input name="title" maxlength="34" placeholder="2~34자 이내로 입력해주십시오"></td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td><input name="userId" class="writer" value="${ loginuser.userId }" readonly></td>
+				</tr>
+				<tr>
+					<td>게시판</td>
+					<td style="text-align:left;">
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>첨부파일</td>
+					<td><input type="file" name="attach"></td>
+				</tr>
+				<tr>
+					<td style="vertical-align:middle">내용</td>
+					<td><textarea name="content" class="content"></textarea></td>
+				</tr>
+			</table>
+			<div class="buttons">
+				<button>등록</button>
+				<button>취소</button>			
+			</div>
 			</form>
 			</div>
 		</div>
