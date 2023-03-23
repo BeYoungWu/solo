@@ -48,14 +48,17 @@ public class AccountServiceImpl implements AccountService {
 	public AccountDto findUserByIdAndPasswd(String userId, String passwd) {
 		
 		passwd = Util.getHashedString(passwd, "SHA-256");
+		
 		AccountEntity accountEntity = accountRepository.findByUserIdAndPasswd(userId, passwd);
+		
 		AccountDto account = new AccountDto(); 
+		
 		if (accountEntity != null) {
-			accountEntityToDto(accountEntity);
+			account = accountEntityToDto(accountEntity);
 		} else {
 			account = null;
 		}
-		
+
 		return account;
 	}
 

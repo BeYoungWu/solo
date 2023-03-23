@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글쓰기</title>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<title>게시글 작성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -31,7 +34,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">글쓰기</h2>
+				<h2 class="pageTitle">게시글 작성</h2>
 			</div>
 		</div>
 	</div>
@@ -52,14 +55,37 @@
 				</tr>
 				<tr>
 					<td>게시판</td>
+					<c:choose>
+					<c:when test="${ loginuser.userType == 3 || loginuser.userType == 4}">
 					<td style="text-align:left;">
-						<select>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
+						<select name="boardType">
+							<option value="none" selected>===선택===</option>
+							<option value="0">학교교육계획</option>
+							<option value="1">공지사항</option>
+							<option value="2">가정통신문</option>
+							<option value="3">학교행사</option>
+							<option value="4">급식표</option>
+							<option value="5">교육복지특별지원사업</option>
+							<option value="6">교사마당</option>
+							<option value="7">학부모회</option>
+							<option value="8">학부모마당자료실</option>
+							<option value="9">학생회</option>
+							<option value="10">과목별학습자료실</option>
+							<option value="11">방과후학교</option>
+							<option value="12">도서실</option>
 						</select>
 					</td>
+					</c:when>
+					<c:otherwise>
+					<td style="text-align:left;">
+						<select name="boardType">
+							<option value="none" selected>===선택===</option>
+							<option value="7">학부모회</option>
+							<option value="8">학부모마당자료실</option>
+						</select>
+					</td>
+					</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<td>첨부파일</td>

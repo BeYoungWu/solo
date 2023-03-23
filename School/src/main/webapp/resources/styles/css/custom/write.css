@@ -8,6 +8,10 @@ select {
 	width: 30%;
 }
 
+table {
+	margin-top: 50px;
+}
+
 .writer {
 	border: none;
 }

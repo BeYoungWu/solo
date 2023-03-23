@@ -40,8 +40,8 @@ public class AccountEntity {
 		account.setPostCode(postCode);
 		account.setAddress(address);
 		account.setPhone1(phone.substring(0,3));
-		account.setPhone2(phone.substring(3,4));
-		account.setPhone3(phone.substring(7,4));
+		account.setPhone2(phone.substring(3,7));
+		account.setPhone3(phone.substring(7,11));
 		
 		return account;
 	}

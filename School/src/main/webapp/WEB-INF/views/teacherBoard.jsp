@@ -29,7 +29,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">Portfolio</h2>
+				<h2 class="pageTitle">교사마당</h2>
 			</div>
 		</div>
 	</div>

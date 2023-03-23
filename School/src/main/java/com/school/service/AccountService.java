@@ -16,8 +16,8 @@ public interface AccountService {
 		accountDto.setPostCode(accountEntity.getPostCode());
 		accountDto.setAddress(accountEntity.getAddress());
 		accountDto.setPhone1((accountEntity.getPhone()).substring(0,3));
-		accountDto.setPhone1((accountEntity.getPhone()).substring(3,4));
-		accountDto.setPhone1((accountEntity.getPhone()).substring(7,4));
+		accountDto.setPhone2((accountEntity.getPhone()).substring(3,7));
+		accountDto.setPhone3((accountEntity.getPhone()).substring(7,11));
 		
 		return accountDto;
 	}

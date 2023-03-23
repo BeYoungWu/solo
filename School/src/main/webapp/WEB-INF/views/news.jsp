@@ -7,7 +7,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<title>학교소식</title>
+<title>공지사항</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -34,7 +34,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">알림마당</h2>
+				<h2 class="pageTitle">공지사항</h2>
 			</div>
 		</div>
 	</div>

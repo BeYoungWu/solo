@@ -51,21 +51,6 @@ public class HomeController {
 	}
 	////////////////////////////////////////////////////////////
 	
-	// 글쓰기 폼
-	@GetMapping(path = { "/write" })
-	public String showWriteForm() {
-		return "write";
-	}
-	
-	// 글 게시하기
-//	@PostMapping(path = { "/write" })
-//	public String write() {	
-//		return "";
-//	}
-	
-	
-	////////////////////////////////////////////////////////////
-	
 	// 알림마당
 	@GetMapping(path = { "/news" })
 	public String news() {
