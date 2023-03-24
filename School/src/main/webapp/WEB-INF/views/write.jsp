@@ -43,11 +43,11 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<form>
+			<form action="write" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>
-					<td><input name="title" maxlength="34" placeholder="2~34자 이내로 입력해주십시오"></td>
+					<td><input name="title" maxlength="34" required="required" pattern=".{2,34}" placeholder="2~34자 이내로 입력해주십시오"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
@@ -93,12 +93,12 @@
 				</tr>
 				<tr>
 					<td style="vertical-align:middle">내용</td>
-					<td><textarea name="content" class="content"></textarea></td>
+					<td><textarea name="content" class="content" maxlength="3000" placeholder="3000자 이내로 입력해주십시오"></textarea></td>
 				</tr>
 			</table>
 			<div class="buttons">
-				<button>등록</button>
-				<button>취소</button>			
+				<button type="submit">등록</button>
+				<button onclick="history.go(-1)">취소</button>			
 			</div>
 			</form>
 			</div>
