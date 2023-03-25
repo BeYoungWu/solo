@@ -30,6 +30,9 @@ public interface BoardService {
 		
 		return boardEntity;
 	}
+
+	// 게시글 등록
+	public void insertBoard(BoardDto board);
 	
 	
 

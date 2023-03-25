@@ -43,7 +43,8 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<form action="write" method="post" enctype="multipart/form-data">
+			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
+			<form action="write" method="post">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>
@@ -98,7 +99,7 @@
 			</table>
 			<div class="buttons">
 				<button type="submit">등록</button>
-				<button onclick="history.go(-1)">취소</button>			
+				<button onclick="history.go(-1)">취소</button>	
 			</div>
 			</form>
 			</div>

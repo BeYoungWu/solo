@@ -63,7 +63,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="teacherBoard">교사마당</a>
+							<a href="/teacherBoard">교사마당</a>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownParent()" onmouseout="hideDropdownParent()">
 							<a href="/parentBoard">학부모마당</a>
