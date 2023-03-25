@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input name="userId" class="writer" value="${ loginuser.userId }" readonly></td>
+					<td><input name="writer" class="writer" value="${ loginuser.userId }" readonly></td>
 				</tr>
 				<tr>
 					<td>게시판</td>

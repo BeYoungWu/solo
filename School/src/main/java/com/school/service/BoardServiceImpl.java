@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.school.dto.BoardDto;
+import com.school.entity.BoardEntity;
 import com.school.repository.BoardRepository;
 
 @Service("boardService")
@@ -18,7 +19,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(BoardDto board) {
 
-		
+		// 아직 첨부파일 안 넣음
+		BoardEntity boardEntity = boardDtoToEntity(board);
+		boardRepository.save(boardEntity);
 		
 	}
 

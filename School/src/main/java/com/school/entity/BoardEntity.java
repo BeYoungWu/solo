@@ -68,12 +68,12 @@ public class BoardEntity {
 	@Column(length = 3000, nullable = false)
 	private String content;
 	
-	@Column
 	@Builder.Default
+	@Column
 	private Date writeDate = new Date();
 	
-	@Column
 	@Builder.Default
+	@Column
 	private int readCount = 0;
 	
 	@Column(length = 100)
