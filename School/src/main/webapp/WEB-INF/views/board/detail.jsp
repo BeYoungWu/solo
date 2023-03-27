@@ -90,12 +90,8 @@
 					<td>${ board.title }</td>
 				</tr>
 				<tr>
-					<td>게시판</td>
-					<td>${ board.boardType }</td>
-				</tr>
-				<tr>
 					<td>작성자</td>
-					<td><input name="writer" class="writer" value="${ board.writer }" readonly></td>
+					<td>${ board.writer }</td>
 				</tr>
 				<tr>
 					<td>조회수</td>
@@ -119,7 +115,7 @@
 				<button>수정</button>
 				<button>삭제</button>
 				</c:if>
-				<button>목록으로</button>	
+				<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">목록으로</button>
 			</div>
 			</div>
 		</div>

@@ -8,7 +8,6 @@
 }
 
 .login_before li {
-	color: red;
 	margin-right: 10px;
 }
 
@@ -20,6 +19,10 @@
 }
 
 .login_after li {
-	color: black;
+	margin-right: 5px;
+}
+
+svg {
+	margin-top: 3px;
 	margin-right: 5px;
 }

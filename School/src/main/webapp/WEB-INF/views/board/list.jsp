@@ -119,7 +119,7 @@
 					<tr>
 						<td>${ board.boardNo }</td>
 						<td style="text-align:left;">
-							<a href="detail?boardNo=${ board.boardNo }&pageNo=${ pageNo }">
+							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
 								${ board.title }
 							</a>
 						</td>

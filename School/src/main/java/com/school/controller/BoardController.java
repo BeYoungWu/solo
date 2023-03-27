@@ -63,6 +63,7 @@ public class BoardController {
 		BoardDto board = boardService.findByBoardNo(boardNo);
 		
 		model.addAttribute("board", board);
+		model.addAttribute("boardType", boardType);
 		
 		return "/board/detail";
 	}
