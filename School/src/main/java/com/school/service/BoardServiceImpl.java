@@ -1,5 +1,8 @@
 package com.school.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,7 +28,30 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	// 게시글 목록 조회
+	@Override
+	public List<BoardDto> findByBoardType(int i) {
+		
+		List<BoardEntity> boardsEntity = boardRepository.findByBoardType(i);
+		ArrayList<BoardDto> boards = new ArrayList<>();
+		for (BoardEntity boardEntity : boardsEntity) {
+			boards.add(boardEntityToDto(boardEntity));
+		}
+		
+		return boards;
+		
+	}
 
+	// 게시글 상세 조회
+	@Override
+	public BoardDto findByBoardNo(int boardNo) {
+		
+		BoardEntity boardEntity = boardRepository.findById(boardNo).orElse(null);
+		BoardDto board = boardEntityToDto(boardEntity);
+		
+		return board;
+	}
+	
 	
 	
 	

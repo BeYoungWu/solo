@@ -1,12 +1,19 @@
 package com.school.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import com.school.service.BoardService;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	@Qualifier("boardService")
+	private BoardService boardService;
+	
 	@GetMapping(path = { "/", "/home" })
 	public String home() {
 		return "home";
@@ -43,39 +50,6 @@ public class HomeController {
 	@GetMapping(path = { "/song" })
 	public String song() {
 		return "about/song";
-	}
-	// 학교교육계획
-	@GetMapping(path = { "/plan" })
-	public String plan() {
-		return "about/plan";
-	}
-	////////////////////////////////////////////////////////////
-	
-	// 알림마당
-	@GetMapping(path = { "/news" })
-	public String news() {
-		return "news";
-	}
-	////////////////////////////////////////////////////////////
-	
-	// 교사마당
-	@GetMapping(path = { "/teacherBoard" })
-	public String teacherBoard() {
-		return "teacherBoard";
-	}
-	////////////////////////////////////////////////////////////
-	
-	// 학부모마당
-	@GetMapping(path = { "/parentBoard" })
-	public String parentBoard() {
-		return "parentBoard";
-	}
-	////////////////////////////////////////////////////////////
-	
-	// 학생마당
-	@GetMapping(path = { "/studentBoard" })
-	public String studentBoard() {
-		return "studentBoard";
 	}
 	////////////////////////////////////////////////////////////
 	

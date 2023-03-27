@@ -43,42 +43,42 @@
 							<a href="/about">학교소개</a>
 							<ul class="dropdown-menu" id="dropdown-about">
 								<li><a href="/about">교직원소개</a></li>
-								<li><a href="/purpose">교육목표</a></li>
-								<li><a href="/history">학교연혁</a></li>
-								<li><a href="/current">학교현황</a></li>
-								<li><a href="/symbol">학교상징</a></li>
-								<li><a href="/song">학교교가</a></li>
-								<li><a href="/plan">학교교육계획</a></li>
+								<li><a href="/about/purpose">교육목표</a></li>
+								<li><a href="/about/history">학교연혁</a></li>
+								<li><a href="/about/current">학교현황</a></li>
+								<li><a href="/about/symbol">학교상징</a></li>
+								<li><a href="/about/song">학교교가</a></li>
+								<li><a href="/list?boardType=0">학교교육계획</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownNews()" onmouseout="hideDropdownNews()">
-							<a href="/news">알림마당</a>
+							<a href="/board/list?boardType=1">알림마당</a>
 							<ul class="dropdown-menu" id="dropdown-news">
-								<li><a href="/news">공지사항</a></li>
-								<li><a href="#">가정통신문</a></li>
-								<li><a href="#">학교일정</a></li>
-								<li><a href="#">학교행사</a></li>
-								<li><a href="#">급식표</a></li>
-								<li><a href="#">교육복지특별지원사업</a></li>
+								<li><a href="/board/list?boardType=1">공지사항</a></li>
+								<li><a href="/board/list?boardType=2">가정통신문</a></li>
+								<li><a href="news/schedule">학교일정</a></li>
+								<li><a href="/board/list?boardType=3">학교행사</a></li>
+								<li><a href="/board/list?boardType=4">급식표</a></li>
+								<li><a href="/board/list?boardType=5">교육복지특별지원사업</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="/teacherBoard">교사마당</a>
+							<a href="/board/list?boardType=6">교사마당</a>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownParent()" onmouseout="hideDropdownParent()">
-							<a href="/parentBoard">학부모마당</a>
+							<a href="/board/list?boardType=7">학부모마당</a>
 							<ul class="dropdown-menu" id="dropdown-parent">
-								<li><a href="/parentBoard">학부모회</a>
-								<li><a href="#">자료실</a></li>
+								<li><a href="/board/list?boardType=7">학부모회</a>
+								<li><a href="/board/list?boardType=8">자료실</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownStudent()" onmouseout="hideDropdownStudent()">
-							<a href="/studentBoard">학생마당</a>
+							<a href="/board/list?boardType=9">학생마당</a>
 							<ul class="dropdown-menu" id="dropdown-student">
-								<li><a href="/studentBoard">학생회</a></li>
-								<li><a href="#">과목별학습자료실</a></li>
-								<li><a href="#">방과후학교</a></li>
-								<li><a href="#">도서실</a></li>
+								<li><a href="/board/list?boardType=9">학생회</a></li>
+								<li><a href="/board/list?boardType=10">과목별학습자료실</a></li>
+								<li><a href="/board/list?boardType=11">방과후학교</a></li>
+								<li><a href="/board/list?boardType=12">도서실</a></li>
 							</ul>
 						</li>
 						<li>

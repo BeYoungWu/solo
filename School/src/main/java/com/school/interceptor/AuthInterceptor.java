@@ -22,11 +22,8 @@ public class AuthInterceptor implements HandlerInterceptor {
 		AccountDto account = (AccountDto)session.getAttribute("loginuser");
 		
 		if (account == null) {	// 로그인 하지 않은 사용자
-			if (uri.contains("/write") 	||
-				uri.contains("/news") 	||
-				uri.contains("/parentBoard/") 	|| 
-				uri.contains("/studentBoard/") 	|| 
-				uri.contains("/teacherBoard")) { // 로그인한 사용자만 볼 수 있는 요청
+			if (uri.contains("/board/write") 	||
+				uri.contains("/board/list")) { // 로그인한 사용자만 볼 수 있는 요청
 			
 				resp.sendRedirect("/account/login");
 				return false; // 예정된 컨트롤러 호출을 취소				

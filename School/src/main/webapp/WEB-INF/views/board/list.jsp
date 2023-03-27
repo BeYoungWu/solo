@@ -17,7 +17,7 @@
 <link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
 <link href="/resources/styles/css/style.css" rel="stylesheet" />
 <link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/news.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/list.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -34,7 +34,47 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<c:choose>
+				<c:when test="${ boardType == 0 }">
+				<h2 class="pageTitle">학교교육계획</h2>
+				</c:when>
+				<c:when test="${ boardType == 1 }">
 				<h2 class="pageTitle">공지사항</h2>
+				</c:when>
+				<c:when test="${ boardType == 2 }">
+				<h2 class="pageTitle">가정통신문</h2>
+				</c:when>
+				<c:when test="${ boardType == 3 }">
+				<h2 class="pageTitle">학교행사</h2>
+				</c:when>
+				<c:when test="${ boardType == 4 }">
+				<h2 class="pageTitle">급식표</h2>
+				</c:when>
+				<c:when test="${ boardType == 5 }">
+				<h2 class="pageTitle">교육복지특별지원사업</h2>
+				</c:when>
+				<c:when test="${ boardType == 6 }">
+				<h2 class="pageTitle">교사마당</h2>
+				</c:when>
+				<c:when test="${ boardType == 7 }">
+				<h2 class="pageTitle">학부모회</h2>
+				</c:when>
+				<c:when test="${ boardType == 8 }">
+				<h2 class="pageTitle">학부모마당자료실</h2>
+				</c:when>
+				<c:when test="${ boardType == 9 }">
+				<h2 class="pageTitle">학생회</h2>
+				</c:when>
+				<c:when test="${ boardType == 10 }">
+				<h2 class="pageTitle">과목별학습자료실</h2>
+				</c:when>
+				<c:when test="${ boardType == 11 }">
+				<h2 class="pageTitle">방과후학교</h2>
+				</c:when>
+				<c:when test="${ boardType == 12 }">
+				<h2 class="pageTitle">도서실</h2>
+				</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -43,7 +83,7 @@
 	<div class="container text-center">	
 		<div class="row">
 			<div class="write-btn">
-				<button onclick=" location.href='write' ">글쓰기</button>
+				<button onclick=" location.href='/board/write?boardType=${ boardType }' ">글쓰기</button>
 			</div>
 			<div class="col-lg-12">
 			<form>
@@ -75,17 +115,19 @@
 						<td>홍길동</td>
 						<td>1000</td>
 					</tr>
-					<!--
 					<c:forEach var="board" items="${ boards }">
 					<tr>
 						<td>${ board.boardNo }</td>
-						<td>${ board.title }</td>
+						<td style="text-align:left;">
+							<a href="detail?boardNo=${ board.boardNo }&pageNo=${ pageNo }">
+								${ board.title }
+							</a>
+						</td>
 						<td>${ board.writeDate }</td>
 						<td>${ board.writer }</td>
 						<td>${ board.readCount }</td>
 					</tr>
 					</c:forEach>
-					 -->
 					</tbody>
 				</table>
 			</form>

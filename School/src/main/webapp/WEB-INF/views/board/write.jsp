@@ -59,30 +59,32 @@
 					<c:choose>
 					<c:when test="${ loginuser.userType == 3 || loginuser.userType == 4}">
 					<td style="text-align:left;">
+						<% String boardType=request.getParameter("boardType"); %>
 						<select name="boardType">
-							<option value="none" selected>===선택===</option>
-							<option value="0">학교교육계획</option>
-							<option value="1">공지사항</option>
-							<option value="2">가정통신문</option>
-							<option value="3">학교행사</option>
-							<option value="4">급식표</option>
-							<option value="5">교육복지특별지원사업</option>
-							<option value="6">교사마당</option>
-							<option value="7">학부모회</option>
-							<option value="8">학부모마당자료실</option>
-							<option value="9">학생회</option>
-							<option value="10">과목별학습자료실</option>
-							<option value="11">방과후학교</option>
-							<option value="12">도서실</option>
+							<option value=null>===선택===</option>
+							<option value="0" <%="0".equals(boardType)?"selected":""%>>학교교육계획</option>
+							<option value="1" <%="1".equals(boardType)?"selected":""%>>공지사항</option>
+							<option value="2" <%="2".equals(boardType)?"selected":""%>>가정통신문</option>
+							<option value="3" <%="3".equals(boardType)?"selected":""%>>학교행사</option>
+							<option value="4" <%="4".equals(boardType)?"selected":""%>>급식표</option>
+							<option value="5" <%="5".equals(boardType)?"selected":""%>>교육복지특별지원사업</option>
+							<option value="6" <%="6".equals(boardType)?"selected":""%>>교사마당</option>
+							<option value="7" <%="7".equals(boardType)?"selected":""%>>학부모회</option>
+							<option value="8" <%="8".equals(boardType)?"selected":""%>>학부모마당자료실</option>
+							<option value="9" <%="9".equals(boardType)?"selected":""%>>학생회</option>
+							<option value="10" <%="10".equals(boardType)?"selected":""%>>과목별학습자료실</option>
+							<option value="11" <%="11".equals(boardType)?"selected":""%>>방과후학교</option>
+							<option value="12" <%="12".equals(boardType)?"selected":""%>>도서실</option>
 						</select>
 					</td>
 					</c:when>
 					<c:otherwise>
 					<td style="text-align:left;">
+						<% String boardType=request.getParameter("boardType"); %>
 						<select name="boardType">
-							<option value="none" selected>===선택===</option>
-							<option value="7">학부모회</option>
-							<option value="8">학부모마당자료실</option>
+							<option value=null>===선택===</option>
+							<option value="7" <%="7".equals(boardType)?"selected":""%>>학부모회</option>
+							<option value="8" <%="8".equals(boardType)?"selected":""%>>학부모마당자료실</option>
 						</select>
 					</td>
 					</c:otherwise>
@@ -97,16 +99,18 @@
 					<td><textarea name="content" class="content" maxlength="3000" placeholder="3000자 이내로 입력해주십시오"></textarea></td>
 				</tr>
 			</table>
-			<div class="buttons">
+			<div class="buttons"> 
 				<button type="submit">등록</button>
-				<button onclick="history.go(-1)">취소</button>	
+				<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">취소</button>
 			</div>
 			</form>
 			</div>
-		</div>
-    </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+   		</div>
+	</div>
 </div>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

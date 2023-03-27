@@ -13,11 +13,9 @@ public class WebMvcConfig implements WebMvcConfigurer { // web mvc 설정 클래
 	public void addInterceptors(InterceptorRegistry registry) {
 		
 		registry.addInterceptor(new AuthInterceptor())
-				.addPathPatterns("/write")
-				.addPathPatterns("/news")
+				.addPathPatterns("/board/**")
 				.addPathPatterns("/parentBoard/**")
-				.addPathPatterns("/studentBoard/**")
-				.addPathPatterns("/teacherBoard");
+				.addPathPatterns("/studentBoard/**");
 		
 	}
 	
