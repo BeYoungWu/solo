@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
-table {
-	margin-top: 50px;
+.item {
+	display: flex;
 }
-	
 
-	
-	
+.category {
+	margin-top: 20px;
+}
+
+h3 {
+	margin-left: 15px;
+}

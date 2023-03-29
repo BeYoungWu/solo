@@ -84,32 +84,78 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<table class="table table-bordered">
-				<tr>
-					<td>제목</td>
-					<td>${ board.title }</td>
-				</tr>
-				<tr>
-					<td>작성자</td>
-					<td>${ board.writer }</td>
-				</tr>
-				<tr>
-					<td>조회수</td>
-					<td>${ board.readCount }</td>
-				</tr>
-				<tr>
-					<td>첨부파일</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td style="vertical-align:middle">내용</td>
-					<td>
+				<div class="items">
+					<div class="item">
+						<div class="category">
+							<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">
+								<c:choose>
+								<c:when test="${ boardType == 0 }">
+								학교교육계획
+								</c:when>
+								<c:when test="${ boardType == 1 }">
+								공지사항
+								</c:when>
+								<c:when test="${ boardType == 2 }">
+								가정통신문
+								</c:when>
+								<c:when test="${ boardType == 3 }">
+								학교행사
+								</c:when>
+								<c:when test="${ boardType == 4 }">
+								급식표
+								</c:when>
+								<c:when test="${ boardType == 5 }">
+								교육복지특별지원사업
+								</c:when>
+								<c:when test="${ boardType == 6 }">
+								교사마당
+								</c:when>
+								<c:when test="${ boardType == 7 }">
+								학부모회
+								</c:when>
+								<c:when test="${ boardType == 8 }">
+								학부모마당자료실
+								</c:when>
+								<c:when test="${ boardType == 9 }">
+								학생회
+								</c:when>
+								<c:when test="${ boardType == 10 }">
+								과목별학습자료실
+								</c:when>
+								<c:when test="${ boardType == 11 }">
+								방과후학교
+								</c:when>
+								<c:when test="${ boardType == 12 }">
+								도서실
+								</c:when>
+								</c:choose>
+							</button>
+						</div>
+						<h3>${ board.title }</h3>
+					</div>
+				</div>
+				<div class="items">
+					<div class="item">
+						${ board.writer }
+						&nbsp;
+						·
+						&nbsp;
+						<%-- ${ board.writeDate } --%>
+						2023.03.01
+						&nbsp;
+						·
+						&nbsp;
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+						  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+						  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+						</svg>
+						${ board.readCount }
+					</div>
+				</div>
+				<hr>
 <c:set var="enter" value="
 " />
 						${ fn:replace(board.content, enter, "<br>") }
-					</td>
-				</tr>
-			</table>
 			<div class="buttons">
 				<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
 				<button>수정</button>
