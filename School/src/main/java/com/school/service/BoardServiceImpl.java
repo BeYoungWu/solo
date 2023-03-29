@@ -51,6 +51,23 @@ public class BoardServiceImpl implements BoardService {
 		
 		return board;
 	}
+
+	// 게시글 수정
+	@Override
+	public void modifyBoard(BoardDto board) {
+		
+		BoardEntity be = boardDtoToEntity(board);
+		boardRepository.save(be);
+		
+	}
+
+	// 게시글 삭제
+	@Override
+	public void deleteBoard(int boardNo) {
+
+		boardRepository.deleteById(boardNo);
+		
+	}
 	
 	
 	

@@ -49,10 +49,11 @@ public interface BoardService {
 
 	// 게시글 상세 조회
 	public BoardDto findByBoardNo(int boardNo);
-	
-	
 
-	
+	// 게시글 수정
+	public void modifyBoard(BoardDto board);
 
+	// 게시글 삭제
+	public void deleteBoard(int boardNo);
 	
 }

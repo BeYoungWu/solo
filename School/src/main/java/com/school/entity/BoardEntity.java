@@ -65,7 +65,7 @@ public class BoardEntity {
 	@Column(nullable = false)
 	private String writer;
 	
-	@Column(length = 3000, nullable = false)
+	@Column(length = 3000)
 	private String content;
 	
 	@Builder.Default
