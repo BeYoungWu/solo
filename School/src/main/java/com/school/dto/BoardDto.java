@@ -14,7 +14,5 @@ public class BoardDto {
 	private String content;
 	private Date writeDate;
 	private int readCount;
-	private String userFileName;
-	private String savedFileName;
 	
 }

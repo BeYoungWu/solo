@@ -4,6 +4,10 @@
 	display: flex;
 }
 
+.items {
+	text-align: left;	
+}
+
 .category {
 	margin-top: 20px;
 }

@@ -2,7 +2,9 @@ package com.school.service;
 
 import java.util.List;
 
+import com.school.dto.BoardAttachDto;
 import com.school.dto.BoardDto;
+import com.school.entity.BoardAttachEntity;
 import com.school.entity.BoardEntity;
 
 public interface BoardService {
@@ -18,8 +20,6 @@ public interface BoardService {
 		boardDto.setContent(boardEntity.getContent());
 		boardDto.setWriteDate(boardEntity.getWriteDate());
 		boardDto.setReadCount(boardEntity.getReadCount());
-		boardDto.setUserFileName(boardEntity.getUserFileName());
-		boardDto.setSavedFileName(boardEntity.getSavedFileName());
 		
 		return boardDto;
 	}
@@ -34,11 +34,33 @@ public interface BoardService {
 											 .content(boardDto.getContent())
 											 .writeDate(boardDto.getWriteDate())
 											 .readCount(boardDto.getReadCount())
-											 .userFileName(boardDto.getUserFileName())
-											 .savedFileName(boardDto.getSavedFileName())
 											 .build();
 		
 		return boardEntity;
+	}
+	
+	public default BoardAttachDto boardAttachEntityToDto(BoardAttachEntity boardAttachEntity) {
+		
+		BoardAttachDto boardAttachDto = new BoardAttachDto();
+		
+		boardAttachDto.setAttachNo(boardAttachEntity.getAttachNo());
+		boardAttachDto.setUserFileName(boardAttachEntity.getUserFileName());
+		boardAttachDto.setSavedFileName(boardAttachEntity.getSavedFileName());
+		boardAttachDto.setFilepath(boardAttachEntity.getFilePath());
+		
+		return boardAttachDto;		
+	}
+	
+	public default BoardAttachEntity boardAttachDtoToEntity(BoardAttachDto boardAttachDto) {
+		
+		BoardAttachEntity boardAttachEntity = BoardAttachEntity.builder()
+															   .attachNo(boardAttachDto.getAttachNo())
+															   .userFileName(boardAttachDto.getUserFileName())
+															   .savedFileName(boardAttachDto.getSavedFileName())
+															   .filePath(boardAttachDto.getFilepath())
+															   .build();
+		
+		return boardAttachEntity;
 	}
 
 	// 게시글 등록

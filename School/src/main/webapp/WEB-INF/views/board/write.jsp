@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
-			<form action="write" method="post">
+			<form action="write" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>

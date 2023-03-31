@@ -33,8 +33,6 @@ public class BoardEntity {
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
 		this.readCount = board.getReadCount();
-		this.userFileName = board.getUserFileName();
-		this.savedFileName = board.getSavedFileName();
 	}
 	
 	public BoardDto exportBoardDto() {
@@ -46,8 +44,6 @@ public class BoardEntity {
 		board.setContent(content);
 		board.setWriteDate(writeDate);
 		board.setReadCount(readCount);
-		board.setUserFileName(userFileName);
-		board.setSavedFileName(savedFileName);
 		
 		return board;
 	}
@@ -75,11 +71,5 @@ public class BoardEntity {
 	@Builder.Default
 	@Column
 	private int readCount = 0;
-	
-	@Column(length = 100)
-	private String userFileName;
-	
-	@Column(length = 100)
-	private String savedFileName;
 	
 }

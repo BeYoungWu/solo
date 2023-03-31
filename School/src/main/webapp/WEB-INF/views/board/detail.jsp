@@ -158,6 +158,12 @@
 						<!-- 첨부파일 -->
 					</div>
 				</div>
+				<hr>
+				<div class="items">
+					<div class="item">
+						<!-- 첨부파일 -->
+					</div>
+				</div>
 				<div class="items">
 					<div class="item">
 <c:set var="enter" value="
@@ -165,13 +171,14 @@
 						${ fn:replace(board.content, enter, "<br>") }
 					</div>
 				</div>
-			<div class="buttons">
-				<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
-				<button type="button" onclick=" location.href='/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }' ">수정</button>
-				<button type="button" onclick=" location.href='/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }' ">삭제</button>
-				</c:if>
-				<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">목록으로</button>
-			</div>
+				<hr>
+				<div class="buttons">
+					<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
+					<button type="button" onclick=" location.href='/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }' ">수정</button>
+					<button type="button" onclick=" location.href='/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }' ">삭제</button>
+					</c:if>
+					<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">목록으로</button>
+				</div>
 			</div>
 		</div>
     </div>

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.school.dto.BoardDto;
 import com.school.service.BoardService;
@@ -40,13 +42,19 @@ public class BoardController {
 	
 	// 게시글 등록
 	@PostMapping(path = { "/write" })
-	public String write(@RequestParam(defaultValue = "-1") int boardType, BoardDto board, Model model) {
+	public String write(@RequestParam(defaultValue = "-1") int boardType, BoardDto board, Model model, MultipartHttpServletRequest req) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
+		}
+		
+		// 첨부파일
+		MultipartFile attach = req.getFile("attach");
+		if (attach != null) {
+			
 		}
 		
 		boardService.insertBoard(board);
