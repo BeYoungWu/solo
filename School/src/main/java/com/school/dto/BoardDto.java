@@ -15,4 +15,6 @@ public class BoardDto {
 	private Date writeDate;
 	private int readCount;
 	
+	private long fileNo;
+	
 }

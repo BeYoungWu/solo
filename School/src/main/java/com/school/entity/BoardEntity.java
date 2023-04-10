@@ -33,6 +33,7 @@ public class BoardEntity {
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
 		this.readCount = board.getReadCount();
+		this.fileNo = board.getFileNo();
 	}
 	
 	public BoardDto exportBoardDto() {
@@ -44,6 +45,7 @@ public class BoardEntity {
 		board.setContent(content);
 		board.setWriteDate(writeDate);
 		board.setReadCount(readCount);
+		board.setFileNo(fileNo);
 		
 		return board;
 	}
@@ -71,5 +73,8 @@ public class BoardEntity {
 	@Builder.Default
 	@Column
 	private int readCount = 0;
+	
+	@Column
+	private Long fileNo;
 	
 }

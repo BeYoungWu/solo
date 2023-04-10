@@ -43,7 +43,6 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
 			<form action="write" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 				<tr>
@@ -92,7 +91,7 @@
 				</tr>
 				<tr>
 					<td>첨부파일</td>
-					<td><input type="file" name="attach"></td>
+					<td><input type="file" name="file"></td>
 				</tr>
 				<tr>
 					<td style="vertical-align:middle">내용</td>

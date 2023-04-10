@@ -155,13 +155,13 @@
 				<hr>
 				<div class="items">
 					<div class="item">
-						<!-- 첨부파일 -->
+						<!-- 첨부파일 -->	
 					</div>
 				</div>
 				<hr>
 				<div class="items">
 					<div class="item">
-						<!-- 첨부파일 -->
+					
 					</div>
 				</div>
 				<div class="items">

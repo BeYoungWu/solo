@@ -63,7 +63,7 @@ public class HomeController {
 	
 	// 관리자 페이지
 	@GetMapping(path = { "/admin" })
-	Public String admin() {
+	public String admin() {
 		return "/admin";
 	}
 	
