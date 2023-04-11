@@ -159,7 +159,7 @@
 						<!-- 첨부파일 -->	
 						첨부파일
 						&nbsp;&nbsp;&nbsp;
-						<a class="file" href="/download/${ board.fileNo }">${ file.userFileName }</a>
+						<a href="download?fileNo=${ board.fileNo }">${ file.userFileName }</a>
 					</div>
 				</div>
 				</c:if>
@@ -180,7 +180,7 @@
 				<div class="buttons">
 					<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
 					<button type="button" onclick=" location.href='/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }' ">수정</button>
-					<button type="button" onclick=" location.href='/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }' ">삭제</button>
+					<button type="button" class="deleteBtn" onclick="  ">삭제</button>
 					</c:if>
 					<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">목록으로</button>
 				</div>
@@ -192,6 +192,14 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->
+<script type="text/javascript">
+$(".deleteBtn").on('click', function(){
+	const ok = confirm("게시글을 삭제하시겠습니까?")
+	if (!ok) return;
+	
+	location.href = '/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }';
+});
+</script>   
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/resources/styles/js/jquery.js"></script>
 <script src="/resources/styles/js/jquery.easing.1.3.js"></script>

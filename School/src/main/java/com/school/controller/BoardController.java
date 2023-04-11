@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.View;
 
 import com.school.dto.BoardDto;
 import com.school.dto.FileDto;
 import com.school.service.BoardService;
 import com.school.service.FileService;
 import com.school.util.MD5Generator;
+import com.school.view.BoardDownloadView;
 
 @Controller
 @RequestMapping(path = { "/board" })
@@ -70,29 +72,31 @@ public class BoardController {
 		
 		// 첨부파일
 		try {
-			String userFileName = files.getOriginalFilename();
-			String filename = new MD5Generator(userFileName).toString();
-			/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
-            String savePath = System.getProperty("user.dir") + "\\files";
-            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
-            if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-            String filePath = savePath + "\\" + filename;
-            files.transferTo(new File(filePath));
-
-            FileDto fileDto = new FileDto();
-            fileDto.setUserFileName(userFileName);
-            fileDto.setSavedFileName(filename);
-            fileDto.setFilePath(filePath);
-
-            Long fileNo = fileService.saveFile(fileDto);
-            board.setFileNo(fileNo);
+			if (files.getOriginalFilename().length() != 0) {
+				String userFileName = files.getOriginalFilename();
+				String filename = new MD5Generator(userFileName).toString();
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\files";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            files.transferTo(new File(filePath));
+	
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFilePath(filePath);
+	
+	            Long fileNo = fileService.saveFile(fileDto);
+	            board.setFileNo(fileNo);
+			}
             boardService.insertBoard(board);
 		} catch (Exception e){
 			e.printStackTrace();
@@ -127,10 +131,10 @@ public class BoardController {
 	public String showDetail(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
 		if (boardType == -1 || boardNo == -1) {
-			return "redirect:/home";
-//			model.addAttribute("error_type", "writeForm");
+			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
+			return "redirect:/home";
 		}
 		
 		BoardDto board = boardService.findByBoardNo(boardNo);
@@ -143,18 +147,36 @@ public class BoardController {
 		return "/board/detail";
 	}
 	
-	// 첨부파일 다운로드
-	@GetMapping(path = { "/download/{fileNo}" })
-	public ResponseEntity<Resource> fileDownload(@PathVariable("fileNo") Long fileNo) throws IOException {
-
+	// 첨부파일 다운로드 (1) - 구글링 - 미완성
+//	@GetMapping(path = { "/download/{fileNo}" })
+//	public ResponseEntity<Resource> fileDownload(@PathVariable("fileNo") Long fileNo) throws IOException {
+//
+//		FileDto file = fileService.getFile(fileNo);
+//	    Path path = Paths.get(file.getFilePath());
+//	    Resource resource = new InputStreamResource(Files.newInputStream(path));
+//	    return ResponseEntity.ok()
+//	            .contentType(MediaType.parseMediaType("application/octet-stream"))
+//	            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getUserFileName() + "\"")
+//	            .body(resource);
+//			
+//	}
+	
+	// 첨부파일 다운로드 (2) - 학원에서 배운 방식 - 완성
+	@GetMapping(path = { "/download" })
+	public View download(@RequestParam(defaultValue = "-1") Long fileNo, Model model) {
+		
+		if (fileNo == -1) {
+			model.addAttribute("error_type", "download");
+//			model.addAttribute("message", "첨부파일 번호가 없습니다");
+		}
+		
 		FileDto file = fileService.getFile(fileNo);
-	    Path path = Paths.get(file.getFilePath());
-	    Resource resource = new InputStreamResource(Files.newInputStream(path));
-	    return ResponseEntity.ok()
-	            .contentType(MediaType.parseMediaType("application/octet-stream"))
-	            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getUserFileName() + "\"")
-	            .body(resource);
-			
+
+		model.addAttribute("file", file);
+		
+		BoardDownloadView view = new BoardDownloadView(); 
+		
+		return view;
 	}
 	
 	// 게시글 수정 폼
@@ -162,10 +184,10 @@ public class BoardController {
 	public String showModify(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
 		if (boardType == -1 || boardNo == -1) {
-			return "redirect:/home";
-//			model.addAttribute("error_type", "writeForm");
+			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
+			return "redirect:/home";
 		}
 		
 		BoardDto board = boardService.findByBoardNo(boardNo);

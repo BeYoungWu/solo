@@ -17,14 +17,13 @@
 [Write.jsp] & [Modify.jsp]
 - writeDate default nowDate() 아직 적용이 안됨 (원인파악 필요)
 - 작성완료 후 제출시 alert로 확인 작업
-- 첨부파일 아직 미구현
 - 첨부파일 이미지일 경우 내용 textarea에 띄우기''
-- 첨부파일 구현중
+- 첨부파일 수정 미구현
 (참고) https://kyuhyuk.kr/article/spring-boot/2020/07/22/Spring-Boot-JPA-MySQL-Board-Post-File-Upload-Download
 
 [Detail.jsp]
 - 벤치마킹 : 침하하
-- 삭제시 alert로 확인 작업
+- 첨부파일 없는 경우 detail 조회 오류
 
 [관리자페이지]
 - board에서 모든 게시글에 수정/삭제 권한을 가짐
