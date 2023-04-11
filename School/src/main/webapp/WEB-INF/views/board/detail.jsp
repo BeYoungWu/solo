@@ -153,11 +153,16 @@
 					</div>
 				</div>
 				<hr>
+				<c:if test="${ not empty board.fileNo }">
 				<div class="items">
 					<div class="item">
 						<!-- 첨부파일 -->	
+						첨부파일
+						&nbsp;&nbsp;&nbsp;
+						<a class="file" href="/download/${ board.fileNo }">${ file.userFileName }</a>
 					</div>
 				</div>
+				</c:if>
 				<hr>
 				<div class="items">
 					<div class="item">

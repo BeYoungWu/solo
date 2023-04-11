@@ -134,9 +134,11 @@ public class BoardController {
 		}
 		
 		BoardDto board = boardService.findByBoardNo(boardNo);
+		FileDto file = fileService.getFile(board.getFileNo());
 		
 		model.addAttribute("board", board);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("file", file);
 		
 		return "/board/detail";
 	}
