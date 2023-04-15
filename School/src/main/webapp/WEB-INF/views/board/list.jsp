@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>공지사항</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -123,7 +124,7 @@
 								${ board.title }
 							</a>
 						</td>
-						<td>${ board.writeDate }</td>
+						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
 						<td>${ board.writer }</td>
 						<td>${ board.readCount }</td>
 					</tr>

@@ -28,15 +28,20 @@ public class FileService {
     // 파일 불러오기
     @Transactional
     public FileDto getFile(Long fileNo) {
-        FileEntity file = fileRepository.findById(fileNo).get();
-
-        FileDto fileDto = FileDto.builder()
-                .fileNo(fileNo)
-                .userFileName(file.getUserFileName())
-                .savedFileName(file.getSavedFileName())
-                .filePath(file.getFilePath())
-                .build();
-        return fileDto;
+        FileEntity file = fileRepository.findById(fileNo).orElse(null);
+        
+        if (file != null) {
+	        FileDto fileDto = FileDto.builder()
+	                .fileNo(fileNo)
+	                .userFileName(file.getUserFileName())
+	                .savedFileName(file.getSavedFileName())
+	                .filePath(file.getFilePath())
+	                .build();
+	        
+	        return fileDto;
+        } else {
+        	return null;
+        }
     }
 	
 }

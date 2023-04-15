@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.school.dto.BoardDto;
 
 import lombok.AllArgsConstructor;
@@ -65,13 +68,12 @@ public class BoardEntity {
 	
 	@Column(length = 3000)
 	private String content;
-	
-	@Builder.Default
+
+	@CreationTimestamp
+	private Date writeDate;
+
 	@Column
-	private Date writeDate = new Date();
-	
 	@Builder.Default
-	@Column
 	private int readCount = 0;
 	
 	@Column

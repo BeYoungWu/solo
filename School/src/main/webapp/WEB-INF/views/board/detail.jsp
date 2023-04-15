@@ -7,6 +7,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>게시글 작성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -140,8 +141,7 @@
 						&nbsp;
 						·
 						&nbsp;
-						<%-- ${ board.writeDate } --%>
-						2023.03.01
+						<fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" />
 						&nbsp;
 						·
 						&nbsp;
