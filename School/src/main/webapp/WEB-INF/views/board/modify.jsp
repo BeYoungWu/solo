@@ -46,6 +46,7 @@
 			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
 			<form action="modify" method="post">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
+			<input type="hidden" name="fileNo" value="${ board.fileNo }">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>
@@ -91,10 +92,27 @@
 					</c:otherwise>
 					</c:choose>
 				</tr>
+				<c:choose>
+				<c:when test="${ not empty file }">
+				<input type="hidden" name="prevUserFileName">
+				<input type="hidden" name="prevSavedFileName">
+				<input type="hidden" name="prevFilePath">
+				<tr>
+					<td>등록된 파일 : </td>
+					<td><input value="${ file.userFileName }"></td>
+				</tr>
 				<tr>
 					<td>첨부파일</td>
-					<td><input type="file" name="attach"></td>
+					<td><input type="file" name="file" placeholder="첨부파일 수정을 원하지 않으면 그대로 두십시오*"></td>
 				</tr>
+				</c:when>
+				<c:otherwise>
+				<tr>
+					<td>첨부파일</td>
+					<td><input type="file" name="file"></td>
+				</tr>
+				</c:otherwise>
+				</c:choose>
 				<tr>
 					<td style="vertical-align:middle">내용</td>
 					<td><textarea name="content" class="content" maxlength="3000" placeholder="3000자 이내로 입력해주십시오">${ board.content }</textarea></td>

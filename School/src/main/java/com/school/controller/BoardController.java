@@ -61,7 +61,7 @@ public class BoardController {
 	
 	// 게시글 등록
 	@PostMapping(path = { "/write" })
-	public String write(@RequestParam(defaultValue = "-1") int boardType, @RequestParam("file") MultipartFile files, BoardDto board, Model model) {
+	public String write(@RequestParam(defaultValue = "-1") int boardType, @RequestParam("file") MultipartFile file, BoardDto board, Model model) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
@@ -72,8 +72,8 @@ public class BoardController {
 		
 		// 첨부파일
 		try {
-			if (files.getOriginalFilename().length() != 0) {
-				String userFileName = files.getOriginalFilename();
+			if (file.getOriginalFilename().length() != 0) {
+				String userFileName = file.getOriginalFilename();
 				String filename = new MD5Generator(userFileName).toString();
 				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
 	            String savePath = System.getProperty("user.dir") + "\\files";
@@ -87,7 +87,7 @@ public class BoardController {
 	                }
 	            }
 	            String filePath = savePath + "\\" + filename;
-	            files.transferTo(new File(filePath));
+	            file.transferTo(new File(filePath));
 	
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
@@ -191,22 +191,62 @@ public class BoardController {
 		}
 		
 		BoardDto board = boardService.findByBoardNo(boardNo);
+		FileDto file = fileService.getFile(board.getFileNo());
 		
 		model.addAttribute("board", board);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("file", file);
 		
 		return "/board/modify";
 	}
 	
 	// 게시글 수정
 	@PostMapping(path = { "/modify" })
-	public String modify(@RequestParam(defaultValue = "-1") int boardType, BoardDto board) {
+	public String modify(@RequestParam(defaultValue = "-1") int boardType, String prevUserFileName, String prevSavedFileName, String prevFilePath, BoardDto board, @RequestParam("file") MultipartFile file) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
+		}
+		
+		if(file != null) { // 첨부파일이 존재하는 경우
+			try {
+				if (file.getOriginalFilename().length() != 0) { // 첨부파일 수정 있을 경우
+					String userFileName = file.getOriginalFilename();
+					String filename = new MD5Generator(userFileName).toString();
+					/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+		            String savePath = System.getProperty("user.dir") + "\\files";
+		            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+		            if (!new File(savePath).exists()) {
+		                try{
+		                    new File(savePath).mkdir();
+		                }
+		                catch(Exception e){
+		                    e.getStackTrace();
+		                }
+		            }
+		            String filePath = savePath + "\\" + filename;
+		            file.transferTo(new File(filePath));
+		
+		            FileDto fileDto = new FileDto();
+		            fileDto.setUserFileName(userFileName);
+		            fileDto.setSavedFileName(filename);
+		            fileDto.setFilePath(filePath);
+		
+		            Long fileNo = fileService.saveFile(fileDto);
+		            board.setFileNo(fileNo);
+				} else { // 첨부파일 수정 없을 경우
+					FileDto fileDto = new FileDto();
+					fileDto.setFileNo(board.getFileNo());
+					fileDto.setUserFileName(prevUserFileName);
+					fileDto.setSavedFileName(prevSavedFileName);
+					fileDto.setFilePath(prevFilePath);
+				}
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		boardService.modifyBoard(board);
