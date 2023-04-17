@@ -25,3 +25,33 @@ table {
 	height: 500px;
 	resize: none;
 }
+
+/* file input 커스터마이징 */
+.file {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid lightgray;
+    width: 350px;
+    color: lightgray;
+}
+label {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 35px;
+    margin-left: 10px;
+}
+input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}

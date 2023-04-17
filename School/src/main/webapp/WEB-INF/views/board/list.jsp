@@ -99,24 +99,23 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td><span class="badge rounded-pill text-bg-primary">공지</span></td>
-						<td style="text-align:left;">일이삼사오육칠팔구1일이삼사오육칠팔구2일이삼사오육칠팔구3일이삼사오<span class="badge bg-secondary">New</span></h6></td>
-						<td>2023/03/04</td>
-						<td>홍길동</td>
-						<td>1000</td>
-					</tr>
-					<tr>
-						<td>1000</td>
-						<td style="text-align:left;">
-						일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"><path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/></svg>
-						</td>
-						<td>2023/03/04</td>
-						<td>홍길동</td>
-						<td>1000</td>
-					</tr>
 					<c:forEach var="board" items="${ boards }">
+					<c:choose>
+					<c:when test="${ board.fileNo != 0 }">
+					<tr>
+						<td>${ board.boardNo }</td>
+						<td style="text-align:left;">
+							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
+								${ board.title }
+							</a>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"><path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/></svg>
+						</td>
+						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
+						<td>${ board.writer }</td>
+						<td>${ board.readCount }</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
 					<tr>
 						<td>${ board.boardNo }</td>
 						<td style="text-align:left;">
@@ -128,6 +127,8 @@
 						<td>${ board.writer }</td>
 						<td>${ board.readCount }</td>
 					</tr>
+					</c:otherwise>
+					</c:choose>
 					</c:forEach>
 					</tbody>
 				</table>

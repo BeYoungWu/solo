@@ -10,14 +10,13 @@
 - 게시글 작성자 본인이 아닌데 링크입력으로 수정 폼 출입 가능한 부분 interceptor 처리 필요
 
 [List.jsp]
-- 작성일이 하루 이내인 경우 제목 뒤에 new SmallBadge 달기
-- 첨부파일 있는 게시글인 경우 제목 뒤에 (new 있는 경우 new 뒤에) 첨부파일 SmallBadge 달기
 - 전체 공지글에는 글번호란에 공지 BigBadge 달기
 - 조회수 기능 미구현
 
 [Write.jsp] & [Modify.jsp]
 - 작성완료 후 제출시 alert로 확인 작업
-- 첨부파일 이미지일 경우 내용 textarea에 띄우기''
+- 첨부파일 이미지일 경우 내용 textarea에 띄우기
+- 게시글 수정에서 첨부파일 새로 파일찾기 했을때 input창에 이름 띄우는 자바스크립트 구현중
 
 [Detail.jsp]
 - 벤치마킹 : 침하하

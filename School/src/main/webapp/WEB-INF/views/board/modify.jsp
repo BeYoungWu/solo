@@ -98,12 +98,16 @@
 				<input type="hidden" name="prevSavedFileName">
 				<input type="hidden" name="prevFilePath">
 				<tr>
-					<td>등록된 파일 : </td>
-					<td><input value="${ file.userFileName }"></td>
+					<td>등록된 파일</td>
+					<td><input value="${ file.userFileName }" disabled></td>
 				</tr>
 				<tr>
-					<td>첨부파일</td>
-					<td><input type="file" name="file" placeholder="첨부파일 수정을 원하지 않으면 그대로 두십시오*"></td>
+					<td style="vertical-align:middle;">첨부파일</td>
+					<td style="text-align:left;">
+					<input class="file" value="첨부파일 수정을 원하지 않으면 그대로 두십시오*">
+					<label for="file">파일찾기</label>
+					<input type="file" name="file" id="file">
+					</td>
 				</tr>
 				</c:when>
 				<c:otherwise>
@@ -127,6 +131,14 @@
    		</div>
 	</div>
 </div>
+
+<script>
+$("#file").on('change', function(){
+	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	
+	
+})
+</script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 

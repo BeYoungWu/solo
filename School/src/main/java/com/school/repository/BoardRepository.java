@@ -10,6 +10,6 @@ import com.school.entity.BoardEntity;
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 
 	// 게시글 목록 조회
-	List<BoardEntity> findByBoardType(int i);
+	List<BoardEntity> findByBoardTypeOrderByBoardNoDesc(int i);
 	
 }

@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardDto> findByBoardType(int i) {
 		
-		List<BoardEntity> boardsEntity = boardRepository.findByBoardType(i);
+		List<BoardEntity> boardsEntity = boardRepository.findByBoardTypeOrderByBoardNoDesc(i);
 		ArrayList<BoardDto> boards = new ArrayList<>();
 		for (BoardEntity boardEntity : boardsEntity) {
 			boards.add(boardEntityToDto(boardEntity));
