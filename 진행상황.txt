@@ -16,7 +16,7 @@
 [Write.jsp] & [Modify.jsp]
 - 작성완료 후 제출시 alert로 확인 작업
 - 첨부파일 이미지일 경우 내용 textarea에 띄우기
-- 게시글 수정에서 첨부파일 새로 파일찾기 했을때 input창에 이름 띄우는 자바스크립트 구현중
+- 수정을 하면 writeDate가 null이 되는 오류 수정 필요
 
 [Detail.jsp]
 - 벤치마킹 : 침하하

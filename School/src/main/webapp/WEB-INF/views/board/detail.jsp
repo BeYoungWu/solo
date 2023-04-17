@@ -180,7 +180,7 @@
 				<div class="buttons">
 					<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
 					<button type="button" onclick=" location.href='/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }' ">수정</button>
-					<button type="button" class="deleteBtn" onclick="  ">삭제</button>
+					<button type="button" class="deleteBtn">삭제</button>
 					</c:if>
 					<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">목록으로</button>
 				</div>

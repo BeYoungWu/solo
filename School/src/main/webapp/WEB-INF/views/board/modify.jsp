@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
-			<form action="modify" method="post">
+			<form action="modify" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
 			<input type="hidden" name="fileNo" value="${ board.fileNo }">
 			<table class="table table-bordered">
@@ -123,7 +123,7 @@
 				</tr>
 			</table>
 			<div class="buttons"> 
-				<button type="submit">등록</button>
+				<button type="submit" id="modify">등록</button>
 				<button type="button" onclick=" location.href='/board/detail?boardType=${ boardType }&boardNo=${ board.boardNo }' ">취소</button>
 			</div>
 			</form>
@@ -133,11 +133,25 @@
 </div>
 
 <script>
+//첨부파일 선택시 input창에 파일명 뜨게 하기
 $("#file").on('change', function(){
-	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	var fileName = $("#file").val();
+	$(".file").val(fileName);
+});
+
+// 수정 버튼 클릭시 alert
+$("#modify").on('click', function(){
+	const ok = confirm("수정하시겠습니까?");
+	if (!ok) return;
 	
-	
-})
+	$('#modify-form').submit();
+});
+
+// 수정 완료시 alert
+$("#modify").submit('#modify', function(e){
+	alert("수정이 완료되었습니다");
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
