@@ -57,8 +57,7 @@ public class BoardServiceImpl implements BoardService {
 	public void modifyBoard(BoardDto board) {
 		
 		BoardEntity be = boardDtoToEntity(board);
-		boardRepository.save(be);
-		
+		boardRepository.modifyBoard(be);
 	}
 
 	// 게시글 삭제

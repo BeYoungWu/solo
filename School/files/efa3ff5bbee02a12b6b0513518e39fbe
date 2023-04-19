@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>다낭</title>
+    <link rel="stylesheet" href="./css/danang.css">
+    <script src="https://kit.fontawesome.com/2b8b92cff2.js" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+    
+    <div class="wrap">
+        <div class="header">
+            <div class="searchArea">
+                <input type="search" placeholder="검색어를 입력해주세요">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <ul class="nav">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">MENU</a></li>
+                <li><a href="#">OVERSEAS</a></li>
+                <li><a href="#">DOMESTIC</a></li>
+                <li><a href="#">LOGIN</a></li>
+            </ul>
+        </div>
+        <div class="box1">
+            <h2>다낭</h2>
+            <div class="btn">
+                <span class="fli" ><i class="fa-solid fa-location-dot"></i>  서울(인천/김포)출발</span>
+                <span class="cal"><i class="fa-solid fa-calendar-week"></i>   <input type="date"></span>
+            </div>
+        </div>
+        
+        <div class="box2">
+            <span><i class="fa-solid fa-list-ul"></i>필터</span>
+            <span>3</span>
+            <span>항공포함/불포함</span>
+            <span>단체/우리끼리</span>
+            <span>다낭/호이안 4,5,6일 초특가 실속 패키지...</span>
+            <span><i class="fa-solid fa-arrow-rotate-right"></i>필터초기화</span>
+        </div>
+
+        <div class="box3">    
+            <span>다낭 패키지 <span class="num"> 1 </span>개</span>
+            <div class="filter">
+                <span>추천순</span>
+                <span>구매순</span>
+                <span>평점순</span>
+                <span>높은 가격순</span>
+                <span>낮은 가격순</span>
+            </div>
+        </div>
+        
+        <div class="box4">
+            <div class="left">
+                <img src="images/img1.jpg" alt="다낭사진">
+            </div>
+
+			<div class="center">
+                <span>패키지</span>
+                <h3>다낭/호이안 4,5,6일 초특가 실속 패키지 #호이안 #바나산</h3>
+                <span><i class="fa-solid fa-location-dot"></i>다낭</span>
+                <span><i class="fa-solid fa-calendar-week"></i>여행기간 4/5/6일</span>
+                <span class="right01"><strong>349,000</strong>원~</span>
+                <span class="right02 show">판매상품보기 ▼</span>
+                <span>#가성비최고 #호이안바나산</span>
+            </div>
+        </div>
+
+        <!-- 첫 화면에는 안보임 -->
+        <div class="sec_cal" style="display: none;">    
+            <div class="cal_nav">
+              <a href="javascript:;" class="nav-btn go-prev">prev</a>
+              <div class="year-month"></div>
+              <a href="javascript:;" class="nav-btn go-next">next</a>
+            </div>
+            <div class="cal_wrap">
+              <div class="days">
+                <div class="day">MON</div>
+                <div class="day">TUE</div>
+                <div class="day">WED</div>
+                <div class="day">THU</div>
+                <div class="day">FRI</div>
+                <div class="day">SAT</div>
+                <div class="day">SUN</div>
+              </div>
+              <div class="dates"></div>
+            </div>
+          </div>
+
+
+</div>
+    
+    <script src="jquery-3.6.1.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+    calendarInit();
+});
+
+function calendarInit() {
+
+    var date = new Date(); // 현재 날짜(로컬 기준) 가져오기
+    var utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000); // uct 표준시 도출
+    var kstGap = 9 * 60 * 60 * 1000; // 한국 kst 기준시간 더하기
+    var today = new Date(utc + kstGap); // 한국 시간으로 date 객체 만들기(오늘)
+  
+    var thisMonth = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    // 달력에서 표기하는 날짜 객체
+  
+    
+    var currentYear = thisMonth.getFullYear(); // 달력에서 표기하는 연
+    var currentMonth = thisMonth.getMonth(); // 달력에서 표기하는 월
+    var currentDate = thisMonth.getDate(); // 달력에서 표기하는 일
+
+    // kst 기준 현재시간
+    // console.log(thisMonth);
+
+    // 캘린더 렌더링
+    renderCalender(thisMonth);
+
+    function renderCalender(thisMonth) {
+
+        // 렌더링을 위한 데이터 정리
+        currentYear = thisMonth.getFullYear();
+        currentMonth = thisMonth.getMonth();
+        currentDate = thisMonth.getDate();
+
+        // 이전 달의 마지막 날 날짜와 요일 구하기
+        var startDay = new Date(currentYear, currentMonth, 0);
+        var prevDate = startDay.getDate();
+        var prevDay = startDay.getDay();
+
+        // 이번 달의 마지막날 날짜와 요일 구하기
+        var endDay = new Date(currentYear, currentMonth + 1, 0);
+        var nextDate = endDay.getDate();
+        var nextDay = endDay.getDay();
+
+        // console.log(prevDate, prevDay, nextDate, nextDay);
+
+        // 현재 월 표기
+        $('.year-month').text(currentYear + '.' + (currentMonth + 1));
+
+        // 렌더링 html 요소 생성
+        calendar = document.querySelector('.dates')
+        calendar.innerHTML = '';
+        
+        // 지난달
+        for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
+            calendar.innerHTML = calendar.innerHTML + '<div class="day prev disable">' + i + '</div>'
+        }
+        // 이번달
+        for (var i = 1; i <= nextDate; i++) {
+            calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + '</div>'
+        }
+        // 다음달
+        for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
+            calendar.innerHTML = calendar.innerHTML + '<div class="day next disable">' + i + '</div>'
+        }
+
+        // 오늘 날짜 표기
+        if (today.getMonth() == currentMonth) {
+            todayDate = today.getDate();
+            var currentMonthDate = document.querySelectorAll('.dates .current');
+            currentMonthDate[todayDate -1].classList.add('today');
+        }
+    }
+
+    // 이전달로 이동
+    $('.go-prev').on('click', function() {
+        thisMonth = new Date(currentYear, currentMonth - 1, 1);
+        renderCalender(thisMonth);
+    });
+
+    // 다음달로 이동
+    $('.go-next').on('click', function() {
+        thisMonth = new Date(currentYear, currentMonth + 1, 1);
+        renderCalender(thisMonth); 
+    });
+    }
+
+    // 판매상품보기 클릭 이벤트
+    $(function(){
+        var text='';
+        $('.show').click(function(){
+            if($('.sec_cal').css("display") == "none"){
+                $('.sec_cal').show();
+                $(this).text('판매상품보기 ▼');
+            }else{
+                $('.sec_cal').hide();
+                $(this).text('판매상품닫기 ▲');
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>

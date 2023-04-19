@@ -71,6 +71,9 @@ public class BoardEntity {
 
 	@CreationTimestamp
 	private Date writeDate;
+	
+	@UpdateTimestamp	
+	private Date modifyDate;
 
 	@Column
 	@Builder.Default
