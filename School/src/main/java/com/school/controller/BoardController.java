@@ -1,16 +1,23 @@
 package com.school.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 
@@ -135,6 +142,24 @@ public class BoardController {
 		model.addAttribute("file", file);
 		
 		return "/board/detail";
+	}
+	
+	// 게시글 상세 조회 - 첨부파일 미리보기
+	@GetMapping(path = { "showImage" })
+	@ResponseBody
+	public ResponseEntity<byte[]> showImage(String fileName, String filePath) {
+		
+		File file = new File(filePath, fileName);
+		ResponseEntity<byte[]> result = null;
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	// 첨부파일 다운로드 (1) - 구글링 - 미완성

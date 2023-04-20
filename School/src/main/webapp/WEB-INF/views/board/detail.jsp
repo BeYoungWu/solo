@@ -153,7 +153,7 @@
 					</div>
 				</div>
 				<hr>
-				<c:if test="${ not empty board.fileNo }">
+				<c:if test="${ board.fileNo != 0 }">
 				<div class="items">
 					<div class="item">
 						<!-- 첨부파일 -->	
@@ -162,17 +162,14 @@
 						<a href="download?fileNo=${ board.fileNo }">${ file.userFileName }</a>
 					</div>
 				</div>
-				</c:if>
 				<hr>
-				<div class="items">
-					<div class="item">
-					
-					</div>
-				</div>
+				</c:if>
 				<div class="items">
 					<div class="item">
 <c:set var="enter" value="
 " />
+						<img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath=${ file.filePath }" width="50px" height="50px">
+						<br>
 						${ fn:replace(board.content, enter, "<br>") }
 					</div>
 				</div>

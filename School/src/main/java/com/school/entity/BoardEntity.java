@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import com.school.dto.BoardDto;
 
@@ -35,7 +34,7 @@ public class BoardEntity {
 		this.writer = board.getWriter();
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
-		this.modifyDate = board.getModifyDate();
+//		this.modifyDate = board.getModifyDate();
 		this.readCount = board.getReadCount();
 		this.fileNo = board.getFileNo();
 	}
@@ -48,7 +47,7 @@ public class BoardEntity {
 		board.setWriter(writer);
 		board.setContent(content);
 		board.setWriteDate(writeDate);
-		board.setModifyDate(modifyDate);
+//		board.setModifyDate(modifyDate);
 		board.setReadCount(readCount);
 		board.setFileNo(fileNo);
 		
@@ -74,8 +73,8 @@ public class BoardEntity {
 	@CreationTimestamp
 	private Date writeDate;
 	
-	@UpdateTimestamp	
-	private Date modifyDate;
+//	@UpdateTimestamp	
+//	private Date modifyDate;
 
 	@Column
 	@Builder.Default

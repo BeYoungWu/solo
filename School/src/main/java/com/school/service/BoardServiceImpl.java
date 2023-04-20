@@ -56,8 +56,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modifyBoard(BoardDto board) {
 		
+		// 수정시 WriteDate가 Null이 되는 문제 해결
+		BoardEntity preEnt = boardRepository.findById(board.getBoardNo()).orElse(null);
 		BoardEntity be = boardDtoToEntity(board);
-		boardRepository.modifyBoard(be);
+		be.setWriteDate(preEnt.getWriteDate());
+		
+		boardRepository.save(be);
 	}
 
 	// 게시글 삭제
