@@ -17,6 +17,7 @@ public interface BoardService {
 		boardDto.setWriter(boardEntity.getWriter());
 		boardDto.setContent(boardEntity.getContent());
 		boardDto.setWriteDate(boardEntity.getWriteDate());
+		boardDto.setModifyDate(boardEntity.getModifyDate());
 		boardDto.setReadCount(boardEntity.getReadCount());
 		boardDto.setFileNo(boardEntity.getFileNo());
 		
@@ -32,6 +33,7 @@ public interface BoardService {
 											 .writer(boardDto.getWriter())
 											 .content(boardDto.getContent())
 											 .writeDate(boardDto.getWriteDate())
+											 .modifyDate(boardDto.getModifyDate())
 											 .readCount(boardDto.getReadCount())
 											 .fileNo(boardDto.getFileNo())
 											 .build();

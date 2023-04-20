@@ -13,6 +13,7 @@ public class BoardDto {
 	private String writer;
 	private String content;
 	private Date writeDate;
+	private Date modifyDate;
 	private int readCount;
 	
 	private long fileNo;

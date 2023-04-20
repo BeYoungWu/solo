@@ -35,6 +35,7 @@ public class BoardEntity {
 		this.writer = board.getWriter();
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
+		this.modifyDate = board.getModifyDate();
 		this.readCount = board.getReadCount();
 		this.fileNo = board.getFileNo();
 	}
@@ -47,6 +48,7 @@ public class BoardEntity {
 		board.setWriter(writer);
 		board.setContent(content);
 		board.setWriteDate(writeDate);
+		board.setModifyDate(modifyDate);
 		board.setReadCount(readCount);
 		board.setFileNo(fileNo);
 		
