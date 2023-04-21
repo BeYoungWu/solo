@@ -1,15 +1,20 @@
 package com.school.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.school.dto.BoardDto;
 
@@ -23,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "tbl_board")
 @Table(name = "tbl_board")
 public class BoardEntity {
 	
@@ -34,7 +39,7 @@ public class BoardEntity {
 		this.writer = board.getWriter();
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
-//		this.modifyDate = board.getModifyDate();
+		this.modifyDate = board.getModifyDate();
 		this.readCount = board.getReadCount();
 		this.fileNo = board.getFileNo();
 	}
@@ -47,7 +52,7 @@ public class BoardEntity {
 		board.setWriter(writer);
 		board.setContent(content);
 		board.setWriteDate(writeDate);
-//		board.setModifyDate(modifyDate);
+		board.setModifyDate(modifyDate);
 		board.setReadCount(readCount);
 		board.setFileNo(fileNo);
 		
@@ -71,10 +76,11 @@ public class BoardEntity {
 	private String content;
 
 	@CreationTimestamp
-	private Date writeDate;
+	@Column(updatable = false)
+	private Timestamp writeDate;
 	
-//	@UpdateTimestamp	
-//	private Date modifyDate;
+	@UpdateTimestamp	
+	private Timestamp modifyDate;
 
 	@Column
 	@Builder.Default
@@ -82,5 +88,16 @@ public class BoardEntity {
 	
 	@Column
 	private Long fileNo;
+	
+	@PrePersist
+    public void onInsert() {
+		writeDate = Timestamp.from(ZonedDateTime.now(ZoneId.of("Asia/Kolkata")).toInstant());
+		modifyDate = writeDate;
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+    	modifyDate = Timestamp.from(ZonedDateTime.now(ZoneId.of("Asia/Kolkata")).toInstant());
+     }
 	
 }

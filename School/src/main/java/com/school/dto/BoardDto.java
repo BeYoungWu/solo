@@ -1,6 +1,6 @@
 package com.school.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -12,8 +12,8 @@ public class BoardDto {
 	private String title;
 	private String writer;
 	private String content;
-	private Date writeDate;
-//	private Date modifyDate;
+	private Timestamp writeDate;
+	private Timestamp modifyDate;
 	private int readCount;
 	
 	private long fileNo;

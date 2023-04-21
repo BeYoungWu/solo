@@ -20,8 +20,13 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 	// 조회수 증가
 	@Modifying
 	@Transactional
-    @Query(value ="UPDATE tbl_board SET read_count = read_count + 1 WHERE board_no = :boardNo",
-    	   nativeQuery = true)
-    int updateReadCount(@Param(value = "boardNo") int boardNo);
+    @Query("UPDATE tbl_board b SET b.readCount = b.readCount + 1 WHERE b.boardNo = :boardNo")
+    int updateReadCount(@Param("boardNo") int boardNo);
+
+	// 게시글 수정
+	@Modifying
+	@Transactional
+    @Query("UPDATE tbl_board b SET b.boardType=:#{#be.boardType}, b.title=:#{#be.title}, b.content=:#{#be.content}, b.fileNo=:#{#be.fileNo} WHERE b.boardNo = :#{#be.boardNo}")
+	void modifyBoard(@Param("be") BoardEntity be);
 	
 }

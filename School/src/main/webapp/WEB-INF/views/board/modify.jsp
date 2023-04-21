@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
-			<form action="modify" method="post" enctype="multipart/form-data">
+			<form action="modify" id="modify-form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
 			<input type="hidden" name="fileNo" value="${ board.fileNo }">
 			<table class="table table-bordered">
@@ -93,7 +93,7 @@
 					</c:choose>
 				</tr>
 				<c:choose>
-				<c:when test="${ not empty file }">
+				<c:when test="${ board.fileNo != 0 }">
 				<input type="hidden" name="prevUserFileName">
 				<input type="hidden" name="prevSavedFileName">
 				<input type="hidden" name="prevFilePath">
@@ -142,13 +142,12 @@ $("#file").on('change', function(){
 // 수정 버튼 클릭시 alert
 $("#modify").on('click', function(){
 	const ok = confirm("수정하시겠습니까?");
-	if (!ok) return;
+	if (!ok) return false;
 	
-	$('#modify-form').submit();
 });
 
 // 수정 완료시 alert
-$("#modify").submit('#modify', function(e){
+$("#modify-form").submit('#modify', function(e){
 	alert("수정이 완료되었습니다");
 });
 

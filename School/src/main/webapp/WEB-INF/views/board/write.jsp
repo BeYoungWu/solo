@@ -43,7 +43,7 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<form action="write" method="post" enctype="multipart/form-data">
+			<form action="write" id="submit-form" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>
@@ -99,7 +99,7 @@
 				</tr>
 			</table>
 			<div class="buttons"> 
-				<button type="submit">등록</button>
+				<button type="submit" id="submit">등록</button>
 				<button type="button" onclick=" location.href='/board/list?boardType=${ boardType }' ">취소</button>
 			</div>
 			</form>
@@ -107,6 +107,21 @@
    		</div>
 	</div>
 </div>
+
+<script>
+// 등록 버튼 클릭시 alert
+$("#submit").on('click', function(){
+	const ok = confirm("등록하시겠습니까?");
+	if (!ok) return false;
+	
+});
+
+// 등록 완료시 alert
+$("#submit-form").submit('#submit', function(e){
+	alert("등록이 완료되었습니다");
+});
+
+</script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 
