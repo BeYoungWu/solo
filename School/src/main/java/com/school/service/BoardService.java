@@ -2,6 +2,9 @@ package com.school.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.school.dto.BoardDto;
 import com.school.entity.BoardEntity;
 
@@ -50,10 +53,14 @@ public interface BoardService {
 	// 게시글 상세 조회
 	public BoardDto findByBoardNo(int boardNo);
 
+	// 조회수 증가
+	public int updateReadCount(int boardNo, HttpServletRequest request, HttpServletResponse response);
+	
 	// 게시글 수정
 	public void modifyBoard(BoardDto board);
 
 	// 게시글 삭제
 	public void deleteBoard(int boardNo);
+	
 
 }

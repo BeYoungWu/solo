@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -125,7 +128,7 @@ public class BoardController {
 	
 	// 게시글 상세 조회
 	@GetMapping(path = { "/detail" })
-	public String showDetail(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
+	public String showDetail(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
 		if (boardType == -1 || boardNo == -1) {
 			model.addAttribute("error_type", "writeForm");
@@ -133,6 +136,9 @@ public class BoardController {
 //			return "/board/error";
 			return "redirect:/home";
 		}
+		
+		// 조회수 증가 (쿠키)
+		boardService.updateReadCount(boardNo, request, response);
 		
 		BoardDto board = boardService.findByBoardNo(boardNo);
 		FileDto file = fileService.getFile(board.getFileNo());

@@ -168,7 +168,8 @@
 					<div class="item">
 <c:set var="enter" value="
 " />
-						<img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath=${ file.filePath }" width="50px" height="50px">
+						<%-- 첨부파일 이미지 미리보기 구현중 (나중에) --%>
+						<%-- <img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath=${ file.filePath }" width="50px" height="50px"> --%>
 						<br>
 						${ fn:replace(board.content, enter, "<br>") }
 					</div>

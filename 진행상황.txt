@@ -15,7 +15,7 @@
 
 [Write.jsp] & [Modify.jsp]
 - 작성완료 후 제출시 alert로 확인 작업
-- 첨부파일 이미지일 경우 내용 textarea에 띄우기
+- 첨부파일 이미지일 경우 내용 textarea에 띄우기 (나중에) (md5 처리된 파일 다루기가 쉽지않음)
 - 수정시 writeDate 사용할지말지는 나중에, 일단은 게시글 수정도 save로 구현
 
 [Detail.jsp]
