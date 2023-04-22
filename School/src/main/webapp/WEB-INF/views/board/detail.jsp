@@ -13,12 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
-<!-- css -->
-<link href="/resources/styles/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/resources/styles/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
-<link href="/resources/styles/css/style.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
+
+<jsp:include page="/WEB-INF/views/module/common-css.jsp" />
 <link href="/resources/styles/css/custom/detail.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -169,7 +165,8 @@
 <c:set var="enter" value="
 " />
 						<%-- 첨부파일 이미지 미리보기 구현중 (나중에) --%>
-						<%-- <img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath=${ file.filePath }" width="50px" height="50px"> --%>
+						<%-- <img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath='/files/${file.savedFileName}' width="50px" height="50px"> --%>
+						<img src="/resources/img/${ file.savedFileName }">
 						<br>
 						${ fn:replace(board.content, enter, "<br>") }
 					</div>

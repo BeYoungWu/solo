@@ -1,8 +1,6 @@
 package com.school.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,20 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 
+import com.school.common.Util;
 import com.school.dto.BoardDto;
 import com.school.dto.FileDto;
 import com.school.service.BoardService;
@@ -74,7 +68,8 @@ public class BoardController {
 		try {
 			if (file.getOriginalFilename().length() != 0) {
 				String userFileName = file.getOriginalFilename();
-				String filename = new MD5Generator(userFileName).toString();
+//				String filename = new MD5Generator(userFileName).toString();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
 				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
 	            String savePath = System.getProperty("user.dir") + "\\files";
 	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
@@ -150,23 +145,23 @@ public class BoardController {
 		return "/board/detail";
 	}
 	
-	// 게시글 상세 조회 - 첨부파일 미리보기
-	@GetMapping(path = { "showImage" })
-	@ResponseBody
-	public ResponseEntity<byte[]> showImage(String fileName, String filePath) {
-		
-		File file = new File(filePath, fileName);
-		ResponseEntity<byte[]> result = null;
-		try {
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
+	// 게시글 상세 조회 - 첨부파일 미리보기 (1)
+//	@GetMapping(path = { "/showImage" })
+//	@ResponseBody
+//	public ResponseEntity<byte[]> showImage(String fileName, String filePath) {
+//		
+//		File file = new File(filePath, fileName);
+//		ResponseEntity<byte[]> result = null;
+//		try {
+//			HttpHeaders headers = new HttpHeaders();
+//			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return result;
+//	}
 	
 	// 첨부파일 다운로드 (1) - 구글링 - 미완성
 //	@GetMapping(path = { "/download/{fileNo}" })

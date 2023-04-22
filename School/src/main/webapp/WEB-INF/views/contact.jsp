@@ -14,14 +14,8 @@
 	background: none !important
 }
 </style>
-<!-- css -->
-<link href="/resources/styles/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/resources/styles/css/fancybox/jquery.fancybox.css"
-	rel="stylesheet">
-<link href="/resources/styles/css/jcarousel.css" rel="stylesheet" />
-<link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
-<link href="/resources/styles/css/style.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
+
+<jsp:include page="/WEB-INF/views/module/common-css.jsp" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

@@ -8,13 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
-<!-- css -->
-<link href="/resources/styles/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/resources/styles/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="/resources/styles/css/jcarousel.css" rel="stylesheet" />
-<link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
-<link href="/resources/styles/css/admin-style.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
+
+<jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -37,11 +32,9 @@
 	
 	<div class="contatiner">
 		<div class="row">
-			<div class="col-lg-3">
-				
-			</div>
-			<div class="col-lg-9">
-			
+			<div class="col-lg-12">
+			<h2>학교소개 - 등록 / 수정 관리</h2>
+			<h2>게시판 - 공지 등록 / 게시물 관리</h2>				
 			</div>
 		</div>
 	</div>

@@ -6,16 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
-<%-- CSS --%>
-<link href="/resources/styles/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/resources/styles/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<!-- <link href="/resources/styles/css/jcarousel.css" rel="stylesheet" /> -->
-<link href="/resources/styles/css/flexslider.css" rel="stylesheet" />
-<!-- <link href="/resources/styles/js/owl-carousel/owl.carousel.css" rel="stylesheet"> -->
-<link href="/resources/styles/css/style.css" rel="stylesheet" />
-<link href="/resources/styles/css/custom/header.css" rel="stylesheet" />
+
+<jsp:include page="/WEB-INF/views/module/common-css.jsp" />
 <link href="/resources/styles/css/custom/home.css" rel="stylesheet" />
-<%-- END OF CSS --%>
 
 <%-- HTML5 shim, for IE6-8 support of HTML5 elements --%>
 <%--[if lt IE 9]>
