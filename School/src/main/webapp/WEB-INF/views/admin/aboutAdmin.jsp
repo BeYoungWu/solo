@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자페이지</title>
+<title>교직원소개</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
+<link href="/resources/styles/css/custom/aboutAdmin.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -24,22 +27,122 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">교직원소개 관리</h2>
+				<h2 class="pageTitle">교직원 소개</h2>
 			</div>
 		</div>
 	</div>
 	</section>
-	
-	<div class="contatiner">
-		<div class="row">
-			<div class="col-lg-12">
-				
-			</div>
-		</div>
+	<div class="buttons">
+		<button data-toggle="modal" data-target="#register-teacher">교사 등록</button>
+		<button data-toggle="modal" data-target="#register-subject">교사 과목 등록</button>
 	</div>
 	
+	<%-- REGISTER TEACHER MODAL --%>
+	<div class="modal fade" id="register-teacher" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">교사 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="text-align:center">
+					<form id="registerTeacher" action="registerTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
+						<div class="input-grids">
+							<input type="text" name="teacherName" id="teacherName"
+								placeholder="교사 성함*" class="form-control" required="required">
+							<br>
+							<select id="subjectSelbox" name="subjectCategory">
+							  <option selected>교사의 과목을 선택해주십시오*</option>
+							  <%-- <c:forEach var="" items="${  }">
+							  <option value="${  }"></option>
+							  </c:forEach> --%>
+							  <option value="direct">직접입력</option>
+							</select>
+							<br>
+							<input type="text" class="form-control" placeholder="교사 과목*" id="subjectSelboxDirect" name="subjectSelboxDirect" style="margin-top:22px">
+						</div>
+						<br>
+						<div class="filebox">
+						    <input class="upload-name" placeholder="교사 사진을 첨부해주십시오*" disabled>
+						    <label for="productImg">파일찾기</label> 
+						    <input type="file" name="teacherImg" id="teacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn"
+						data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_register_teacher">등록하기</button>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<%-- END --%>
+	
+	<%-- REGISTER SUBJECT MODAL --%>
+	
+	<%-- END --%>
+	
+	<section id="content">
+	<div class="container">
+			<div class="about">			
+				<div class="teachers">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<div class="teacher">
+								<img class="img-responsive" src="/resources/styles/img/team1.jpg" alt="" width="260" height="260">
+								<h4>Johne Doe</h4>
+								<span class="deg">Creative</span> 
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<!-- Team Member -->
+							<div class="team-member">
+								<!-- Image -->
+								<%-- <img class="img-responsive" src="/resources/teachers/${file.savedFileName}" alt="" width="260" height="260"> --%>
+								<img class="img-responsive" src="/resources/styles/img/team2.jpg" alt="">
+								<!-- Name -->
+								<h4>Jennifer</h4>
+								<span class="deg">Programmer</span> 
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<!-- Team Member -->
+							<div class="team-member">
+								<!-- Image -->
+								<img class="img-responsive" src="/resources/styles/img/team3.jpg" alt="" width="260" height="260">
+								<!-- Name -->
+								<h4>Christean</h4>
+								<span class="deg">CEO</span> 
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<!-- Team Member -->
+							<div class="team-member">
+								<!-- Image -->
+								<img class="img-responsive" src="/resources/styles/img/team4.jpg" alt="" width="260" height="260">
+								<!-- Name -->
+								<h4>Kerinele rase</h4>
+								<span class="deg">Manager</span> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
+
+<script>
+$("#regTeacher").on('click', function(){
+	
+});
+</script>
+
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

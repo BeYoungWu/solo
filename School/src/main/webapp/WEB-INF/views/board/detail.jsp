@@ -154,20 +154,25 @@
 					<div class="item">
 						<!-- 첨부파일 -->	
 						첨부파일
-						&nbsp;&nbsp;&nbsp;
+						&nbsp;
+						:
+						&nbsp;&nbsp;
 						<a href="download?fileNo=${ board.fileNo }">${ file.userFileName }</a>
 					</div>
 				</div>
 				<hr>
 				</c:if>
+				<br><br><br>
+				<div class="img">
+				<%-- <c:if test=""> --%>
+				<img src="/resources/img/board/${ file.savedFileName }">
+				<%-- </c:if> --%>
+				</div>
+				<br><br><br>
 				<div class="items">
 					<div class="item">
 <c:set var="enter" value="
 " />
-						<%-- 첨부파일 이미지 미리보기 구현중 (나중에) --%>
-						<%-- <img src="<%=request.getContextPath()%>/board/showImage?fileName=${file.userFileName}&filePath='/files/${file.savedFileName}' width="50px" height="50px"> --%>
-						<img src="/resources/img/${ file.savedFileName }">
-						<br>
 						${ fn:replace(board.content, enter, "<br>") }
 					</div>
 				</div>

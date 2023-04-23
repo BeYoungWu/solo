@@ -31,11 +31,7 @@
 	</section>
 	<section id="content">
 	<div class="container">
-					
 			<div class="about">			
-				
-				<!-- Our team starts -->
-				
 				<div class="teachers">
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
@@ -80,12 +76,7 @@
 						</div>
 					</div>
 				</div>
-				
-				<!-- Our team ends -->
-			  
-				
 			</div>
-			
 		</div>
 	</section>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

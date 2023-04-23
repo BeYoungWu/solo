@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.buttons {
+	text-align: center;
+	margin-top: 20px;
+}
+.buttons button {
+	margin: 10px;
+}
