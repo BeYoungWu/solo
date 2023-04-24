@@ -1,5 +1,7 @@
 package com.school.service;
 
+import java.util.List;
+
 import com.school.dto.TeacherDto;
 import com.school.entity.TeacherEntity;
 
@@ -11,7 +13,7 @@ public interface AdminService {
 		
 		teacherDto.setTeacherNo(teacherEntity.getTeacherNo());
 		teacherDto.setTeacherName(teacherEntity.getTeacherName());
-		teacherDto.setSubjectNo(teacherEntity.getSubjectNo());
+		teacherDto.setSubject(teacherEntity.getSubject());
 		teacherDto.setFileNo(teacherEntity.getFileNo());
 		
 		return teacherDto;
@@ -22,12 +24,18 @@ public interface AdminService {
 		TeacherEntity teacherEntity = TeacherEntity.builder()
 											 .teacherNo(teacherDto.getTeacherNo())
 											 .teacherName(teacherDto.getTeacherName())
-											 .subjectNo(teacherDto.getSubjectNo())
+											 .subject(teacherDto.getSubject())
 											 .fileNo(teacherDto.getFileNo())
 											 .build();
 		
 		return teacherEntity;
 	}
+
+	// 과목 목록 불러오기
+	List<String> findAllSubjects();
+	
+	// 교직원 등록
+	void insertTeacher(TeacherDto teacher);
 
 
 }

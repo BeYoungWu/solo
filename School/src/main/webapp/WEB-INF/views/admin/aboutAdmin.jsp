@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>교직원소개</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -34,7 +37,6 @@
 	</section>
 	<div class="buttons">
 		<button data-toggle="modal" data-target="#register-teacher">교사 등록</button>
-		<button data-toggle="modal" data-target="#register-subject">교사 과목 등록</button>
 	</div>
 	
 	<%-- REGISTER TEACHER MODAL --%>
@@ -57,9 +59,9 @@
 							<br>
 							<select id="subjectSelbox" name="subjectCategory">
 							  <option selected>교사의 과목을 선택해주십시오*</option>
-							  <%-- <c:forEach var="" items="${  }">
-							  <option value="${  }"></option>
-							  </c:forEach> --%>
+							  <c:forEach var="subject" items="${ subjects }">
+							  <option value="${ subject }">${ subject }</option>
+							  </c:forEach>
 							  <option value="direct">직접입력</option>
 							</select>
 							<br>
@@ -68,7 +70,7 @@
 						<br>
 						<div class="filebox">
 						    <input class="upload-name" placeholder="교사 사진을 첨부해주십시오*" disabled>
-						    <label for="productImg">파일찾기</label> 
+						    <label for="teacherImg">파일찾기</label> 
 						    <input type="file" name="teacherImg" id="teacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
 						</div>
 						<br>
@@ -82,7 +84,35 @@
 	</div>
 	<%-- END --%>
 	
-	<%-- REGISTER SUBJECT MODAL --%>
+	<%-- RESGISTER TEACHER JS --%>
+	<script>
+	// 교사 과목 select box
+	$("#subjectSelboxDirect").hide();
+	
+	$("#subjectSelbox").change(function() {
+		$("#subjectSelboxDirect").val('');
+		// 직접입력을 누를 때 나타남
+		if ($("#subjectSelbox").val() == "direct") {
+			$("#subjectSelboxDirect").show();
+		} else {
+			$("#subjectSelboxDirect").hide();
+		}
+	});
+
+	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	$("#teacherImg").on('change',function(){
+	  var fileName = $("#teacherImg").val();
+	  $(".upload-name").val(fileName);
+	});
+	</script>
+	<%-- END --%>
+	
+	
+	<%-- MODIFY SUBJECT MODAL --%>
+	
+	<%-- END --%>
+	
+	<%-- MODIFY SUBJECT JS --%>
 	
 	<%-- END --%>
 	
@@ -127,6 +157,15 @@
 								<!-- Name -->
 								<h4>Kerinele rase</h4>
 								<span class="deg">Manager</span> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<div class="teacher">
+								<%-- <img class="img-responsive" src="/resources/styles/img/teacher/${  }" alt="" width="260" height="260"> --%>
+								<h4>${ teacher.teacherName }</h4>
+								<span class="deg">${ teacher.subject }</span>
 							</div>
 						</div>
 					</div>

@@ -29,7 +29,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(BoardDto board) {
 
-		// 아직 첨부파일 안 넣음
 		BoardEntity boardEntity = boardDtoToEntity(board);
 		boardRepository.save(boardEntity);
 		

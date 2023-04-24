@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "tbl_teacher")
 @Table(name = "tbl_teacher")
 public class TeacherEntity {
 	
 	public TeacherEntity(TeacherDto teacher) {
 		this.teacherNo = teacher.getTeacherNo();
 		this.teacherName = teacher.getTeacherName();
-		this.subjectNo = teacher.getSubjectNo();
+		this.subject = teacher.getSubject();
 		this.fileNo = teacher.getFileNo();
 	}
 	
@@ -34,7 +34,7 @@ public class TeacherEntity {
 		TeacherDto teacher = new TeacherDto();
 		teacher.setTeacherNo(teacherNo);
 		teacher.setTeacherName(teacherName);
-		teacher.setSubjectNo(subjectNo);
+		teacher.setSubject(subject);
 		teacher.setFileNo(fileNo);
 		
 		return teacher;
@@ -48,7 +48,7 @@ public class TeacherEntity {
 	private String teacherName;
 	
 	@Column
-	private int subjectNo;
+	private String subject;
 	
 	@Column
 	private Long fileNo;

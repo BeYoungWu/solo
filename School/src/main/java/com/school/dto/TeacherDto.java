@@ -7,7 +7,7 @@ public class TeacherDto {
 	
 	private int teacherNo;
 	private String teacherName;
-	private int subjectNo;
+	private String subject;
 	
 	private long fileNo;
 }
