@@ -1,5 +1,6 @@
 package com.school.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,24 @@ public class AdminServiceImpl implements AdminService {
 		return subjects;
 	}
 	
+	// 교직원 목록 불러오기
+	@Override
+	public List<HashMap<String, Object>> findAllTeachers() {
+		
+		List<HashMap<String, Object>> teachers = teacherRepository.findAllTeachersAndPic();
+		System.out.println(teachers);
+		
+		return teachers;
+	}
+	
 	// 교직원 등록
 	@Override
 	public void insertTeacher(TeacherDto teacher) {
 
 		TeacherEntity teacherEntity = teacherDtoToEntity(teacher);
 		teacherRepository.save(teacherEntity);
-		
+
 	}
 
-	
-	
-	
 	
 }
