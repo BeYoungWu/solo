@@ -35,7 +35,7 @@ public interface AdminService {
 	// 과목 목록 불러오기
 	List<String> findAllSubjects();
 	
-	// 교직원 목록 불러오기
+	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 	List<HashMap<String, Object>> findAllTeachers();
 	
 	// 교직원 등록

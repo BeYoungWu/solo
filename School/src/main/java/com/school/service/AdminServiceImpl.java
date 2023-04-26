@@ -27,7 +27,7 @@ public class AdminServiceImpl implements AdminService {
 		return subjects;
 	}
 	
-	// 교직원 목록 불러오기
+	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 	@Override
 	public List<HashMap<String, Object>> findAllTeachers() {
 		

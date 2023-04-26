@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -13,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Entity
+@Entity(name = "tbl_file")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "tbl_file")
 public class FileEntity {
@@ -31,6 +33,10 @@ public class FileEntity {
 	@Column(nullable = false)
 	private String filePath;
 
+	@OneToOne()
+	@JoinColumn(name = "fileNo")
+	private TeacherEntity teacher;
+	
 	@Builder
 	public FileEntity(Long fileNo, String userFileName, String savedFileName, String filePath) {
 		this.fileNo = fileNo;

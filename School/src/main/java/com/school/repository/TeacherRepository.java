@@ -18,6 +18,7 @@ public interface TeacherRepository extends JpaRepository<TeacherEntity, Integer>
 	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 	@Query(value = "SELECT t.teacher_no, t.teacher_name, t.subject, f.* FROM tbl_teacher t JOIN tbl_file f ON t.file_no = f.file_no",
 		   nativeQuery = true)
+//	@Query(value = "SELECT t.teacherNo, t.teacherName, t.subject, f.fileNo, f.savedFileName, f.userFileName FROM tbl_teacher t, tbl_file f WHERE t.fileNo = f.fileNo")
 	List<HashMap<String, Object>> findAllTeachersAndPic();
 
 	
