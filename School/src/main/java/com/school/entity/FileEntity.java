@@ -34,9 +34,8 @@ public class FileEntity {
 	@Column(nullable = false)
 	private String filePath;
 
-	@OneToOne
+	@OneToOne(mappedBy = "file")
 	@JoinColumn(name = "fileNo")
-	@MapsId
 	private TeacherEntity teacher;
 	
 	@Builder

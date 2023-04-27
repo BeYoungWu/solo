@@ -56,7 +56,7 @@ public class TeacherEntity {
 	@Column
 	private Long fileNo;
 	
-	@OneToOne(mappedBy = "teacher", cascade = CascadeType.ALL)
+	@OneToOne
 	@PrimaryKeyJoinColumn
 	private FileEntity file;
 	

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.school.common.Util;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
+import com.school.entity.TeacherEntity;
 import com.school.service.AdminService;
 import com.school.service.FileService;
 
@@ -40,7 +41,8 @@ public class AdminController {
 		List<String> subjects = adminService.findAllSubjects();
 		
 		// 교직원 목록 불러오기 + 각자의 사진 파일까지
-		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
+//		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
+		List<TeacherEntity> teachers = adminService.findAllTeachers();
 		System.out.println(teachers);
 		
 		// 교직원 수 구하기

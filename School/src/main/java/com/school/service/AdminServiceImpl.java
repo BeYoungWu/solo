@@ -29,9 +29,11 @@ public class AdminServiceImpl implements AdminService {
 	
 	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 	@Override
-	public List<HashMap<String, Object>> findAllTeachers() {
+//	public List<HashMap<String, Object>> findAllTeachers() {
+	public List<TeacherEntity> findAllTeachers() {
 		
-		List<HashMap<String, Object>> teachers = teacherRepository.findAllTeachersAndPic();
+//		List<HashMap<String, Object>> teachers = teacherRepository.findAllTeachersAndPic();
+		List<TeacherEntity> teachers = teacherRepository.findAllTeachersAndPic();
 		System.out.println(teachers);
 		
 		return teachers;
