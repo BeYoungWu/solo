@@ -13,7 +13,7 @@
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
 
-<jsp:include page="/WEB-INF/views/module/common-css.jsp" />
+<jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
 <link href="/resources/styles/css/custom/list.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -26,7 +26,7 @@
 </head>
 <body>
 <div id="wrapper">
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
+<jsp:include page="/WEB-INF/views/include/admin-header.jsp" />
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -80,7 +80,7 @@
 	<div class="container text-center">	
 		<div class="row">
 			<div class="write-btn">
-				<button onclick=" location.href='/board/write?boardType=${ boardType }' ">글쓰기</button>
+				<button onclick=" location.href='/admin/board/write?boardType=${ boardType }' ">글쓰기</button>
 			</div>
 			<div class="col-lg-12">
 			<form>
@@ -96,35 +96,17 @@
 					</thead>
 					<tbody>
 					<c:forEach var="board" items="${ boards }">
-					<c:choose>
-					<c:when test="${ board.fileNo != 0 }">
 					<tr>
 						<td>${ board.boardNo }</td>
 						<td style="text-align:left;">
 							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
 								${ board.title }
 							</a>
+							<c:if test="${ board.fileNo != 0 }">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"><path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/></svg>
+							</c:if>
 						</td>
-						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
-						<td>${ board.writer }</td>
-						<td>${ board.readCount }</td>
 					</tr>
-					</c:when>
-					<c:otherwise>
-					<tr>
-						<td>${ board.boardNo }</td>
-						<td style="text-align:left;">
-							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
-								${ board.title }
-							</a>
-						</td>
-						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
-						<td>${ board.writer }</td>
-						<td>${ board.readCount }</td>
-					</tr>
-					</c:otherwise>
-					</c:choose>
 					</c:forEach>
 					</tbody>
 				</table>
