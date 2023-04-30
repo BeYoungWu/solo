@@ -45,6 +45,14 @@
 			<input type="hidden" name="fileNo" value="${ board.fileNo }">
 			<table class="table table-bordered">
 				<tr>
+					<td style="vertical-align:middle">게시글 분류</td>
+					<td>
+					<label><input type="radio" name="notice" value="true" checked>공지</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" name="notice" value="false">일반</label>
+					</td>
+				</tr>
+				<tr>
 					<td>제목</td>
 					<td><input name="title" maxlength="34" required="required" pattern=".{2,34}" placeholder="2~34자 이내로 입력해주십시오" value="${ board.title }"></td>
 				</tr>

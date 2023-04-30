@@ -128,7 +128,14 @@
 								</c:choose>
 							</button>
 						</div>
+						<c:choose>
+						<c:when test="${ board.notice eq 'true' }">
+						<h3><span class="badge bg-secondary" style="vertical-align:middle;">공지</span>&nbsp;&nbsp;${ board.title }</h3>
+						</c:when>
+						<c:otherwise>
 						<h3>${ board.title }</h3>
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="items">

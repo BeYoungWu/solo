@@ -97,7 +97,16 @@
 					<tbody>
 					<c:forEach var="board" items="${ boards }">
 					<tr>
+						<c:choose>
+						<c:when test="${ board.notice eq 'true' }">
+						<td>
+						<span class="badge text-bg-secondary">공지</span>
+						</td>
+						</c:when>
+						<c:otherwise>
 						<td>${ board.boardNo }</td>
+						</c:otherwise>
+						</c:choose>
 						<td style="text-align:left;">
 							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
 								${ board.title }
@@ -106,6 +115,9 @@
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"><path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/></svg>
 							</c:if>
 						</td>
+						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
+						<td>${ board.writer }</td>
+						<td>${ board.readCount }</td>
 					</tr>
 					</c:forEach>
 					</tbody>

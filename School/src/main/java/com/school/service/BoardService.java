@@ -16,6 +16,7 @@ public interface BoardService {
 		
 		boardDto.setBoardNo(boardEntity.getBoardNo());
 		boardDto.setBoardType(boardEntity.getBoardType());
+		boardDto.setNotice(boardEntity.getNotice());
 		boardDto.setTitle(boardEntity.getTitle());
 		boardDto.setWriter(boardEntity.getWriter());
 		boardDto.setContent(boardEntity.getContent());
@@ -32,6 +33,7 @@ public interface BoardService {
 		BoardEntity boardEntity = BoardEntity.builder()
 											 .boardNo(boardDto.getBoardNo())
 											 .boardType(boardDto.getBoardType())
+											 .notice(boardDto.getNotice())
 											 .title(boardDto.getTitle())
 											 .writer(boardDto.getWriter())
 											 .content(boardDto.getContent())

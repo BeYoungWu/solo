@@ -9,6 +9,7 @@ public class BoardDto {
 	
 	private int boardNo;
 	private int boardType;
+	private String notice;
 	private String title;
 	private String writer;
 	private String content;

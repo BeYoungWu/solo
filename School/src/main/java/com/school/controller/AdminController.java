@@ -43,7 +43,6 @@ public class AdminController {
 		// 교직원 목록 불러오기 + 각자의 사진 파일까지
 //		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
 		List<TeacherEntity> teachers = adminService.findAllTeachers();
-		System.out.println(teachers);
 		
 		// 교직원 수 구하기
 		

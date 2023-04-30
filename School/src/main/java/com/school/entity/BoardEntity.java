@@ -35,6 +35,7 @@ public class BoardEntity {
 	public BoardEntity(BoardDto board) {
 		this.boardNo = board.getBoardNo();
 		this.boardType = board.getBoardType();
+		this.notice = board.getNotice();
 		this.title = board.getTitle();
 		this.writer = board.getWriter();
 		this.content = board.getContent();
@@ -48,6 +49,7 @@ public class BoardEntity {
 		BoardDto board = new BoardDto();
 		board.setBoardNo(boardNo);
 		board.setBoardType(boardType);
+		board.setNotice(notice);
 		board.setTitle(title);
 		board.setWriter(writer);
 		board.setContent(content);
@@ -65,6 +67,9 @@ public class BoardEntity {
 	
 	@Column(nullable = false)
 	private int boardType;
+	
+	@Column
+	private String notice;
 	
 	@Column(length = 34, nullable = false)
 	private String title;
