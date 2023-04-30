@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -32,17 +30,21 @@ public class FileEntity {
 	
 	@Column(nullable = false)
 	private String filePath;
+	
+	@Column
+	private int fileType;
 
-	@OneToOne(mappedBy = "file")
-	@JoinColumn(name = "fileNo")
-	private TeacherEntity teacher;
+//	@OneToOne(mappedBy = "file")
+//	@JoinColumn(name = "fileNo")
+//	private TeacherEntity teacher;
 	
 	@Builder
-	public FileEntity(Long fileNo, String userFileName, String savedFileName, String filePath) {
+	public FileEntity(Long fileNo, String userFileName, String savedFileName, String filePath, int fileType) {
 		this.fileNo = fileNo;
 		this.userFileName = userFileName;
 		this.savedFileName = savedFileName;
 		this.filePath = filePath;
+		this.fileType = fileType;
 	}
 	
 }

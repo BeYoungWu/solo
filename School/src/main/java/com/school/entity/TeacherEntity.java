@@ -1,13 +1,10 @@
 package com.school.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.school.dto.TeacherDto;
@@ -56,9 +53,9 @@ public class TeacherEntity {
 	@Column
 	private Long fileNo;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private FileEntity file;
+//	@OneToOne
+//	@PrimaryKeyJoinColumn
+//	private FileEntity file;
 	
 	
 	

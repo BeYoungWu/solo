@@ -1,9 +1,10 @@
 package com.school.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.school.dto.FileDto;
@@ -36,9 +37,32 @@ public class FileService {
 	                .userFileName(file.getUserFileName())
 	                .savedFileName(file.getSavedFileName())
 	                .filePath(file.getFilePath())
+	                .fileType(file.getFileType())
 	                .build();
 	        
 	        return fileDto;
+        } else {
+        	return null;
+        }
+    }
+    
+    // 선생님 파일 전체 불러오기
+    @Transactional
+    public List<FileDto> getTeacherFiles() {
+    	List<FileEntity> filesEntity = fileRepository.findTeacherFiles();
+    	List<FileDto> files = new ArrayList<>();
+    	if (filesEntity != null) {
+    		for (FileEntity fileEntity : filesEntity) {
+    			FileDto file = FileDto.builder()
+    								  .fileNo(fileEntity.getFileNo())
+    								  .userFileName(fileEntity.getUserFileName())
+    								  .savedFileName(fileEntity.getSavedFileName())
+    								  .filePath(fileEntity.getFilePath())
+    								  .fileType(fileEntity.getFileType())
+    								  .build();
+    			files.add(file);
+    		}
+	        return files;
         } else {
         	return null;
         }

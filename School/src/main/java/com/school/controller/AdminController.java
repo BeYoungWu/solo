@@ -1,7 +1,6 @@
 package com.school.controller;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.school.common.Util;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
-import com.school.entity.TeacherEntity;
 import com.school.service.AdminService;
 import com.school.service.FileService;
 
@@ -42,13 +40,18 @@ public class AdminController {
 		
 		// 교직원 목록 불러오기 + 각자의 사진 파일까지
 //		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
-		List<TeacherEntity> teachers = adminService.findAllTeachers();
+		List<TeacherDto> teachers = adminService.findAllTeachers();
+		List<FileDto> files = fileService.getTeacherFiles();
+		
+		System.out.println(teachers);
+		System.out.println(files);
 		
 		// 교직원 수 구하기
 		
 		
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("teachers", teachers);
+		model.addAttribute("files", files);
 		
 		return "/admin/aboutAdmin";
 	}
@@ -89,6 +92,7 @@ public class AdminController {
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
 	            fileDto.setFilePath(filePath);
+	            fileDto.setFileType(1);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);

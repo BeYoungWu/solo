@@ -1,6 +1,5 @@
 package com.school.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.school.dto.TeacherDto;
@@ -37,7 +36,7 @@ public interface AdminService {
 	
 	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 //	List<HashMap<String, Object>> findAllTeachers();
-	List<TeacherEntity> findAllTeachers();
+	List<TeacherDto> findAllTeachers();
 	
 	// 교직원 등록
 	void insertTeacher(TeacherDto teacher);

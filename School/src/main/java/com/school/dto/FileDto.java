@@ -18,6 +18,7 @@ public class FileDto {
 	private String userFileName;
 	private String savedFileName;
 	private String filePath;
+	private int fileType;
 
 	public FileEntity toEntity() {
 		FileEntity build = FileEntity.builder()
@@ -25,16 +26,18 @@ public class FileDto {
 						 .userFileName(userFileName)
 						 .savedFileName(savedFileName)
 						 .filePath(filePath)
+						 .fileType(fileType)
 						 .build();
 		return build;
 	}
 	
 	@Builder
-	public FileDto(Long fileNo, String userFileName, String savedFileName, String filePath) {
+	public FileDto(Long fileNo, String userFileName, String savedFileName, String filePath, int fileType) {
 		this.fileNo = fileNo;
 		this.userFileName = userFileName;
 		this.savedFileName = savedFileName;
 		this.filePath = filePath;
+		this.fileType = fileType;
 	}
 	
 }

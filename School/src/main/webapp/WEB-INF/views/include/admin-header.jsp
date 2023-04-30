@@ -78,7 +78,7 @@
 								<li><a href="/admin/currentAdmin">학교현황</a></li>
 								<li><a href="/admin/symbolAdmin">학교상징</a></li>
 								<li><a href="/admin/songAdmin">학교교가</a></li>
-								<li><a href="/admin/list?boardType=0">학교교육계획</a></li>
+								<li><a href="/admin/board/list?boardType=0">학교교육계획</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownNews()" onmouseout="hideDropdownNews()">

@@ -113,7 +113,16 @@
 					</c:when>
 					<c:otherwise>
 					<tr>
+						<c:choose>
+						<c:when test="${ board.notice eq 'true' }">
+						<td>
+						<span class="badge text-bg-secondary">공지</span>
+						</td>
+						</c:when>
+						<c:otherwise>
 						<td>${ board.boardNo }</td>
+						</c:otherwise>
+						</c:choose>
 						<td style="text-align:left;">
 							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
 								${ board.title }
