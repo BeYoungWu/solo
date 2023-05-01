@@ -1,7 +1,9 @@
 package com.school.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,16 +44,45 @@ public class AdminController {
 //		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
 		List<TeacherDto> teachers = adminService.findAllTeachers();
 		List<FileDto> files = fileService.getTeacherFiles();
+
+		Map<Long, Map<String, Object>> tnf = new HashMap<>();
+	    
+	    // teachers를 HashMap에 넣기
+	    for (TeacherDto teacher : teachers) {
+	        Map<String, Object> teacherMap = new HashMap<>();
+	        teacherMap.put("teacherNo", teacher.getTeacherNo());
+	        teacherMap.put("teacherName", teacher.getTeacherName());
+	        teacherMap.put("subject", teacher.getSubject());
+	        teacherMap.put("fileNo", teacher.getFileNo());
+	        
+	        tnf.put(teacher.getFileNo(), teacherMap);
+	    }
+	    
+	    // files를 HashMap에 넣기
+	    for (FileDto file : files) {
+	        Long fileNo = file.getFileNo();
+	        Map<String, Object> resultMapEntry = tnf.get(fileNo);
+	        
+	        if (resultMapEntry == null) {
+	            // Create a new entry for this file
+	            resultMapEntry = new HashMap<>();
+	            tnf.put(fileNo, resultMapEntry);
+	        }
+	        
+	        resultMapEntry.put("userFileName", file.getUserFileName());
+	        resultMapEntry.put("savedFileName", file.getSavedFileName());
+	        resultMapEntry.put("filePath", file.getFilePath());
+	        resultMapEntry.put("fileType", file.getFileType());
+	    }
 		
-		System.out.println(teachers);
-		System.out.println(files);
-		
+	    System.out.println(tnf);
+	    
 		// 교직원 수 구하기
-		
+		int teacherSize = teachers.size();
 		
 		model.addAttribute("subjects", subjects);
-		model.addAttribute("teachers", teachers);
-		model.addAttribute("files", files);
+		model.addAttribute("ts", teacherSize);
+		model.addAttribute("tnf", tnf);
 		
 		return "/admin/aboutAdmin";
 	}

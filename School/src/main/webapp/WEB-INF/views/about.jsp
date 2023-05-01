@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>교직원소개</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -34,46 +37,20 @@
 			<div class="about">			
 				<div class="teachers">
 					<div class="row">
-						<div class="col-md-3 col-sm-6">
-							<!-- Team Member -->
-							<div class="team-member">
-								<!-- Image -->
-								<img class="img-responsive" src="/resources/styles/img/team1.jpg" alt="">
-								<!-- Name -->
-								<h4>Johne Doe</h4>
-								<span class="deg">Creative</span> 
+					<c:forEach items="${tnf}" var="tnf" varStatus="status">
+						<c:if test="${status.index mod 4 == 0}">
+							</div><div class="row">
+						</c:if>
+						<c:if test="${status.index < ts}">
+							<div class="col-md-3 col-sm-6">
+								<div class="teacher">
+									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" width="260" height="260">
+									<h4>${tnf.value.teacherName}</h4>
+									<span class="deg">${tnf.value.subject}</span>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<!-- Team Member -->
-							<div class="team-member">
-								<!-- Image -->
-								<img class="img-responsive" src="/resources/styles/img/team2.jpg" alt="">
-								<!-- Name -->
-								<h4>Jennifer</h4>
-								<span class="deg">Programmer</span> 
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<!-- Team Member -->
-							<div class="team-member">
-								<!-- Image -->
-								<img class="img-responsive" src="/resources/styles/img/team3.jpg" alt="">
-								<!-- Name -->
-								<h4>Christean</h4>
-								<span class="deg">CEO</span> 
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<!-- Team Member -->
-							<div class="team-member">
-								<!-- Image -->
-								<img class="img-responsive" src="/resources/styles/img/team4.jpg" alt="">
-								<!-- Name -->
-								<h4>Kerinele rase</h4>
-								<span class="deg">Manager</span> 
-							</div>
-						</div>
+						</c:if>
+					</c:forEach>
 					</div>
 				</div>
 			</div>
