@@ -74,8 +74,7 @@
 						    <input type="file" name="teacherImg" id="teacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
 						</div>
 						<br>
-						<button type="button" class="btn"
-						data-dismiss="modal">취소</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
 						<button type="submit" class="btn submit" id="btn_register_teacher">등록하기</button>
 					</form>
 				</div>
@@ -109,13 +108,69 @@
 	
 	
 	<%-- MODIFY SUBJECT MODAL --%>
-	
+	<div class="modal fade" id="modify-teacher" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">교사 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="text-align:center">
+					<form id="registerTeacher" action="registerTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
+						<div class="input-grids">
+							<input type="text" name="teacherName" id="teacherName"
+								placeholder="교사 성함*" class="form-control" required="required">
+							<br>
+							<select id="modifySubjectSelbox" name="subjectCategory">
+							  <option selected>교사의 과목을 선택해주십시오*</option>
+							  <c:forEach var="subject" items="${ subjects }">
+							  <option value="${ subject }">${ subject }</option>
+							  </c:forEach>
+							  <option value="direct">직접입력</option>
+							</select>
+							<br>
+							<input type="text" class="form-control" placeholder="교사 과목*" id="modifySubjectSelboxDirect" name="subjectSelboxDirect" style="margin-top:22px">
+						</div>
+						<br>
+						<div class="filebox">
+						    <input class="upload-name" placeholder="교사 사진을 첨부해주십시오*" disabled>
+						    <label for="teacherImg">파일찾기</label> 
+						    <input type="file" name="teacherImg" id="teacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn"
+						data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_modify_teacher">등록하기</button>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
 	<%-- END --%>
 	
 	<%-- MODIFY SUBJECT JS --%>
+	<script>
+	// 교사 과목 select box
+	$("#modifySubjectSelboxDirect").hide();
 	
+	$("#modifySubjectSelbox").change(function() {
+		$("#modifySubjectSelboxDirect").val('');
+		// 직접입력을 누를 때 나타남
+		if ($("#modifySubjectSelbox").val() == "direct") {
+			$("#modifySubjectSelboxDirect").show();
+		} else {
+			$("#modifySubjectSelboxDirect").hide();
+		}
+	});
+	
+	</script>
 	<%-- END --%>
 	
+	<%-- MAIN --%>
 	<section id="content">
 	<div class="container">
 			<div class="about">			
@@ -131,6 +186,9 @@
 									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" width="260" height="260">
 									<h4>${tnf.value.teacherName}</h4>
 									<span class="deg">${tnf.value.subject}</span>
+									<br><br>
+									<button class="modify-btn" data-toggle="modal" data-target="#modify-teacher">수정</button>
+									<button class="delete-btn">삭제</button>
 								</div>
 							</div>
 						</c:if>
@@ -140,12 +198,13 @@
 			</div>
 		</div>
 	</section>
+	<%-- END --%>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
 
 <script>
 $("#regTeacher").on('click', function(){
-	
+	// 첨부파일 유효성 검사 (첨부파일 필수)
 });
 </script>
 
