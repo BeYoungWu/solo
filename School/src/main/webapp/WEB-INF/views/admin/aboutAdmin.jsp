@@ -120,7 +120,7 @@
 					</button>
 				</div>
 				<div class="modal-body" style="text-align:center">
-					<form id="registerTeacher" action="registerTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
+					<form id="modifyTeacher" action="modifyTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
 						<div class="input-grids">
 							<input type="text" name="teacherName" id="teacherName"
 								placeholder="교사 성함*" class="form-control" required="required">
@@ -134,6 +134,12 @@
 							</select>
 							<br>
 							<input type="text" class="form-control" placeholder="교사 과목*" id="modifySubjectSelboxDirect" name="subjectSelboxDirect" style="margin-top:22px">
+						</div>
+						<br>
+						<div>
+							<input type="hidden" name="prevUserFileName">
+							<input type="hidden" name="prevSavedFileName">						
+							등록된 파일 : <input name="prevUserFileName" disabled>
 						</div>
 						<br>
 						<div class="filebox">
@@ -152,7 +158,7 @@
 	</div>
 	<%-- END --%>
 	
-	<%-- MODIFY SUBJECT JS --%>
+	<%-- MODIFY TEACHER JS --%>
 	<script>
 	// 교사 과목 select box
 	$("#modifySubjectSelboxDirect").hide();
@@ -165,11 +171,38 @@
 		} else {
 			$("#modifySubjectSelboxDirect").hide();
 		}
+	});	
+	</script>
+	<script type="text/javascript">
+	$(function() {
+		$('#modify-teacher').on('click', function(event) { // 클릭한 교사의 데이터 비동기 방식으로 가져오기
+			const div = $(this).parent();
+			const teacherNo = div.find('td:eq(0)').text();
+			const fileNo = div.find('td:eq(1)').text();
+
+			$.ajax({
+				"method":"POST",
+				"url":"/admin/getTeacherData",
+				"data": {teacherNo: teacherNo, fileNo: fileNo},
+				"success":function(data, xhr, status){
+					$('#modifyTeacher input[name=teacherName]').val(data.teacherName);
+					$('#modifyTeacher input[name=subjectCategory]').val(data.subject);
+					$('#modifyTeacher input[name=prevSavedFileName]').val(data.savedFileName);
+					$('#modifyTeacher input[name=prevUserFileName]').val(data.userFileName);
+					$('#modifyTeacher div[id=prevUserFileName]').html(data.userFileName);
+				},
+				"error":function(xhr, status, err){
+					alert("오류");
+				}
+			});
+			
+			// modal 표시
+			$('#modify-teacher').modal('show');
+		});
 	});
-	
 	</script>
 	<%-- END --%>
-	
+  	
 	<%-- MAIN --%>
 	<section id="content">
 	<div class="container">
@@ -187,7 +220,16 @@
 									<h4>${tnf.value.teacherName}</h4>
 									<span class="deg">${tnf.value.subject}</span>
 									<br><br>
-									<button class="modify-btn" data-toggle="modal" data-target="#modify-teacher">수정</button>
+									<table>
+									<tr>
+									<td style="display:none;">
+									${tnf.value.teacherNo}
+									</td>
+									<td style="display:none;">
+									${tnf.value.fileNo}
+									</td>
+									</table>
+									<button class="modify-btn">수정</button>
 									<button class="delete-btn">삭제</button>
 								</div>
 							</div>

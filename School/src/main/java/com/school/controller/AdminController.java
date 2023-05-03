@@ -137,12 +137,13 @@ public class AdminController {
 	}
 
 	// 교직원 수정
-//	@PostMapping(path = { "/modifySubject" })
-//	public String modifySubject() {
-//		
-//		
-//		return "";
-//	}
+	@PostMapping(path = { "/getTeacherData" })
+	public String modifySubject() {
+		
+		
+		
+		return "";
+	}
 	
 	// 교직원 삭제
 //	@PostMapping(path = { "/deleteTeacher" })
