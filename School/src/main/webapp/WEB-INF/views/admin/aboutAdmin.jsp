@@ -144,8 +144,8 @@
 						<br>
 						<div class="filebox">
 						    <input class="upload-name" placeholder="교사 사진을 첨부해주십시오*" disabled>
-						    <label for="teacherImg">파일찾기</label> 
-						    <input type="file" name="teacherImg" id="teacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						    <label for="modifyTeacherImg">파일찾기</label> 
+						    <input type="file" name="modifyTeacherImg" id="modifyTeacherImg" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
 						</div>
 						<br>
 						<button type="button" class="btn"
@@ -171,28 +171,41 @@
 		} else {
 			$("#modifySubjectSelboxDirect").hide();
 		}
-	});	
+	});
+	
+	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	$("#modifyTeacherImg").on('change',function() {
+	  var fileName = $("#modifyTeacherImg").val();
+	  $(".upload-name").val(fileName);
+	});
+	
+	// 수정 완료시 alert
+	$("#modifyTeacher").submit('#btn_modify_teacher', function(e)) {
+		alert("수정이 완료되었습니다");
+	}
 	</script>
+	
 	<script type="text/javascript">
 	$(function() {
-		$('#modify-teacher').on('click', function(event) { // 클릭한 교사의 데이터 비동기 방식으로 가져오기
+		$('.modify-btn').on('click', function(event) { // 클릭한 교사의 데이터 비동기 방식으로 가져오기
 			const div = $(this).parent();
 			const teacherNo = div.find('td:eq(0)').text();
 			const fileNo = div.find('td:eq(1)').text();
 
 			$.ajax({
-				"method":"POST",
+				"method":"GET",
 				"url":"/admin/getTeacherData",
 				"data": {teacherNo: teacherNo, fileNo: fileNo},
 				"success":function(data, xhr, status){
-					$('#modifyTeacher input[name=teacherName]').val(data.teacherName);
-					$('#modifyTeacher input[name=subjectCategory]').val(data.subject);
-					$('#modifyTeacher input[name=prevSavedFileName]').val(data.savedFileName);
-					$('#modifyTeacher input[name=prevUserFileName]').val(data.userFileName);
-					$('#modifyTeacher div[id=prevUserFileName]').html(data.userFileName);
+					$('#modifyTeacher input[name=teacherName]').val(data.teacher.teacherName);
+					$('#modifyTeacher select[name=subjectCategory]').val(data.teacher.subject);
+					$('#modifyTeacher input[name=prevSavedFileName]').val(data.file.savedFileName);
+					$('#modifyTeacher input[name=prevUserFileName]').val(data.file.userFileName);
+					$('#modifyTeacher div[id=prevUserFileName]').html(data.file.userFileName);
 				},
-				"error":function(xhr, status, err){
+				"error":function(request, status, error){
 					alert("오류");
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
 			
@@ -216,7 +229,7 @@
 						<c:if test="${status.index < ts}">
 							<div class="col-md-3 col-sm-6">
 								<div class="teacher">
-									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" width="260" height="260">
+									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" style="width:260px;height:340px;">									
 									<h4>${tnf.value.teacherName}</h4>
 									<span class="deg">${tnf.value.subject}</span>
 									<br><br>

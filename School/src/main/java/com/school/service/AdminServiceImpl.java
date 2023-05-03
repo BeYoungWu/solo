@@ -50,6 +50,26 @@ public class AdminServiceImpl implements AdminService {
 		teacherRepository.save(teacherEntity);
 
 	}
+	
+	// 교직원 정보 불러오기
+	@Override
+	public TeacherDto findTeacherByNo(int teacherNo) {
+
+		TeacherEntity teacherEntity = teacherRepository.findById(teacherNo).orElse(null);
+		TeacherDto teacher = teacherEntityToDto(teacherEntity);
+		
+		return teacher;
+	}
+
+	// 교직원 수정
+	@Override
+	public void modifyTeacher(TeacherDto teacher) {
+
+		TeacherEntity te = teacherDtoToEntity(teacher);
+		
+		teacherRepository.modifyTeacher(te);
+		
+	}
 
 	
 }

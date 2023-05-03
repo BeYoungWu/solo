@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.school.common.Util;
@@ -75,8 +76,6 @@ public class AdminController {
 	        resultMapEntry.put("fileType", file.getFileType());
 	    }
 		
-	    System.out.println(tnf);
-	    
 		// 교직원 수 구하기
 		int teacherSize = teachers.size();
 		
@@ -136,13 +135,74 @@ public class AdminController {
 		return "redirect:/admin/aboutAdmin";
 	}
 
+	// 교직원 수정 모달창 해당 교직원 정보 가져오기
+	@GetMapping(path = { "/getTeacherData" })
+	@ResponseBody
+	public Map<String, Object> modifySubject(int teacherNo, Long fileNo) {
+		
+		// teacherNo에 해당하는 Dto 찾아오기
+		TeacherDto teacher = adminService.findTeacherByNo(teacherNo);
+		
+		// fileNo에 해당하는 Dto 찾아오기
+		FileDto file = fileService.getFile(fileNo);
+		
+		// 두 Dto 하나의 Hashmap으로 합치기
+		Map<String, Object> tnf = new HashMap<>();
+		tnf.put("teacher", teacher);
+		tnf.put("file", file);
+		
+		return tnf;
+	}
+	
 	// 교직원 수정
-	@PostMapping(path = { "/getTeacherData" })
-	public String modifySubject() {
+	@PostMapping(path = { "/modifyTeacher" })
+	public String modifyTeacher(TeacherDto teacher, String subjectSelboxDirect, @RequestParam("modifyTeacherImg") MultipartFile modFile) {
 		
+		// 교사 과목 선택사항
+		String subject = null;
+		if (subjectSelboxDirect == null || subjectSelboxDirect.length() == 0) { // 교사 과목 직접입력 x
+			subject = teacher.getSubject();
+		} else { // 교사 과목 직접입력 o
+			subject = subjectSelboxDirect;
+			teacher.setSubject(subject);
+		}
 		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\teacher";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFilePath(filePath);
+	            fileDto.setFileType(1);
+	
+	            Long fileNo = fileService.saveFile(fileDto);
+	            teacher.setFileNo(fileNo);
+			} else { // 변경된 첨부파일이 없을 때
+				// 기존의 fileNo를 가져와서 teacherDto에 넣어줘야함
+			}
+			adminService.modifyTeacher(teacher);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		
-		return "";
+		return "redirect:/admin/aboutAdmin";
 	}
 	
 	// 교직원 삭제
@@ -157,7 +217,7 @@ public class AdminController {
 	@GetMapping(path = { "/purposeAdmin" })
 	public String purposeAdmin() {
 		return "/admin/purposeAdmin";
-	}
+	} 
 	
 	// 교육목표 등록 및 편집
 //		@PostMapping(path = { "/purposeAdmin" })

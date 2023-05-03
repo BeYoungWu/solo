@@ -37,10 +37,15 @@ public interface AdminService {
 	// 교직원 목록 불러오기 + 각자의 사진 파일까지
 //	List<HashMap<String, Object>> findAllTeachers();
 	List<TeacherDto> findAllTeachers();
-	
+
 	// 교직원 등록
 	void insertTeacher(TeacherDto teacher);
-	
+
+	// 교직원 정보 불러오기
+	TeacherDto findTeacherByNo(int teacherNo);
+
+	// 교직원 수정
+	void modifyTeacher(TeacherDto teacher);
 
 
 }
