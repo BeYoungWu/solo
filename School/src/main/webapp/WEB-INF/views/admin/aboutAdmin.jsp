@@ -137,8 +137,6 @@
 						</div>
 						<br>
 						<div>
-							<input type="hidden" name="prevUserFileName">
-							<input type="hidden" name="prevSavedFileName">						
 							등록된 파일 : <input name="prevUserFileName" disabled>
 						</div>
 						<br>
@@ -180,9 +178,9 @@
 	});
 	
 	// 수정 완료시 alert
-	$("#modifyTeacher").submit('#btn_modify_teacher', function(e)) {
+	$("#modifyTeacher").submit('#btn_modify_teacher', function(e){
 		alert("수정이 완료되었습니다");
-	}
+	});
 	</script>
 	
 	<script type="text/javascript">
@@ -199,8 +197,6 @@
 				"success":function(data, xhr, status){
 					$('#modifyTeacher input[name=teacherName]').val(data.teacher.teacherName);
 					$('#modifyTeacher select[name=subjectCategory]').val(data.teacher.subject);
-					$('#modifyTeacher input[name=prevSavedFileName]').val(data.file.savedFileName);
-					$('#modifyTeacher input[name=prevUserFileName]').val(data.file.userFileName);
 					$('#modifyTeacher div[id=prevUserFileName]').html(data.file.userFileName);
 				},
 				"error":function(request, status, error){

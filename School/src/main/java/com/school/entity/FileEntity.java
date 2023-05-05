@@ -28,9 +28,6 @@ public class FileEntity {
 	@Column(nullable = false)
 	private String savedFileName;
 	
-	@Column(nullable = false)
-	private String filePath;
-	
 	@Column
 	private int fileType;
 
@@ -39,11 +36,10 @@ public class FileEntity {
 //	private TeacherEntity teacher;
 	
 	@Builder
-	public FileEntity(Long fileNo, String userFileName, String savedFileName, String filePath, int fileType) {
+	public FileEntity(Long fileNo, String userFileName, String savedFileName, int fileType) {
 		this.fileNo = fileNo;
 		this.userFileName = userFileName;
 		this.savedFileName = savedFileName;
-		this.filePath = filePath;
 		this.fileType = fileType;
 	}
 	

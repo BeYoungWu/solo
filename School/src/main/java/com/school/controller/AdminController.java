@@ -72,7 +72,6 @@ public class AdminController {
 	        
 	        resultMapEntry.put("userFileName", file.getUserFileName());
 	        resultMapEntry.put("savedFileName", file.getSavedFileName());
-	        resultMapEntry.put("filePath", file.getFilePath());
 	        resultMapEntry.put("fileType", file.getFileType());
 	    }
 		
@@ -115,13 +114,10 @@ public class AdminController {
 	                    e.getStackTrace();
 	                }
 	            }
-	            String filePath = savePath + "\\" + filename;
-	            file.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
-	            fileDto.setFilePath(filePath);
 	            fileDto.setFileType(1);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
@@ -183,20 +179,16 @@ public class AdminController {
 	                    e.getStackTrace();
 	                }
 	            }
-	            String filePath = savePath + "\\" + filename;
-	            modFile.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
-	            fileDto.setFilePath(filePath);
 	            fileDto.setFileType(1);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);
-			} else { // 변경된 첨부파일이 없을 때
-				// 기존의 fileNo를 가져와서 teacherDto에 넣어줘야함
 			}
+				
 			adminService.modifyTeacher(teacher);
 		} catch (Exception e){
 			e.printStackTrace();

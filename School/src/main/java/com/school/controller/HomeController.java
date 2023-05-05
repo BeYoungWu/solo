@@ -73,7 +73,6 @@ public class HomeController {
 	        
 	        resultMapEntry.put("userFileName", file.getUserFileName());
 	        resultMapEntry.put("savedFileName", file.getSavedFileName());
-	        resultMapEntry.put("filePath", file.getFilePath());
 	        resultMapEntry.put("fileType", file.getFileType());
 	    }
 	    
