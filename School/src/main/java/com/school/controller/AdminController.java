@@ -114,11 +114,14 @@ public class AdminController {
 	                    e.getStackTrace();
 	                }
 	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
 	            fileDto.setFileType(1);
+	            fileDto.setFilePath(filePath);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);
@@ -179,16 +182,18 @@ public class AdminController {
 	                    e.getStackTrace();
 	                }
 	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
 	            fileDto.setFileType(1);
+	            fileDto.setFilePath(filePath);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);
 			}
-				
 			adminService.modifyTeacher(teacher);
 		} catch (Exception e){
 			e.printStackTrace();

@@ -70,7 +70,8 @@ public class AdminBoardController {
 				String userFileName = file.getOriginalFilename();
 				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
 				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
-	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\board";
+//	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\board";
+	            String savePath = "\\src\\main\\webapp\\resources\\img\\board";
 	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
 	            if (!new File(savePath).exists()) {
 	                try{
@@ -80,10 +81,13 @@ public class AdminBoardController {
 	                    e.getStackTrace();
 	                }
 	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
+	            fileDto.setFilePath(filePath);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            board.setFileNo(fileNo);
@@ -239,10 +243,13 @@ public class AdminBoardController {
 		                    e.getStackTrace();
 		                }
 		            }
+		            String filePath = savePath + "\\" + filename;
+		            file.transferTo(new File(filePath));
 		
 		            FileDto fileDto = new FileDto();
 		            fileDto.setUserFileName(userFileName);
 		            fileDto.setSavedFileName(filename);
+		            fileDto.setFilePath(filePath);
 		
 		            Long fileNo = fileService.saveFile(fileDto);
 		            board.setFileNo(fileNo);

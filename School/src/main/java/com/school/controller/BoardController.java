@@ -80,10 +80,13 @@ public class BoardController {
 	                    e.getStackTrace();
 	                }
 	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
 	            
 	            FileDto fileDto = new FileDto();
 	            fileDto.setUserFileName(userFileName);
 	            fileDto.setSavedFileName(filename);
+	            fileDto.setFilePath(filePath);
 	
 	            Long fileNo = fileService.saveFile(fileDto);
 	            board.setFileNo(fileNo);
@@ -239,18 +242,16 @@ public class BoardController {
 		                    e.getStackTrace();
 		                }
 		            }
+		            String filePath = savePath + "\\" + filename;
+		            file.transferTo(new File(filePath));
 		
 		            FileDto fileDto = new FileDto();
 		            fileDto.setUserFileName(userFileName);
 		            fileDto.setSavedFileName(filename);
+		            fileDto.setFilePath(filePath);
 		
 		            Long fileNo = fileService.saveFile(fileDto);
 		            board.setFileNo(fileNo);
-				} else { // 첨부파일 수정 없을 경우
-					FileDto fileDto = new FileDto();
-					fileDto.setFileNo(board.getFileNo());
-					fileDto.setUserFileName(prevUserFileName);
-					fileDto.setSavedFileName(prevSavedFileName);
 				}
 			} catch (Exception e){
 				e.printStackTrace();

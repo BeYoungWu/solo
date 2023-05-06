@@ -30,17 +30,21 @@ public class FileEntity {
 	
 	@Column
 	private int fileType;
+	
+	@Column(nullable = false)
+	private String filePath;
 
 //	@OneToOne(mappedBy = "file")
 //	@JoinColumn(name = "fileNo")
 //	private TeacherEntity teacher;
 	
 	@Builder
-	public FileEntity(Long fileNo, String userFileName, String savedFileName, int fileType) {
+	public FileEntity(Long fileNo, String userFileName, String savedFileName, int fileType, String filePath) {
 		this.fileNo = fileNo;
 		this.userFileName = userFileName;
 		this.savedFileName = savedFileName;
 		this.fileType = fileType;
+		this.filePath = filePath;
 	}
 	
 }
