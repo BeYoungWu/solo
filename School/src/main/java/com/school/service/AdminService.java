@@ -47,5 +47,8 @@ public interface AdminService {
 	// 교직원 수정
 	void modifyTeacher(TeacherDto teacher);
 
+	// 교직원 삭제
+	void deleteTeacher(int teacherNo);
+
 
 }

@@ -71,5 +71,13 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	// 교직원 삭제
+	@Override
+	public void deleteTeacher(int teacherNo) {
+		
+		teacherRepository.deleteById(teacherNo);
+		
+	}
+
 	
 }

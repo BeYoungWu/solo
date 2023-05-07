@@ -211,12 +211,54 @@
 	});
 	</script>
 	<%-- END --%>
+	
+	<%-- DELETE TEACHER MODAL --%>
+	<div class="modal" id="delete-check" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">삭제</h5>
+	      </div>
+	      <div class="modal-body">
+	        <p>삭제하시겠습니까?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" data-dismiss="modal">취소</button>
+			<button class="delete-ok-btn">삭제하기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<%-- END --%>
+	
+	<%-- DELETE TEACHER JS --%>
+	<script type="text/javascript">
+	$(function() {
+		// 삭제 버튼 (버튼 클릭)
+		$('.delete-btn').on('click', function(event) {
+			const div = $(this).parent();
+			const teacherNo = div.find('td:eq(0)').text();
+			
+			$('#delete-form input[name=teacherNo]').val(teacherNo);
+		});
+		
+		// 메뉴 삭제 모달 삭제 버튼 (버튼 클릭)
+		$('.delete-ok-btn').on('click', function(event) {
+			$('#delete-form').submit();
+		});
+	});
+	</script>
+	<%-- END --%>
+	
   	
 	<%-- MAIN --%>
 	<section id="content">
 	<div class="container">
 			<div class="about">			
 				<div class="teachers">
+					<form id="delete-form" action="deleteTeacher" method="post">
+						<input type="hidden" name="teacherNo">
+					</form>
 					<div class="row">
 					<c:forEach items="${tnf}" var="tnf" varStatus="status">
 						<c:if test="${status.index mod 4 == 0}">
@@ -239,7 +281,7 @@
 									</td>
 									</table>
 									<button class="modify-btn">수정</button>
-									<button class="delete-btn">삭제</button>
+									<button class="delete-btn" data-toggle="modal" data-target="#delete-check">삭제</button>
 								</div>
 							</div>
 						</c:if>

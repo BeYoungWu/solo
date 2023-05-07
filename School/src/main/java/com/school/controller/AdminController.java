@@ -203,12 +203,14 @@ public class AdminController {
 	}
 	
 	// 교직원 삭제
-//	@PostMapping(path = { "/deleteTeacher" })
-//	public String deleteTeacher() {
-//		
-//		
-//		return "";
-//	}
+	@PostMapping(path = { "/deleteTeacher" })
+	public String deleteTeacher(int teacherNo) {
+		
+		System.out.println(teacherNo);
+		adminService.deleteTeacher(teacherNo);
+		
+		return "redirect:/admin/aboutAdmin";
+	}
 	
 	// 교육목표 관리 페이지
 	@GetMapping(path = { "/purposeAdmin" })
