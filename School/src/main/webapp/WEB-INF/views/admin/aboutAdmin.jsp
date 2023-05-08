@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	</section>
-	<div class="buttons">
+	<div class="registerButton">
 		<button data-toggle="modal" data-target="#register-teacher">교사 등록</button>
 	</div>
 	

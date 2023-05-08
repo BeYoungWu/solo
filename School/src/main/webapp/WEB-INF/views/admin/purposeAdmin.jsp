@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자페이지</title>
+<title>교육목표</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -24,19 +24,59 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">a</h2>
+				<h2 class="pageTitle">교육목표</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	
+	<div class="registerButton">
+		<button data-toggle="modal" data-target="#register-file">파일 등록</button>
+	</div>
+	
+	<%-- REGISTER PURPOSE MODAL --%>
+	<div class="modal fade" id="register-purpose" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">파일 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="text-align:center">
+					<form id="registerPurpose" action="registerPurpose" method="post" class="insert-menu-form" enctype="multipart/form-data">
+						<div class="filebox">
+						    <input class="upload-name" placeholder="사진 파일을 첨부해주십시오*" disabled>
+						    <label for="imgFile">파일찾기</label> 
+						    <input type="file" name="imgFile" id="imgFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_register">등록하기</button>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<%-- END --%>
+	
+	<%-- REGISTER PURPOSE JS --%>
+	<script>
+	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	$("#imgFile").on('change',function(){
+	  var fileName = $("#imgFile").val();
+	  $(".upload-name").val(fileName);
+	});
+	</script>
+	<%-- END --%>
+	
 	<div class="contatiner">
 		<div class="row">
-			<div class="col-lg-3">
-				
-			</div>
-			<div class="col-lg-9">
-			
+			<div class="col-lg-12">
+				<img src="/resources/img/history/${ file.savedFileName }" alt="">
 			</div>
 		</div>
 	</div>
