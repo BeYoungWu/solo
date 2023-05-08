@@ -2,7 +2,7 @@
 
 # School
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=76D1FA&height=300&section=header&text=개인%20프로젝트%20(학교 홈페이지)&fontSize=30&fontColor=FFFFFF)
+![header](https://capsule-render.vercel.app/api?type=waving&color=76D1FA&height=300&section=header&text=개인%20프로젝트%20(학교%20홈페이지)&fontSize=30&fontColor=FFFFFF)
 
 </div>
 <br>
