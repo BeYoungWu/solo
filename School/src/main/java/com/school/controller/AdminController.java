@@ -206,7 +206,6 @@ public class AdminController {
 	@PostMapping(path = { "/deleteTeacher" })
 	public String deleteTeacher(int teacherNo) {
 		
-		System.out.println(teacherNo);
 		adminService.deleteTeacher(teacherNo);
 		
 		return "redirect:/admin/aboutAdmin";
@@ -214,15 +213,52 @@ public class AdminController {
 	
 	// 교육목표 관리 페이지
 	@GetMapping(path = { "/purposeAdmin" })
-	public String purposeAdmin() {
+	public String purposeAdmin(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(2);
+		
+		model.addAttribute("file", file);
+		
 		return "/admin/purposeAdmin";
 	} 
 	
-	// 교육목표 등록 및 편집
-//		@PostMapping(path = { "/purposeAdmin" })
-//		public String updatePurpose() {
-//			return "";
-//		}
+	// 교육목표 등록
+	@PostMapping(path = { "/registerPurpose" })
+	public String updatePurpose(@RequestParam("imgFile") MultipartFile modFile) {
+		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\purpose";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(2);
+	            fileDto.setFilePath(filePath);
+	
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/purposeAdmin";
+	}
 	
 	// 학교연혁 관리 페이지
 	@GetMapping(path = { "/historyAdmin" })

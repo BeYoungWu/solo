@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* aboutAdmin, purposeAdmin, historyAdmin, currentAdmin, symbolAdmin, songAdmin CSS */
+
 /* select box 커스터마이징 */
 select {
 	-moz-appearance: none;
@@ -59,6 +61,6 @@ select {
 	text-align: center;
 	margin-top: 20px;
 }
-.buttons button {
+.registerButton button {
 	margin: 10px;
 }

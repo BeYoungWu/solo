@@ -45,7 +45,7 @@ public class FileService {
         }
     }
     
-    // 선생님 파일 전체 불러오기
+    // 교직원 파일 전체 불러오기
     @Transactional
     public List<FileDto> getTeacherFiles() {
     	List<FileEntity> filesEntity = fileRepository.findTeacherFiles();
@@ -65,5 +65,24 @@ public class FileService {
         	return null;
         }
     }
+
+    // File Type으로 파일 불러오기
+	public FileDto getFileByFileType(int i) {
+
+		FileEntity file = fileRepository.findFileByFileType(i);
+		
+		if (file != null) {
+	        FileDto fileDto = FileDto.builder()
+	                .fileNo(file.getFileNo())
+	                .userFileName(file.getUserFileName())
+	                .savedFileName(file.getSavedFileName())
+	                .fileType(file.getFileType())
+	                .build();
+	        
+	        return fileDto;
+        } else {
+        	return null;
+        }
+	}
 	
 }

@@ -4,12 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>교육목표</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
+<link href="/resources/styles/css/custom/fileAdmin.css" rel="stylesheet" />
+ 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -30,12 +36,22 @@
 	</div>
 	</section>
 	
+	<%-- file 존재하지않을때는 파일등록버튼, file 존재할때는 파일변경버튼 --%>
+	<c:choose>
+	<c:when test="${ empty file }">
 	<div class="registerButton">
 		<button data-toggle="modal" data-target="#register-file">파일 등록</button>
 	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="modifyButton">
+		<button data-toggle="modal" data-target="#modify-file">파일 변경</button>
+	</div>
+	</c:otherwise>
+	</c:choose>
 	
-	<%-- REGISTER PURPOSE MODAL --%>
-	<div class="modal fade" id="register-purpose" tabindex="-1" role="dialog"
+	<%-- REGISTER MODAL --%>
+	<div class="modal fade" id="register-file" tabindex="-1" role="dialog"
 		aria-labelledby="exampleMdalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -63,7 +79,7 @@
 	</div>
 	<%-- END --%>
 	
-	<%-- REGISTER PURPOSE JS --%>
+	<%-- REGISTER JS --%>
 	<script>
 	// 첨부파일 선택시 input창에 파일명 뜨게 하기
 	$("#imgFile").on('change',function(){
@@ -73,13 +89,25 @@
 	</script>
 	<%-- END --%>
 	
+	<%-- MODIFY MODAL --%>
+	
+	<%-- END --%>
+	
+	<%-- MODIFY JS --%>
+	
+	<%-- END --%>
+	
+	<%-- MAIN --%>
 	<div class="contatiner">
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/resources/img/history/${ file.savedFileName }" alt="">
+				<div class="img">
+					<img src="/resources/img/purpose/${ file.savedFileName }" alt="">
+				</div>
 			</div>
 		</div>
 	</div>
+	<%-- END --%>
 	
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
