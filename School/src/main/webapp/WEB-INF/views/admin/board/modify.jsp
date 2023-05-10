@@ -42,7 +42,7 @@
 			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
 			<form action="modify" id="modify-form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
-			<input type="hidden" name="fileNo" value="${ board.fileNo }">
+			<input type="hidden" name="prevFileNo" value="${ board.fileNo }">
 			<table class="table table-bordered">
 				<tr>
 					<td style="vertical-align:middle">게시글 분류</td>
@@ -98,9 +98,6 @@
 				</tr>
 				<c:choose>
 				<c:when test="${ board.fileNo != 0 }">
-				<input type="hidden" name="prevUserFileName">
-				<input type="hidden" name="prevSavedFileName">
-				<input type="hidden" name="prevFilePath">
 				<tr>
 					<td>등록된 파일</td>
 					<td><input value="${ file.userFileName }" disabled></td>

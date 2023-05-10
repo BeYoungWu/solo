@@ -45,7 +45,7 @@
 	</c:when>
 	<c:otherwise>
 	<div class="modifyButton">
-		<button data-toggle="modal" data-target="#modify-file">파일 변경</button>
+		<button class="modify-btn" data-toggle="modal" data-target="#modify-file">파일 변경</button>
 	</div>
 	</c:otherwise>
 	</c:choose>
@@ -63,7 +63,7 @@
 					</button>
 				</div>
 				<div class="modal-body" style="text-align:center">
-					<form id="registerPurpose" action="registerPurpose" method="post" class="insert-menu-form" enctype="multipart/form-data">
+					<form id="registerPurpose" action="registerPurpose" method="post" enctype="multipart/form-data">
 						<div class="filebox">
 						    <input class="upload-name" placeholder="사진 파일을 첨부해주십시오*" disabled>
 						    <label for="imgFile">파일찾기</label> 
@@ -90,11 +90,63 @@
 	<%-- END --%>
 	
 	<%-- MODIFY MODAL --%>
-	
+	<div class="modal fade" id="modify-file" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">파일 수정</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="modifyPurpose" action="modifyPurpose" method="post" enctype="multipart/form-data">
+				<div>
+					등록된 파일 : <input name="prevUserFileName" disabled>
+					<input type="hidden" name="prevFileNo">
+				</div>
+				<br>
+				<div class="modal-body" style="text-align:center">
+						<div class="filebox">
+						    <input class="upload-name" placeholder="수정시에만 파일찾기 클릭*" disabled>
+						    <label for="imgFile">파일찾기</label> 
+						    <input type="file" name="imgFile" id="imgFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_modify">등록하기</button>
+				</div>
+				</form>
+			</div>
+		</div>	
+	</div>
 	<%-- END --%>
 	
 	<%-- MODIFY JS --%>
-	
+	<script type="text/javascript">
+	$(function() {
+		$('.modify-btn').on('click', function(event) { // 클릭한 교사의 데이터 비동기 방식으로 가져오기
+
+			$.ajax({
+				"method":"GET",
+				"url":"/admin/getPurposeData",
+				"data": {},
+				"success":function(data, xhr, status){
+					$('#modifyPurpose input[name=prevUserFileName]').val(data.userFileName);
+					$('#modifyPurpose input[name=prevFileNo]').val(data.fileNo);
+				},
+				"error":function(request, status, error){
+					alert("오류");
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+			
+			// modal 표시
+			$('#modify-teacher').modal('show');
+		});
+	});
+	</script>
 	<%-- END --%>
 	
 	<%-- MAIN --%>

@@ -25,7 +25,12 @@ public class FileService {
     public Long saveFile(FileDto file) {
         return fileRepository.save(file.toEntity()).getFileNo();
     }
-
+    
+    // 파일 삭제하기
+    public void deleteFile(Long fileNo) {
+    	fileRepository.deleteById(fileNo);
+    }
+    
     // 파일 불러오기
     @Transactional
     public FileDto getFile(Long fileNo) {

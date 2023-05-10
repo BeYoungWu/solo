@@ -137,7 +137,7 @@ public class AdminController {
 	// 교직원 수정 모달창 해당 교직원 정보 가져오기
 	@GetMapping(path = { "/getTeacherData" })
 	@ResponseBody
-	public Map<String, Object> modifySubject(int teacherNo, Long fileNo) {
+	public Map<String, Object> getTeacherData(int teacherNo, Long fileNo) {
 		
 		// teacherNo에 해당하는 Dto 찾아오기
 		TeacherDto teacher = adminService.findTeacherByNo(teacherNo);
@@ -155,7 +155,7 @@ public class AdminController {
 	
 	// 교직원 수정
 	@PostMapping(path = { "/modifyTeacher" })
-	public String modifyTeacher(TeacherDto teacher, String subjectSelboxDirect, @RequestParam("modifyTeacherImg") MultipartFile modFile) {
+	public String modifyTeacher(TeacherDto teacher, String subjectSelboxDirect, Long prevFileNo, @RequestParam("modifyTeacherImg") MultipartFile modFile) {
 		
 		// 교사 과목 선택사항
 		String subject = null;
@@ -191,6 +191,7 @@ public class AdminController {
 	            fileDto.setFileType(1);
 	            fileDto.setFilePath(filePath);
 	
+	            fileService.deleteFile(prevFileNo);
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);
 			}
@@ -224,7 +225,55 @@ public class AdminController {
 	
 	// 교육목표 등록
 	@PostMapping(path = { "/registerPurpose" })
-	public String updatePurpose(@RequestParam("imgFile") MultipartFile modFile) {
+	public String updatePurpose(@RequestParam("imgFile") MultipartFile file) {
+		
+		// 첨부파일
+		try {
+			if (file.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = file.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\purpose";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(2);
+	            fileDto.setFilePath(filePath);
+	
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/purposeAdmin";
+	}
+	
+	// 교육목표 수정 모달창 등록된 파일 정보 가져오기
+	@GetMapping(path = { "/getPurposeData" })
+	@ResponseBody
+	public FileDto getPurposeData(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(2);
+		
+		return file;
+	}
+		
+	// 교육목표 수정
+	@PostMapping(path = { "/modifyPurpose" })
+	public String modifyPurpose(Long prevFileNo, @RequestParam("imgFile") MultipartFile modFile) {
 		
 		// 첨부파일
 		try {
@@ -250,13 +299,13 @@ public class AdminController {
 	            fileDto.setSavedFileName(filename);
 	            fileDto.setFileType(2);
 	            fileDto.setFilePath(filePath);
-	
+	            
+	            fileService.deleteFile(prevFileNo);
 	            fileService.saveFile(fileDto);
 			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
 		return "redirect:/admin/purposeAdmin";
 	}
 	

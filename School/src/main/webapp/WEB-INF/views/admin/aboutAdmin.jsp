@@ -13,7 +13,7 @@
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
-<link href="/resources/styles/css/custom/aboutAdmin.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/fileAdmin.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -52,7 +52,7 @@
 					</button>
 				</div>
 				<div class="modal-body" style="text-align:center">
-					<form id="registerTeacher" action="registerTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
+					<form id="registerTeacher" action="registerTeacher" method="post" enctype="multipart/form-data">
 						<div class="input-grids">
 							<input type="text" name="teacherName" id="teacherName"
 								placeholder="교사 성함*" class="form-control" required="required">
@@ -120,7 +120,7 @@
 					</button>
 				</div>
 				<div class="modal-body" style="text-align:center">
-					<form id="modifyTeacher" action="modifyTeacher" method="post" class="insert-menu-form" enctype="multipart/form-data">
+					<form id="modifyTeacher" action="modifyTeacher" method="post" enctype="multipart/form-data">
 						<div class="input-grids">
 							<input type="text" name="teacherName" id="teacherName"
 								placeholder="교사 성함*" class="form-control" required="required">
@@ -138,6 +138,7 @@
 						<br>
 						<div>
 							등록된 파일 : <input name="prevUserFileName" disabled>
+							<input type="hidden" name="prevFileNo">
 						</div>
 						<br>
 						<div class="filebox">
@@ -197,7 +198,8 @@
 				"success":function(data, xhr, status){
 					$('#modifyTeacher input[name=teacherName]').val(data.teacher.teacherName);
 					$('#modifyTeacher select[name=subjectCategory]').val(data.teacher.subject);
-					$('#modifyTeacher div[id=prevUserFileName]').html(data.file.userFileName);
+					$('#modifyTeacher input[name=prevUserFileName]').val(data.file.userFileName);
+					$('#modifyTeacher input[name=prevFileNo]').val(data.file.fileNo);
 				},
 				"error":function(request, status, error){
 					alert("오류");

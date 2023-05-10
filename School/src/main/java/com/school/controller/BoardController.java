@@ -217,7 +217,7 @@ public class BoardController {
 	
 	// 게시글 수정
 	@PostMapping(path = { "/modify" })
-	public String modify(@RequestParam(defaultValue = "-1") int boardType, String prevUserFileName, String prevSavedFileName, String prevFilePath, BoardDto board, @RequestParam("file") MultipartFile file) {
+	public String modify(@RequestParam(defaultValue = "-1") int boardType, Long prevFileNo, BoardDto board, @RequestParam("file") MultipartFile file) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
@@ -249,7 +249,8 @@ public class BoardController {
 		            fileDto.setUserFileName(userFileName);
 		            fileDto.setSavedFileName(filename);
 		            fileDto.setFilePath(filePath);
-		
+
+		            fileService.deleteFile(prevFileNo);
 		            Long fileNo = fileService.saveFile(fileDto);
 		            board.setFileNo(fileNo);
 				}
