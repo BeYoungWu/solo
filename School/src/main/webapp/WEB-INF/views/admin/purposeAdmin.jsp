@@ -36,7 +36,6 @@
 	</div>
 	</section>
 	
-	<%-- file 존재하지않을때는 파일등록버튼, file 존재할때는 파일변경버튼 --%>
 	<c:choose>
 	<c:when test="${ empty file }">
 	<div class="registerButton">
@@ -44,8 +43,9 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-	<div class="modifyButton">
+	<div class="buttons">
 		<button class="modify-btn" data-toggle="modal" data-target="#modify-file">파일 변경</button>
+		<button class="delete-btn" data-toggle="modal" data-target="#delete-file">파일 삭제</button>
 	</div>
 	</c:otherwise>
 	</c:choose>
@@ -110,8 +110,8 @@
 				<div class="modal-body" style="text-align:center">
 						<div class="filebox">
 						    <input class="upload-name" placeholder="수정시에만 파일찾기 클릭*" disabled>
-						    <label for="imgFile">파일찾기</label> 
-						    <input type="file" name="imgFile" id="imgFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						    <label for="modFile">파일찾기</label> 
+						    <input type="file" name="modFile" id="modFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
 						</div>
 						<br>
 						<button type="button" class="btn" data-dismiss="modal">취소</button>
@@ -143,10 +143,32 @@
 			});
 			
 			// modal 표시
-			$('#modify-teacher').modal('show');
+			$('#modify-file').modal('show');
 		});
 	});
 	</script>
+	<%-- END --%>
+	
+	<%-- DELETE MODAL --%>
+	<div class="modal" id="delete-file" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">삭제</h5>
+	      </div>
+	      <form id="delete-form" action="deletePurpose" method="get">
+	      <div class="modal-body">
+	        <p>삭제하시겠습니까?</p>
+	        	<input type="hidden" name="fileNo" value="${ file.fileNo }">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" data-dismiss="modal">취소</button>
+			<button type="submit">삭제하기</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 	<%-- END --%>
 	
 	<%-- MAIN --%>

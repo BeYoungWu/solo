@@ -253,13 +253,15 @@ public class AdminBoardController {
 		            fileService.deleteFile(prevFileNo);
 		            Long fileNo = fileService.saveFile(fileDto);
 		            board.setFileNo(fileNo);
+		            boardService.modifyBoard(board);
+				} else { // 게시글은 변경했지만 첨부파일은 수정하지 않은 경우
+					board.setFileNo(prevFileNo);
+					boardService.modifyBoard(board);
 				}
 			} catch (Exception e){
 				e.printStackTrace();
 			}
 		}
-		
-		boardService.modifyBoard(board);
 		
 		return "redirect:/admin/board/detail?boardType=" + boardType + "&boardNo=" + board.getBoardNo();
 	}

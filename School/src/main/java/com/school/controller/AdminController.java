@@ -72,7 +72,7 @@ public class AdminController {
 	        
 	        resultMapEntry.put("userFileName", file.getUserFileName());
 	        resultMapEntry.put("savedFileName", file.getSavedFileName());
-	        resultMapEntry.put("fileType", file.getFileType());
+	        resultMapEntry.put("fileType", 1);
 	    }
 		
 		// 교직원 수 구하기
@@ -81,6 +81,8 @@ public class AdminController {
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("ts", teacherSize);
 		model.addAttribute("tnf", tnf);
+		
+		System.out.println(tnf);
 		
 		return "/admin/aboutAdmin";
 	}
@@ -207,6 +209,7 @@ public class AdminController {
 	@PostMapping(path = { "/deleteTeacher" })
 	public String deleteTeacher(int teacherNo) {
 		
+		System.out.println(teacherNo);
 		adminService.deleteTeacher(teacherNo);
 		
 		return "redirect:/admin/aboutAdmin";
@@ -273,7 +276,7 @@ public class AdminController {
 		
 	// 교육목표 수정
 	@PostMapping(path = { "/modifyPurpose" })
-	public String modifyPurpose(Long prevFileNo, @RequestParam("imgFile") MultipartFile modFile) {
+	public String modifyPurpose(Long prevFileNo, @RequestParam("modFile") MultipartFile modFile) {
 		
 		// 첨부파일
 		try {
@@ -306,6 +309,15 @@ public class AdminController {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+		return "redirect:/admin/purposeAdmin";
+	}
+	
+	// 교육목표 삭제
+	@GetMapping(path = { "/deletePurpose" })
+	public String deletePurpose(Long fileNo) {
+		
+		fileService.deleteFile(fileNo);
+		
 		return "redirect:/admin/purposeAdmin";
 	}
 	

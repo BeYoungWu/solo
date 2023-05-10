@@ -13,7 +13,7 @@
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
-<link href="/resources/styles/css/custom/fileAdmin.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/aboutAdmin.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -190,6 +190,9 @@
 			const div = $(this).parent();
 			const teacherNo = div.find('td:eq(0)').text();
 			const fileNo = div.find('td:eq(1)').text();
+			console.log(div);
+			console.log(teacherNo);
+			console.log(fileNo);
 
 			$.ajax({
 				"method":"GET",
@@ -275,10 +278,10 @@
 									<br><br>
 									<table>
 									<tr>
-									<td style="display:none;">
+									<td>
 									${tnf.value.teacherNo}
 									</td>
-									<td style="display:none;">
+									<td>
 									${tnf.value.fileNo}
 									</td>
 									</table>

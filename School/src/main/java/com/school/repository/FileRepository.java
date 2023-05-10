@@ -19,6 +19,5 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
 	@Query(value = "SELECT * FROM tbl_file f WHERE f.file_type = :fileType",
 		   nativeQuery = true)
 	FileEntity findFileByFileType(@Param("fileType") int fileType);
-	
-	
+
 }
