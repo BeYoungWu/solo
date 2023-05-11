@@ -1,6 +1,7 @@
 package com.school.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,10 @@ import com.school.dto.TeacherDto;
 import com.school.service.AdminService;
 import com.school.service.FileService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 @RequestMapping(path = { "/admin" })
 public class AdminController {
 
@@ -42,38 +46,72 @@ public class AdminController {
 		List<String> subjects = adminService.findAllSubjects();
 		
 		// 교직원 목록 불러오기 + 각자의 사진 파일까지
-//		List<HashMap<String, Object>> teachers = adminService.findAllTeachers();
 		List<TeacherDto> teachers = adminService.findAllTeachers();
 		List<FileDto> files = fileService.getTeacherFiles();
+//
+//		Map<Long, Map<String, Object>> tnf = new HashMap<>();
+//	    
+//	    // teachers를 HashMap에 넣기
+//	    for (TeacherDto teacher : teachers) {
+//	        Map<String, Object> teacherMap = new HashMap<>();
+//	        teacherMap.put("teacherNo", teacher.getTeacherNo());
+//	        teacherMap.put("teacherName", teacher.getTeacherName());
+//	        teacherMap.put("subject", teacher.getSubject());
+//	        teacherMap.put("fileNo", teacher.getFileNo());
+//	        
+//	        tnf.put(teacher.getFileNo(), teacherMap);
+//	    }
+//	    
+//	    // files를 HashMap에 넣기
+//	    for (FileDto file : files) {
+//	        Long fileNo = file.getFileNo();
+//	        Map<String, Object> resultMapEntry = tnf.get(fileNo);
+//	        
+//	        if (resultMapEntry == null) {
+//	            // Create a new entry for this file
+//	            resultMapEntry = new HashMap<>();
+//	            tnf.put(fileNo, resultMapEntry);
+//	        }
+//	        
+//	        resultMapEntry.put("userFileName", file.getUserFileName());
+//	        resultMapEntry.put("savedFileName", file.getSavedFileName());
+//	        resultMapEntry.put("fileType", 1);
+//	    }
+		Map<Long, List<Map<String, Object>>> tnf = new HashMap<>();
 
-		Map<Long, Map<String, Object>> tnf = new HashMap<>();
-	    
-	    // teachers를 HashMap에 넣기
-	    for (TeacherDto teacher : teachers) {
-	        Map<String, Object> teacherMap = new HashMap<>();
-	        teacherMap.put("teacherNo", teacher.getTeacherNo());
-	        teacherMap.put("teacherName", teacher.getTeacherName());
-	        teacherMap.put("subject", teacher.getSubject());
-	        teacherMap.put("fileNo", teacher.getFileNo());
-	        
-	        tnf.put(teacher.getFileNo(), teacherMap);
-	    }
-	    
-	    // files를 HashMap에 넣기
-	    for (FileDto file : files) {
-	        Long fileNo = file.getFileNo();
-	        Map<String, Object> resultMapEntry = tnf.get(fileNo);
-	        
-	        if (resultMapEntry == null) {
-	            // Create a new entry for this file
-	            resultMapEntry = new HashMap<>();
-	            tnf.put(fileNo, resultMapEntry);
-	        }
-	        
-	        resultMapEntry.put("userFileName", file.getUserFileName());
-	        resultMapEntry.put("savedFileName", file.getSavedFileName());
-	        resultMapEntry.put("fileType", 1);
-	    }
+		// teachers를 HashMap에 넣기
+		for (TeacherDto teacher : teachers) {
+		    Map<String, Object> teacherMap = new HashMap<>();
+		    teacherMap.put("teacherNo", teacher.getTeacherNo());
+		    teacherMap.put("teacherName", teacher.getTeacherName());
+		    teacherMap.put("subject", teacher.getSubject());
+		    teacherMap.put("fileNo", teacher.getFileNo());
+
+		    Long fileNo = teacher.getFileNo();
+		    List<Map<String, Object>> teacherList = tnf.get(fileNo);
+
+		    if (teacherList == null) {
+		        // Create a new list for this fileNo
+		        teacherList = new ArrayList<>();
+		        tnf.put(fileNo, teacherList);
+		    }
+
+		    teacherList.add(teacherMap);
+		}
+
+		// files를 HashMap에 넣기
+		for (FileDto file : files) {
+		    Long fileNo = file.getFileNo();
+		    List<Map<String, Object>> teacherList = tnf.get(fileNo);
+
+		    if (teacherList != null) {
+		        for (Map<String, Object> teacherMap : teacherList) {
+		            teacherMap.put("userFileName", file.getUserFileName());
+		            teacherMap.put("savedFileName", file.getSavedFileName());
+		            teacherMap.put("fileType", 1);
+		        }
+		    }
+		}
 		
 		// 교직원 수 구하기
 		int teacherSize = teachers.size();
@@ -83,6 +121,8 @@ public class AdminController {
 		model.addAttribute("tnf", tnf);
 		
 		System.out.println(tnf);
+		log.trace("tnf={}"+tnf);
+		log.debug("tnf={}"+tnf);
 		
 		return "/admin/aboutAdmin";
 	}
@@ -157,14 +197,14 @@ public class AdminController {
 	
 	// 교직원 수정
 	@PostMapping(path = { "/modifyTeacher" })
-	public String modifyTeacher(TeacherDto teacher, String subjectSelboxDirect, Long prevFileNo, @RequestParam("modifyTeacherImg") MultipartFile modFile) {
+	public String modifyTeacher(TeacherDto teacher, String modifySubjectSelboxDirect, Long prevFileNo, @RequestParam("modifyTeacherImg") MultipartFile modFile) {
 		
 		// 교사 과목 선택사항
 		String subject = null;
-		if (subjectSelboxDirect == null || subjectSelboxDirect.length() == 0) { // 교사 과목 직접입력 x
+		if (modifySubjectSelboxDirect == null || modifySubjectSelboxDirect.length() == 0) { // 교사 과목 직접입력 x
 			subject = teacher.getSubject();
 		} else { // 교사 과목 직접입력 o
-			subject = subjectSelboxDirect;
+			subject = modifySubjectSelboxDirect;
 			teacher.setSubject(subject);
 		}
 		
@@ -196,8 +236,11 @@ public class AdminController {
 	            fileService.deleteFile(prevFileNo);
 	            Long fileNo = fileService.saveFile(fileDto);
 	            teacher.setFileNo(fileNo);
+	            adminService.modifyTeacher(teacher);
+			} else { // 내용은 변경했지만 첨부파일은 수정하지 않은 경우
+				teacher.setFileNo(prevFileNo);
+				adminService.modifyTeacher(teacher);
 			}
-			adminService.modifyTeacher(teacher);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -209,7 +252,6 @@ public class AdminController {
 	@PostMapping(path = { "/deleteTeacher" })
 	public String deleteTeacher(int teacherNo) {
 		
-		System.out.println(teacherNo);
 		adminService.deleteTeacher(teacherNo);
 		
 		return "redirect:/admin/aboutAdmin";

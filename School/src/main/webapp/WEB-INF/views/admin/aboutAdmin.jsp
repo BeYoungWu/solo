@@ -57,7 +57,7 @@
 							<input type="text" name="teacherName" id="teacherName"
 								placeholder="교사 성함*" class="form-control" required="required">
 							<br>
-							<select id="subjectSelbox" name="subjectCategory">
+							<select id="subjectSelbox" name="subject">
 							  <option selected>교사의 과목을 선택해주십시오*</option>
 							  <c:forEach var="subject" items="${ subjects }">
 							  <option value="${ subject }">${ subject }</option>
@@ -125,7 +125,7 @@
 							<input type="text" name="teacherName" id="teacherName"
 								placeholder="교사 성함*" class="form-control" required="required">
 							<br>
-							<select id="modifySubjectSelbox" name="subjectCategory">
+							<select id="modifySubjectSelbox" name="subject">
 							  <option selected>교사의 과목을 선택해주십시오*</option>
 							  <c:forEach var="subject" items="${ subjects }">
 							  <option value="${ subject }">${ subject }</option>
@@ -133,7 +133,7 @@
 							  <option value="direct">직접입력</option>
 							</select>
 							<br>
-							<input type="text" class="form-control" placeholder="교사 과목*" id="modifySubjectSelboxDirect" name="subjectSelboxDirect" style="margin-top:22px">
+							<input type="text" class="form-control" placeholder="교사 과목*" id="modifySubjectSelboxDirect" name="modifySubjectSelboxDirect" style="margin-top:22px">
 						</div>
 						<br>
 						<div>
@@ -200,7 +200,7 @@
 				"data": {teacherNo: teacherNo, fileNo: fileNo},
 				"success":function(data, xhr, status){
 					$('#modifyTeacher input[name=teacherName]').val(data.teacher.teacherName);
-					$('#modifyTeacher select[name=subjectCategory]').val(data.teacher.subject);
+					$('#modifyTeacher select[name=subject]').val(data.teacher.subject);
 					$('#modifyTeacher input[name=prevUserFileName]').val(data.file.userFileName);
 					$('#modifyTeacher input[name=prevFileNo]').val(data.file.fileNo);
 				},
@@ -272,17 +272,17 @@
 						<c:if test="${status.index < ts}">
 							<div class="col-md-3 col-sm-6">
 								<div class="teacher">
-									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" style="width:260px;height:340px;">									
-									<h4>${tnf.value.teacherName}</h4>
-									<span class="deg">${tnf.value.subject}</span>
+									<img class="img-responsive" src="/resources/img/teacher/${tnf.value[0].savedFileName}" alt="" style="width:260px;height:340px;">									
+									<h4>${ tnf.value[0].teacherName }</h4>
+									<span class="deg">${ tnf.value[0].subject }</span>
 									<br><br>
 									<table>
 									<tr>
 									<td>
-									${tnf.value.teacherNo}
+									${ tnf.value[0].teacherNo }
 									</td>
 									<td>
-									${tnf.value.fileNo}
+									${ tnf.value[0].fileNo }
 									</td>
 									</table>
 									<button class="modify-btn">수정</button>
