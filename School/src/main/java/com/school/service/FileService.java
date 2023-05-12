@@ -42,6 +42,7 @@ public class FileService {
 	                .userFileName(file.getUserFileName())
 	                .savedFileName(file.getSavedFileName())
 	                .fileType(file.getFileType())
+	                .filePath(file.getFilePath())
 	                .build();
 	        
 	        return fileDto;
@@ -62,6 +63,7 @@ public class FileService {
     								  .userFileName(fileEntity.getUserFileName())
     								  .savedFileName(fileEntity.getSavedFileName())
     								  .fileType(fileEntity.getFileType())
+    								  .filePath(fileEntity.getFilePath())
     								  .build();
     			files.add(file);
     		}

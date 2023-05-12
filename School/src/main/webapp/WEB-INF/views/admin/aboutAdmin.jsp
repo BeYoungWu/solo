@@ -272,17 +272,17 @@
 						<c:if test="${status.index < ts}">
 							<div class="col-md-3 col-sm-6">
 								<div class="teacher">
-									<img class="img-responsive" src="/resources/img/teacher/${tnf.value[0].savedFileName}" alt="" style="width:260px;height:340px;">									
-									<h4>${ tnf.value[0].teacherName }</h4>
-									<span class="deg">${ tnf.value[0].subject }</span>
+									<img class="img-responsive" src="/resources/img/teacher/${tnf.file.savedFileName}" alt="" style="width:260px;height:340px;">									
+									<h4>${ tnf.teacher.teacherName }</h4>
+									<span class="deg">${ tnf.teacher.subject }</span>
 									<br><br>
 									<table>
 									<tr>
 									<td>
-									${ tnf.value[0].teacherNo }
+									${ tnf.teacher.teacherNo }
 									</td>
 									<td>
-									${ tnf.value[0].fileNo }
+									${ tnf.file.fileNo }
 									</td>
 									</table>
 									<button class="modify-btn">수정</button>

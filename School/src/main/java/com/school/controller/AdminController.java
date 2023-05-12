@@ -48,69 +48,30 @@ public class AdminController {
 		// 교직원 목록 불러오기 + 각자의 사진 파일까지
 		List<TeacherDto> teachers = adminService.findAllTeachers();
 		List<FileDto> files = fileService.getTeacherFiles();
-//
-//		Map<Long, Map<String, Object>> tnf = new HashMap<>();
-//	    
-//	    // teachers를 HashMap에 넣기
-//	    for (TeacherDto teacher : teachers) {
-//	        Map<String, Object> teacherMap = new HashMap<>();
-//	        teacherMap.put("teacherNo", teacher.getTeacherNo());
-//	        teacherMap.put("teacherName", teacher.getTeacherName());
-//	        teacherMap.put("subject", teacher.getSubject());
-//	        teacherMap.put("fileNo", teacher.getFileNo());
-//	        
-//	        tnf.put(teacher.getFileNo(), teacherMap);
-//	    }
-//	    
-//	    // files를 HashMap에 넣기
-//	    for (FileDto file : files) {
-//	        Long fileNo = file.getFileNo();
-//	        Map<String, Object> resultMapEntry = tnf.get(fileNo);
-//	        
-//	        if (resultMapEntry == null) {
-//	            // Create a new entry for this file
-//	            resultMapEntry = new HashMap<>();
-//	            tnf.put(fileNo, resultMapEntry);
-//	        }
-//	        
-//	        resultMapEntry.put("userFileName", file.getUserFileName());
-//	        resultMapEntry.put("savedFileName", file.getSavedFileName());
-//	        resultMapEntry.put("fileType", 1);
-//	    }
-		Map<Long, List<Map<String, Object>>> tnf = new HashMap<>();
 
-		// teachers를 HashMap에 넣기
+		// 동명이인 조회 오류 해결중
+		// 두 Dto 하나의 Hashmap으로 합치기
+		List<Map<String, Object>> tnf1 = new ArrayList<>();
+		List<Map<String, Object>> tnf2 = new ArrayList<>();
+		
 		for (TeacherDto teacher : teachers) {
-		    Map<String, Object> teacherMap = new HashMap<>();
-		    teacherMap.put("teacherNo", teacher.getTeacherNo());
-		    teacherMap.put("teacherName", teacher.getTeacherName());
-		    teacherMap.put("subject", teacher.getSubject());
-		    teacherMap.put("fileNo", teacher.getFileNo());
-
-		    Long fileNo = teacher.getFileNo();
-		    List<Map<String, Object>> teacherList = tnf.get(fileNo);
-
-		    if (teacherList == null) {
-		        // Create a new list for this fileNo
-		        teacherList = new ArrayList<>();
-		        tnf.put(fileNo, teacherList);
-		    }
-
-		    teacherList.add(teacherMap);
+			Map<String, Object> resultMapEntry = new HashMap<>();
+			resultMapEntry.put("teacher", teacher);
+			tnf1.add(resultMapEntry);
+			System.out.println(tnf1);
 		}
-
-		// files를 HashMap에 넣기
+		
 		for (FileDto file : files) {
-		    Long fileNo = file.getFileNo();
-		    List<Map<String, Object>> teacherList = tnf.get(fileNo);
-
-		    if (teacherList != null) {
-		        for (Map<String, Object> teacherMap : teacherList) {
-		            teacherMap.put("userFileName", file.getUserFileName());
-		            teacherMap.put("savedFileName", file.getSavedFileName());
-		            teacherMap.put("fileType", 1);
-		        }
-		    }
+			for (Map<String, Object> map : tnf1) {
+				TeacherDto teacher = (TeacherDto) map.get("teacher");
+				Long fileNo = (Long) teacher.getFileNo();
+				if (fileNo.equals(file.getFileNo())) {
+					map.put("file", file);
+					tnf2.add(map);
+				} else {
+					tnf2.add(map);
+				}
+			}
 		}
 		
 		// 교직원 수 구하기
@@ -118,11 +79,7 @@ public class AdminController {
 		
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("ts", teacherSize);
-		model.addAttribute("tnf", tnf);
-		
-		System.out.println(tnf);
-		log.trace("tnf={}"+tnf);
-		log.debug("tnf={}"+tnf);
+		model.addAttribute("tnf", tnf2);
 		
 		return "/admin/aboutAdmin";
 	}
