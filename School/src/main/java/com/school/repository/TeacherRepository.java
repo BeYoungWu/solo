@@ -28,7 +28,7 @@ public interface TeacherRepository extends JpaRepository<TeacherEntity, Integer>
 	// 교직원 수정
 	@Modifying
 	@Transactional
-	@Query("UPDATE tbl_teacher t SET t.fileNo=:#{#te.fileNo}, t.subject=:#{#te.subject}, t.teacherName=:#{#te.teacherName} ")
+	@Query("UPDATE tbl_teacher t SET t.fileNo=:#{#te.fileNo}, t.subject=:#{#te.subject}, t.teacherName=:#{#te.teacherName} WHERE t.teacherNo=:#{#te.teacherNo}")
 	void modifyTeacher(@Param("te") TeacherEntity te);
 
 	

@@ -139,6 +139,7 @@
 						<div>
 							등록된 파일 : <input name="prevUserFileName" disabled>
 							<input type="hidden" name="prevFileNo">
+							<input type="hidden" name="teacherNo">
 						</div>
 						<br>
 						<div class="filebox">
@@ -190,9 +191,6 @@
 			const div = $(this).parent();
 			const teacherNo = div.find('td:eq(0)').text();
 			const fileNo = div.find('td:eq(1)').text();
-			console.log(div);
-			console.log(teacherNo);
-			console.log(fileNo);
 
 			$.ajax({
 				"method":"GET",
@@ -203,6 +201,7 @@
 					$('#modifyTeacher select[name=subject]').val(data.teacher.subject);
 					$('#modifyTeacher input[name=prevUserFileName]').val(data.file.userFileName);
 					$('#modifyTeacher input[name=prevFileNo]').val(data.file.fileNo);
+					$('#modifyTeacher input[name=teacherNo]').val(data.teacher.teacherNo);
 				},
 				"error":function(request, status, error){
 					alert("오류");
