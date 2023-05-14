@@ -32,6 +32,11 @@
     border: 0;
 }
 
+.img {
+	text-align: center;
+	margin-top: 50px;
+}
+
 .registerButton {
 	text-align: center;
 	margin-top: 20px;

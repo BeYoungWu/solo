@@ -79,7 +79,7 @@
 								<li><a href="/about/current">학교현황</a></li>
 								<li><a href="/about/symbol">학교상징</a></li>
 								<li><a href="/about/song">학교교가</a></li>
-								<li><a href="/list?boardType=0">학교교육계획</a></li>
+								<li><a href="/board/list?boardType=0">학교교육계획</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" onmouseover="showDropdownNews()" onmouseout="hideDropdownNews()">

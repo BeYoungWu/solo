@@ -85,27 +85,32 @@ public class HomeController {
 		return "/about";
 	}
 	// 교육목표
-	@GetMapping(path = { "/purpose" })
-	public String purpose() {
+	@GetMapping(path = { "/about/purpose" })
+	public String purpose(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(2);
+		
+		model.addAttribute("file", file);
+		
 		return "/about/purpose";
 	}
 	// 학교연혁
-	@GetMapping(path = { "/history" })
+	@GetMapping(path = { "/about/history" })
 	public String history() {
 		return "/about/history";
 	}
 	// 학교현황
-	@GetMapping(path = { "/current" })
+	@GetMapping(path = { "/about/current" })
 	public String current() {
 		return "/about/current";
 	}
 	// 학교상징
-	@GetMapping(path = { "/symbol" })
+	@GetMapping(path = { "/about/symbol" })
 	public String symbol() {
 		return "/about/symbol";
 	}
 	// 학교교가
-	@GetMapping(path = { "/song" })
+	@GetMapping(path = { "/about/song" })
 	public String song() {
 		return "/about/song";
 	}

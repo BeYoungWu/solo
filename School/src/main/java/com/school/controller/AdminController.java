@@ -58,7 +58,6 @@ public class AdminController {
 			Map<String, Object> resultMapEntry = new HashMap<>();
 			resultMapEntry.put("teacher", teacher);
 			tnf1.add(resultMapEntry);
-			System.out.println(tnf1);
 		}
 		
 		for (FileDto file : files) {

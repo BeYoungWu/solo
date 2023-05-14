@@ -23,6 +23,7 @@
 <body>
 <div id="wrapper">
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+	
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -32,30 +33,30 @@
 		</div>
 	</div>
 	</section>
-	<section id="content">
+	
 	<div class="container">
-			<div class="about">			
-				<div class="teachers">
-					<div class="row">
-					<c:forEach items="${tnf}" var="tnf" varStatus="status">
-						<c:if test="${status.index mod 4 == 0}">
-							</div><div class="row">
-						</c:if>
-						<c:if test="${status.index < ts}">
-							<div class="col-md-3 col-sm-6">
-								<div class="teacher">
-									<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" width="260" height="260">
-									<h4>${tnf.value.teacherName}</h4>
-									<span class="deg">${tnf.value.subject}</span>
-								</div>
+		<div class="about">			
+			<div class="teachers">
+				<div class="row">
+				<c:forEach items="${tnf}" var="tnf" varStatus="status">
+					<c:if test="${status.index mod 4 == 0}">
+						</div><div class="row">
+					</c:if>
+					<c:if test="${status.index < ts}">
+						<div class="col-md-3 col-sm-6">
+							<div class="teacher">
+								<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" style="width:260px;height:340px;">
+								<h4>${tnf.value.teacherName}</h4>
+								<span class="deg">${tnf.value.subject}</span>
 							</div>
-						</c:if>
-					</c:forEach>
-					</div>
+						</div>
+					</c:if>
+				</c:forEach>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+	
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>

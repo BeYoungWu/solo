@@ -256,7 +256,6 @@
 	
   	
 	<%-- MAIN --%>
-	<section id="content">
 	<div class="container">
 			<div class="about">			
 				<div class="teachers">
@@ -294,7 +293,6 @@
 				</div>
 			</div>
 		</div>
-	</section>
 	<%-- END --%>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
