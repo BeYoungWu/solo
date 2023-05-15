@@ -4,13 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>관리자페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
- 
+<link href="/resources/styles/css/custom/fileAdmin.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,22 +30,158 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">a</h2>
+				<h2 class="pageTitle">학교현황</h2>
 			</div>
 		</div>
 	</div>
 	</section>
+
+	<c:choose>
+	<c:when test="${ empty file }">
+	<div class="registerButton">
+		<button data-toggle="modal" data-target="#register-file">파일 등록</button>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="buttons">
+		<button class="modify-btn" data-toggle="modal" data-target="#modify-file">파일 변경</button>
+		<button class="delete-btn" data-toggle="modal" data-target="#delete-file">파일 삭제</button>
+	</div>
+	</c:otherwise>
+	</c:choose>
 	
+	<%-- REGISTER MODAL --%>
+	<div class="modal fade" id="register-file" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">파일 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="text-align:center">
+					<form id="registerCurrent" action="registerCurrent" method="post" enctype="multipart/form-data">
+						<div class="filebox">
+						    <input class="upload-name" placeholder="사진 파일을 첨부해주십시오*" disabled>
+						    <label for="imgFile">파일찾기</label> 
+						    <input type="file" name="imgFile" id="imgFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_register">등록하기</button>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<%-- END --%>
+	
+	<%-- REGISTER JS --%>
+	<script>
+	// 첨부파일 선택시 input창에 파일명 뜨게 하기
+	$("#imgFile").on('change',function(){
+	  var fileName = $("#imgFile").val();
+	  $(".upload-name").val(fileName);
+	});
+	</script>
+	<%-- END --%>
+	
+	<%-- MODIFY MODAL --%>
+	<div class="modal fade" id="modify-file" tabindex="-1" role="dialog"
+		aria-labelledby="exampleMdalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color: #000;">파일 수정</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="modifyCurrent" action="modifyCurrent" method="post" enctype="multipart/form-data">
+				<div>
+					등록된 파일 : <input name="prevUserFileName" disabled>
+					<input type="hidden" name="prevFileNo">
+				</div>
+				<br>
+				<div class="modal-body" style="text-align:center">
+						<div class="filebox">
+						    <input class="upload-name" placeholder="수정시에만 파일찾기 클릭*" disabled>
+						    <label for="modFile">파일찾기</label> 
+						    <input type="file" name="modFile" id="modFile" onchange="fileCheck(this)" accept="image/gif,image/jpeg,image/png">
+						</div>
+						<br>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn submit" id="btn_modify">등록하기</button>
+				</div>
+				</form>
+			</div>
+		</div>	
+	</div>
+	<%-- END --%>
+	
+	<%-- MODIFY JS --%>
+	<script type="text/javascript">
+	$(function() {
+		$('.modify-btn').on('click', function(event) { // 클릭한 교사의 데이터 비동기 방식으로 가져오기
+
+			$.ajax({
+				"method":"GET",
+				"url":"/admin/getCurrentData",
+				"data": {},
+				"success":function(data, xhr, status){
+					$('#modifyCurrent input[name=prevUserFileName]').val(data.userFileName);
+					$('#modifyCurrent input[name=prevFileNo]').val(data.fileNo);
+				},
+				"error":function(request, status, error){
+					alert("오류");
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+			
+			// modal 표시
+			$('#modify-file').modal('show');
+		});
+	});
+	</script>
+	<%-- END --%>
+	
+	<%-- DELETE MODAL --%>
+	<div class="modal" id="delete-file" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">삭제</h5>
+	      </div>
+	      <form id="delete-form" action="deleteCurrent" method="get">
+	      <div class="modal-body">
+	        <p>삭제하시겠습니까?</p>
+	        	<input type="hidden" name="fileNo" value="${ file.fileNo }">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" data-dismiss="modal">취소</button>
+			<button type="submit">삭제하기</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+	<%-- END --%>
+	
+	<%-- MAIN --%>
 	<div class="contatiner">
 		<div class="row">
-			<div class="col-lg-3">
-				
-			</div>
-			<div class="col-lg-9">
-			
+			<div class="col-lg-12">
+				<div class="img">
+					<img src="/resources/img/current/${ file.savedFileName }" alt="">
+				</div>
 			</div>
 		</div>
 	</div>
+	<%-- END --%>	
 	
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>

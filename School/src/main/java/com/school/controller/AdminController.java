@@ -226,7 +226,7 @@ public class AdminController {
 	
 	// 교육목표 등록
 	@PostMapping(path = { "/registerPurpose" })
-	public String updatePurpose(@RequestParam("imgFile") MultipartFile file) {
+	public String registerPurpose(@RequestParam("imgFile") MultipartFile file) {
 		
 		// 첨부파일
 		try {
@@ -321,62 +321,426 @@ public class AdminController {
 	
 	// 학교연혁 관리 페이지
 	@GetMapping(path = { "/historyAdmin" })
-	public String historyAdmin() {
+	public String historyAdmin(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(3);
+		
+		model.addAttribute("file", file);
+		
 		return "/admin/historyAdmin";
 	}
 	
-	// 학교연혁 등록 및 편집
-//	@PostMapping(path = { "historyAdmin" })
-//	public String updateHistory() {
-//		return "";
-//	}
+	// 학교연혁 등록
+	@PostMapping(path = { "registerHistory" })
+	public String registerHistory(@RequestParam("imgFile") MultipartFile file) {
+		
+		// 첨부파일
+		try {
+			if (file.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = file.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\history";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(3);
+	            fileDto.setFilePath(filePath);
+	
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/historyAdimin";
+	}
+	
+	// 학교연혁 수정 모달창 등록된 파일 정보 가져오기
+	@GetMapping(path = { "/getHistoryData" })
+	@ResponseBody
+	public FileDto getHistoryData(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(3);
+		
+		return file;
+	}
+		
+	// 학교연혁 수정
+	@PostMapping(path = { "/modifyHistory" })
+	public String modifyHistory(Long prevFileNo, @RequestParam("modFile") MultipartFile modFile) {
+		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\history";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(3);
+	            fileDto.setFilePath(filePath);
+	            
+	            fileService.deleteFile(prevFileNo);
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/admin/historyAdmin";
+	}
+	
+	// 학교연혁 삭제
+	@GetMapping(path = { "/deleteHistory" })
+	public String deleteHistory(Long fileNo) {
+		
+		fileService.deleteFile(fileNo);
+		
+		return "redirect:/admin/historyAdmin";
+	}
 	
 	// 학교현황 관리 페이지
 	@GetMapping(path = { "/currentAdmin" })
-	public String currentAdmin() {
+	public String currentAdmin(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(4);
+		
+		model.addAttribute("file", file);
+		
 		return "/admin/currentAdmin";
 	}
+
+	// 학교현황 등록
+	@PostMapping(path = { "registerCurrent" })
+	public String registerCurrent(@RequestParam("imgFile") MultipartFile file) {
+		
+		// 첨부파일
+		try {
+			if (file.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = file.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\current";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(4);
+	            fileDto.setFilePath(filePath);
 	
-	// 학교현황 등록 및 편집
-//	@PostMapping(path = { "/currentAdmin" })
-//	public String updateCurrent() {
-//		return "";
-//	}
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/currentAdimin";
+	}
+	
+	// 학교현황 수정 모달창 등록된 파일 정보 가져오기
+	@GetMapping(path = { "/getCurrentData" })
+	@ResponseBody
+	public FileDto getCurrentData(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(4);
+		
+		return file;
+	}
+		
+	// 학교현황 수정
+	@PostMapping(path = { "/modifyCurrent" })
+	public String modifyCurrent(Long prevFileNo, @RequestParam("modFile") MultipartFile modFile) {
+		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\current";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(4);
+	            fileDto.setFilePath(filePath);
+	            
+	            fileService.deleteFile(prevFileNo);
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/admin/currentAdmin";
+	}
+	
+	// 학교현황 삭제
+	@GetMapping(path = { "/deleteCurrent" })
+	public String deleteCurrent(Long fileNo) {
+		
+		fileService.deleteFile(fileNo);
+		
+		return "redirect:/admin/currentAdmin";
+	}
 	
 	// 학교상징 관리 페이지
 	@GetMapping(path = { "/symbolAdmin" })
-	public String symbolAdmin() {
+	public String symbolAdmin(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(5);
+		
+		model.addAttribute("file", file);
+		
 		return "/admin/symbolAdmin";
 	}
 	
-	// 학교상징 등록 및 편집
-//	@PostMapping(path = { "/symbolAdmin" })
-//	public String updateSymbol() {
-//		return "";
-//	}
+	// 학교상징 등록
+	@PostMapping(path = { "registerSymbol" })
+	public String registerSymbol(@RequestParam("imgFile") MultipartFile file) {
+		
+		// 첨부파일
+		try {
+			if (file.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = file.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\symbol";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(5);
+	            fileDto.setFilePath(filePath);
+	
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/symbolAdimin";
+	}
+	
+	// 학교상징 수정 모달창 등록된 파일 정보 가져오기
+	@GetMapping(path = { "/getSymbolData" })
+	@ResponseBody
+	public FileDto getSymbolData(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(5);
+		
+		return file;
+	}
+		
+	// 학교상징 수정
+	@PostMapping(path = { "/modifySymbol" })
+	public String modifySymbol(Long prevFileNo, @RequestParam("modFile") MultipartFile modFile) {
+		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\symbol";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(5);
+	            fileDto.setFilePath(filePath);
+	            
+	            fileService.deleteFile(prevFileNo);
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/admin/symbolAdmin";
+	}
+	
+	// 학교상징 삭제
+	@GetMapping(path = { "/deleteSymbol" })
+	public String deleteSymbol(Long fileNo) {
+		
+		fileService.deleteFile(fileNo);
+		
+		return "redirect:/admin/symbolAdmin";
+	}
 	
 	// 학교교가 관리 페이지
 	@GetMapping(path = { "/songAdmin" })
-	public String songAdmin() {
+	public String songAdmin(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(6);
+		
+		model.addAttribute("file", file);
+		
 		return "/admin/songAdmin";
 	}
 	
-	// 학교교가 등록 및 편집
-//	@PostMapping(path = { "/songAdmin" })
-//	public String updateSong() {
-//		return "";
-//	}
+	// 학교교가 등록
+	@PostMapping(path = { "registerSong" })
+	public String registerSong(@RequestParam("imgFile") MultipartFile file) {
+		
+		// 첨부파일
+		try {
+			if (file.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = file.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\song";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            file.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(6);
+	            fileDto.setFilePath(filePath);
 	
-	// 학교일정 관리 페이지
-	@GetMapping(path = { "/scheduleAdmin" })
-	public String scheduleAdmin() {
-		return "/admin/scheduleAdmin";
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/songAdimin";
 	}
 	
-	// 학교일정 등록 및 편집
-	@PostMapping(path = { "/scheduleAdmin" })
-	public String updateSchedule() {
-		return "";
+	// 학교교가 수정 모달창 등록된 파일 정보 가져오기
+	@GetMapping(path = { "/getSongData" })
+	@ResponseBody
+	public FileDto getSongData(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(6);
+		
+		return file;
+	}
+		
+	// 학교교가 수정
+	@PostMapping(path = { "/modifySong" })
+	public String modifySong(Long prevFileNo, @RequestParam("modFile") MultipartFile modFile) {
+		
+		// 첨부파일
+		try {
+			if (modFile.getOriginalFilename().length() != 0) { // 변경된 첨부파일이 있을 때
+				String userFileName = modFile.getOriginalFilename();
+				String filename = (Util.makeUniqueFileName(userFileName)).replaceAll("[-]","");
+				/* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	            String savePath = System.getProperty("user.dir") + "\\src\\main\\webapp\\resources\\img\\song";
+	            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+	            if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            String filePath = savePath + "\\" + filename;
+	            modFile.transferTo(new File(filePath));
+	            
+	            FileDto fileDto = new FileDto();
+	            fileDto.setUserFileName(userFileName);
+	            fileDto.setSavedFileName(filename);
+	            fileDto.setFileType(6);
+	            fileDto.setFilePath(filePath);
+	            
+	            fileService.deleteFile(prevFileNo);
+	            fileService.saveFile(fileDto);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/admin/songAdmin";
+	}
+	
+	// 학교교가 삭제
+	@GetMapping(path = { "/deleteSong" })
+	public String deleteSong(Long fileNo) {
+		
+		fileService.deleteFile(fileNo);
+		
+		return "redirect:/admin/songAdmin";
 	}
 	
 }

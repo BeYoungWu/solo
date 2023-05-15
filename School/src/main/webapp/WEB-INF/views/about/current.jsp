@@ -10,6 +10,7 @@
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/common-css.jsp" />
+<link href="/resources/styles/css/custom/about.css" rel="stylesheet" />
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -29,13 +30,15 @@
 		</div>
 	</div>
 	</section>
-	<section id="content">
+
 	<div class="container">
-		<h2>학생현황, 교직원현황, 시설현황 사진</h2>
-		<h2>OR</h2>
-		<h2>엑셀값을 가져오는 폼</h2>
+		<div class="about">
+			<div class="img">
+				<img src="/resources/img/current/${ file.savedFileName }" alt="">
+			</div>
+		</div>
 	</div>
-	</section>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
