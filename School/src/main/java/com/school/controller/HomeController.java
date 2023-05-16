@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
@@ -96,22 +97,42 @@ public class HomeController {
 	}
 	// 학교연혁
 	@GetMapping(path = { "/about/history" })
-	public String history() {
+	public String history(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(3);
+		
+		model.addAttribute("file", file);
+		
 		return "/about/history";
 	}
 	// 학교현황
 	@GetMapping(path = { "/about/current" })
-	public String current() {
+	public String current(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(4);
+		
+		model.addAttribute("file", file);
+		
 		return "/about/current";
 	}
 	// 학교상징
 	@GetMapping(path = { "/about/symbol" })
-	public String symbol() {
+	public String symbol(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(5);
+		
+		model.addAttribute("file", file);
+		
 		return "/about/symbol";
 	}
 	// 학교교가
 	@GetMapping(path = { "/about/song" })
-	public String song() {
+	public String song(Model model) {
+		
+		FileDto file = fileService.getFileByFileType(6);
+		
+		model.addAttribute("file", file);
+		
 		return "/about/song";
 	}
 	////////////////////////////////////////////////////////////
@@ -120,6 +141,15 @@ public class HomeController {
 	@GetMapping(path = { "/contact" })
 	public String contact() {
 		return "/contact";
+	}
+	
+	// 문의하기
+	@PostMapping(path = { "/sendContact" })
+	public String sendContact() {
+
+		
+		
+		return "redirect:/contact";
 	}
 	
 	////////////////////////////////////////////////////////////
