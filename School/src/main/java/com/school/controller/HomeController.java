@@ -11,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.school.dto.ContactDto;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
 import com.school.service.AdminService;
 import com.school.service.BoardService;
+import com.school.service.ContactService;
 import com.school.service.FileService;
 
 @Controller
@@ -27,6 +29,10 @@ public class HomeController {
 	@Autowired
 	@Qualifier("fileService")
 	private FileService fileService;
+	
+	@Autowired
+	@Qualifier("contactService")
+	private ContactService contactService;
 	
 	@Autowired
 	@Qualifier("adminService")
@@ -143,11 +149,11 @@ public class HomeController {
 		return "/contact";
 	}
 	
-	// 문의하기
+	// 문의 등록하기
 	@PostMapping(path = { "/sendContact" })
-	public String sendContact() {
+	public String sendContact(ContactDto contact) {
 
-		
+		contactService.registerContact(contact);
 		
 		return "redirect:/contact";
 	}

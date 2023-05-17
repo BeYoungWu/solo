@@ -17,6 +17,8 @@
 
 <jsp:include page="/WEB-INF/views/module/common-css.jsp" />
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -60,13 +62,13 @@
 								<i class="fa fa-envelope form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label for="subject">제목*</label> <input type="text"
+								<label for="title">제목*</label> <input type="text"
 									class="form-control" id="title" name="title"
 									placeholder=""> <i
 									class="fa fa-navicon form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label for="message">내용*</label>
+								<label for="content">내용*</label>
 								<textarea class="form-control" rows="6" id="content"
 									name="content" placeholder=""></textarea>
 								<i class="fa fa-pencil form-control-feedback"></i>
@@ -100,6 +102,12 @@
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+<%-- JS --%>
+<script type="text/javascript">
+// 유효성 검사
+</script>
+
 <!-- javascript
    ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
