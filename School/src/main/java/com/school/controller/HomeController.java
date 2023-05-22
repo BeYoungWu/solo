@@ -149,7 +149,7 @@ public class HomeController {
 		return "/contact";
 	}
 	
-	// 문의 등록하기
+	// 문의 등록
 	@PostMapping(path = { "/sendContact" })
 	public String sendContact(ContactDto contact) {
 

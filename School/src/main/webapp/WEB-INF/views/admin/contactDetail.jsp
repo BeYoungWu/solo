@@ -6,15 +6,16 @@
 <meta charset="UTF-8">
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<title>문의 관리</title>
+<title>문의 상세</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
-<link href="/resources/styles/css/custom/list.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/detail.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -31,41 +32,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">문의</h2>
+				<h2 class="pageTitle">문의 상세</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	
-	<div class="container text-center">	
+	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<form>
-				<table class="table">
-					<thead>
-					<tr>
-						<th style="width:70px;">번호</th>
-						<th style="width:60%;">제목</th>
-						<th>작성일</th>
-						<th>문의자</th>
-					</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="contact" items="${ contacts }">
-					<tr>
-						<td>${ contact.contactNo }</td>
-						<td style="text-align:left;">
-							<a href="contactDetail?contactNo=${ contact.contactNo }" style="color:black;text-decoration:none;">
-								${ contact.title }
-							</a>
-						</td>
-						<td><fmt:formatDate value="${ contact.contactDate }" pattern="yyyy/MM/dd" /></td>
-						<td>${ contact.name }</td>
-					</tr>
-					</c:forEach>
-					</tbody>
+				<table>
+					문의 상세 조회 화면 구현중
 				</table>
-			</form>
 			</div>
 		</div>
     </div>
@@ -74,6 +52,14 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->
+<script type="text/javascript">
+$(".deleteBtn").on('click', function(){
+	const ok = confirm("게시글을 삭제하시겠습니까?")
+	if (!ok) return;
+	
+	location.href = '/admin/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }';
+});
+</script>   
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/resources/styles/js/jquery.js"></script>
 <script src="/resources/styles/js/jquery.easing.1.3.js"></script>

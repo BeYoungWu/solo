@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -749,7 +752,7 @@ public class AdminController {
 		return "redirect:/admin/songAdmin";
 	}
 	
-	// 문의 관리 페이지
+	// 문의 목록 조회
 	@GetMapping(path = { "/contactAdmin" })
 	public String contactAdmin(Model model) {
 		
@@ -758,6 +761,24 @@ public class AdminController {
 		model.addAttribute("contacts", contacts);
 		
 		return "/admin/contactAdmin";
+	}
+	
+	// 문의 상세 조회
+	@GetMapping(path = { "/contactDetail" })
+	public String contactDetail(@RequestParam(defaultValue = "-1") int contactNo, HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		if (contactNo == -1) {
+			model.addAttribute("error_type", "writeForm");
+//			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
+//			return "/board/error";
+			return "redirect:/admin";
+		}
+		
+		ContactDto contact = contactService.findByContactNo(contactNo);
+		
+		model.addAttribute("contact", contact);
+		
+		return "/admin/contactDetail";
 	}
 	
 }

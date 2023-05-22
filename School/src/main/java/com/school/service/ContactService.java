@@ -35,11 +35,14 @@ public interface ContactService {
 		return contactEntity;
 	}
 
-	// 문의 등록하기 (사용자)
+	// 문의 등록 (사용자)
 	public void registerContact(ContactDto contact);
 
-	// 문의 목록 불러오기 (관리자)
+	// 문의 목록 조회 (관리자)
 	public List<ContactDto> findAllContact();
+
+	// 문의 상세 조회 (관리자)
+	public ContactDto findByContactNo(int contactNo);
 
 
 }

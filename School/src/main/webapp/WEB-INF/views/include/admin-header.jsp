@@ -112,7 +112,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="/admin/contact">문의</a>
+							<a href="/admin/contactAdmin">문의</a>
 						</li>
 					</ul>
 				</div>

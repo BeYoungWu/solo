@@ -18,7 +18,7 @@ public class ContactServiceImpl implements ContactService {
 	@Qualifier("contactRepository")
 	private ContactRepository contactRepository;
 
-	// 문의 등록하기 (사용자)
+	// 문의 등록 (사용자)
 	@Override
 	public void registerContact(ContactDto contact) {
 
@@ -27,7 +27,7 @@ public class ContactServiceImpl implements ContactService {
 		
 	}
 
-	// 문의 목록 불러오기 (관리자)
+	// 문의 목록 조회 (관리자)
 	@Override
 	public List<ContactDto> findAllContact() {
 
@@ -38,6 +38,16 @@ public class ContactServiceImpl implements ContactService {
 		}
 		
 		return contacts;
+	}
+
+	// 문의 상세 조회 (관리자)
+	@Override
+	public ContactDto findByContactNo(int contactNo) {
+
+		ContactEntity ce = contactRepository.findById(contactNo).orElse(null);
+		ContactDto contact = contactEntityToDto(ce);
+		
+		return contact;
 	}
 
 	
