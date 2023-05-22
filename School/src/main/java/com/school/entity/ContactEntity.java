@@ -1,9 +1,18 @@
 package com.school.entity;
 
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.school.dto.ContactDto;
 
@@ -22,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class ContactEntity {
 	
 	public ContactEntity(ContactDto contact) {
-		this.contactId = contact.getContactId();
+		this.contactNo = contact.getContactNo();
 		this.name = contact.getName();
 		this.email = contact.getEmail();
 		this.title = contact.getTitle();
@@ -31,7 +40,7 @@ public class ContactEntity {
 	
 	public ContactDto exportContactDto() {
 		ContactDto contact = new ContactDto();
-		contact.setContactId(contactId);
+		contact.setContactNo(contactNo);
 		contact.setName(name);
 		contact.setEmail(email);
 		contact.setTitle(title);
@@ -41,7 +50,8 @@ public class ContactEntity {
 	}
 	
 	@Id
-	private int contactId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int contactNo;
 	
 	@Column(nullable = false)
 	private String name;
@@ -54,5 +64,14 @@ public class ContactEntity {
 
 	@Column(nullable = false)
 	private String content;
+	
+	@CreationTimestamp
+	@Column(updatable = false)
+	private Timestamp contactDate;
+	
+	@PrePersist
+    public void onInsert() {
+		contactDate = Timestamp.from(ZonedDateTime.now(ZoneId.of("Asia/Kolkata")).toInstant());
+    }
 	
 }

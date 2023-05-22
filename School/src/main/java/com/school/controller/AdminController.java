@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.school.common.Util;
+import com.school.dto.ContactDto;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
 import com.school.service.AdminService;
+import com.school.service.ContactService;
 import com.school.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +39,10 @@ public class AdminController {
 	@Autowired
 	@Qualifier("adminService")
 	private AdminService adminService;
+	
+	@Autowired
+	@Qualifier("contactService")
+	private ContactService contactService;
 	
 	// 교직원소개 관리 페이지
 	@GetMapping(path = { "/aboutAdmin" })
@@ -741,6 +747,17 @@ public class AdminController {
 		fileService.deleteFile(fileNo);
 		
 		return "redirect:/admin/songAdmin";
+	}
+	
+	// 문의 관리 페이지
+	@GetMapping(path = { "/contactAdmin" })
+	public String contactAdmin(Model model) {
+		
+		List<ContactDto> contacts = contactService.findAllContact();
+		
+		model.addAttribute("contacts", contacts);
+		
+		return "/admin/contactAdmin";
 	}
 	
 }

@@ -50,30 +50,27 @@
 						<strong>Error!</strong> There was an error sending your message.
 					</div>
 					<div class="contact-form">
-						<form id="contact-form" action="sendContact">
+						<form id="contact-form" action="sendContact" method="post">
 							<div class="form-group has-feedback">
-								<label for="name">이름*</label> <input type="text"
-									class="form-control" id="name" name="name" placeholder="">
+								<label for="name">이름*</label>
+								<input type="text" class="form-control" id="name" name="name" required>
 								<i class="fa fa-user form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label for="email">이메일*</label> <input type="email"
-									class="form-control" id="email" name="email" placeholder="">
+								<label for="email">이메일*</label>
+								<input type="email" class="form-control" id="email" name="email" required>
 								<i class="fa fa-envelope form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label for="title">제목*</label> <input type="text"
-									class="form-control" id="title" name="title"
-									placeholder=""> <i
-									class="fa fa-navicon form-control-feedback"></i>
+								<label for="title">제목*</label>
+								<input type="text" class="form-control" id="title" name="title" required>
+								<i class="fa fa-pencil form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
 								<label for="content">내용*</label>
-								<textarea class="form-control" rows="6" id="content"
-									name="content" placeholder=""></textarea>
-								<i class="fa fa-pencil form-control-feedback"></i>
+								<textarea class="form-control" rows="6" id="content" name="content" required></textarea>
 							</div>
-							<Button type="submit" class="btn">제출</Button>
+							<Button type="submit" class="btn" id="submit">제출</Button>
 						</form>
 					</div>
 				</div>
@@ -104,9 +101,21 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
 <%-- JS --%>
-<script type="text/javascript">
-// 유효성 검사
+<script>
+// 등록 버튼 클릭시 alert
+$("#submit").on('click', function(){
+	const ok = confirm("등록하시겠습니까?");
+	if (!ok) return false;
+	
+});
+
+// 등록 완료시 alert
+$("#contact-form").submit('#submit', function(e){
+	alert("등록이 완료되었습니다");
+});
+
 </script>
+<%-- END --%>
 
 <!-- javascript
    ================================================== -->
