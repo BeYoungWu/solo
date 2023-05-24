@@ -15,7 +15,7 @@
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
-<link href="/resources/styles/css/custom/detail.css" rel="stylesheet" />
+<link href="/resources/styles/css/custom/contactDetail.css" rel="stylesheet" />
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
@@ -38,12 +38,33 @@
 	</div>
 	</section>
 	
+	
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-				<table>
-					문의 상세 조회 화면 구현중
+				<table class="table table-bordered">
+					<tr>
+						<td style="width:20%">제목</td>
+						<td style="width:80%">${ contact.title }</td>
+					</tr>
+					<tr>
+						<td>문의자</td>
+						<td>${ contact.name }</td>
+					</tr>
+					<tr>
+						<td>문의날짜</td>
+						<td>${ contact.contactDate }</td>
+					</tr>
+					<tr>
+						<td>문의내용</td>
+						<td>${ contact.content }</td>
+					</tr>
 				</table>
+				<form action="contactCheck" method="post">
+				<input type="hidden" name="contactNo" value="${ contact.contactNo }">
+				<button type="submit">접수완료</button>
+				<button type="button" onclick=" location.href='/admin/contactAdmin' ">목록으로</button>
+				</form>
 			</div>
 		</div>
     </div>

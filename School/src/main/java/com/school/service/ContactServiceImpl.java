@@ -49,6 +49,14 @@ public class ContactServiceImpl implements ContactService {
 		
 		return contact;
 	}
+	
+	// 문의 접수 완료
+	@Override
+	public void contactCheck(int contactNo) {
+
+		contactRepository.contactCheck(contactNo);
+		
+	}
 
 	
 	

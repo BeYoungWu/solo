@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "tbl_contact")
 @Table(name = "tbl_contact")
 public class ContactEntity {
 	
@@ -36,6 +36,7 @@ public class ContactEntity {
 		this.email = contact.getEmail();
 		this.title = contact.getTitle();
 		this.content = contact.getContent();
+		this.checked = contact.getChecked();
 	}
 	
 	public ContactDto exportContactDto() {
@@ -45,6 +46,7 @@ public class ContactEntity {
 		contact.setEmail(email);
 		contact.setTitle(title);
 		contact.setContent(content);
+		contact.setChecked(checked);
 		
 		return contact;
 	}
@@ -68,6 +70,9 @@ public class ContactEntity {
 	@CreationTimestamp
 	@Column(updatable = false)
 	private Timestamp contactDate;
+	
+	@Column
+	private int checked;
 	
 	@PrePersist
     public void onInsert() {

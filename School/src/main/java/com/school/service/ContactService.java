@@ -17,6 +17,7 @@ public interface ContactService {
 		contactDto.setTitle(contactEntity.getTitle());
 		contactDto.setContent(contactEntity.getContent());
 		contactDto.setContactDate(contactEntity.getContactDate());
+		contactDto.setChecked(contactEntity.getChecked());
 		
 		return contactDto;
 	}
@@ -30,6 +31,7 @@ public interface ContactService {
 											 .title(contactDto.getTitle())
 											 .content(contactDto.getContent())
 											 .contactDate(contactDto.getContactDate())
+											 .checked(contactDto.getChecked())
 											 .build();
 		
 		return contactEntity;
@@ -43,6 +45,9 @@ public interface ContactService {
 
 	// 문의 상세 조회 (관리자)
 	public ContactDto findByContactNo(int contactNo);
+
+	// 문의 접수 완료
+	public void contactCheck(int contactNo);
 
 
 }

@@ -781,6 +781,15 @@ public class AdminController {
 		return "/admin/contactDetail";
 	}
 	
+	// 문의 접수 완료
+	@PostMapping(path = { "/contactCheck" })
+	public String contactCheck(int contactNo) {
+		
+		contactService.contactCheck(contactNo);
+		
+		return "redirect:/admin/contactDetail";
+	}
+	
 }
 
 

@@ -13,5 +13,6 @@ public class ContactDto {
 	private String title;
 	private String content;
 	private Timestamp contactDate;
+	private int checked;
 	
 }

@@ -40,7 +40,6 @@
 	<div class="container text-center">	
 		<div class="row">
 			<div class="col-lg-12">
-			<form>
 				<table class="table">
 					<thead>
 					<tr>
@@ -52,6 +51,20 @@
 					</thead>
 					<tbody>
 					<c:forEach var="contact" items="${ contacts }">
+					<c:choose>
+					<c:when test="${ contact.checked == 1 }">
+					<tr>
+						<td>${ contact.contactNo }</td>
+						<td style="text-align:left;">
+						${ contact.title }
+						&nbsp;&nbsp;
+						[접수완료]
+						</td>
+						<td><fmt:formatDate value="${ contact.contactDate }" pattern="yyyy/MM/dd" /></td>
+						<td>${ contact.name }</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
 					<tr>
 						<td>${ contact.contactNo }</td>
 						<td style="text-align:left;">
@@ -62,10 +75,11 @@
 						<td><fmt:formatDate value="${ contact.contactDate }" pattern="yyyy/MM/dd" /></td>
 						<td>${ contact.name }</td>
 					</tr>
+					</c:otherwise>
+					</c:choose>
 					</c:forEach>
 					</tbody>
 				</table>
-			</form>
 			</div>
 		</div>
     </div>
