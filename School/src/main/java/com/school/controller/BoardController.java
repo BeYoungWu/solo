@@ -22,6 +22,7 @@ import com.school.dto.BoardDto;
 import com.school.dto.FileDto;
 import com.school.service.BoardService;
 import com.school.service.FileService;
+import com.school.ui.ThePager;
 import com.school.util.MD5Generator;
 import com.school.view.BoardDownloadView;
 
@@ -117,8 +118,12 @@ public class BoardController {
 		List<BoardDto> boards = boardService.findByBoardType(boardType, pageNo, PAGE_SIZE);
 		Long boardCount = boardService.countBoardByBoardType(boardType);
 		
+		ThePager pager = new ThePager(boardCount, pageNo, boardType, PAGE_SIZE, PAGER_SIZE, LINK_URL);
+		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("pager", pager);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "/board/list";
 	}

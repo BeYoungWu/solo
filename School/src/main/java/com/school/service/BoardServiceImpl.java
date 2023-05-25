@@ -55,7 +55,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Long countBoardByBoardType(int boardType) {
 		
-		Long BoardCount = boardRepository.countByBoardType(boardType);
+		Long boardCount = boardRepository.countByBoardType(boardType);
 		
 		return boardCount;
 	}
