@@ -29,6 +29,10 @@ import com.school.view.BoardDownloadView;
 @RequestMapping(path = { "/admin/board" })
 public class AdminBoardController {
 
+	private final int PAGE_SIZE = 15; 	// 한 페이지에 표시되는 데이터 개수
+	private final int PAGER_SIZE = 5;	// 한 번에 표시할 페이지 번호 개수
+	private final String LINK_URL = "list"; // 페이지 번호를 클릭했을 때 이동할 페이지 경로
+	
 	@Autowired
 	@Qualifier("boardService")
 	private BoardService boardService;
@@ -101,7 +105,7 @@ public class AdminBoardController {
 	
 	// 게시글 목록 조회
 	@GetMapping(path = { "/list" })
-	public String showList(@RequestParam(defaultValue = "-1") int boardType, Model model) {
+	public String showList(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, Model model) {
 		
 		if (boardType == -1) {
 			return "redirect:/admin";
@@ -112,7 +116,7 @@ public class AdminBoardController {
 		
 		// RequestParam pageNo 해야함
 		
-		List<BoardDto> boards = boardService.findByBoardType(boardType);
+		List<BoardDto> boards = boardService.findByBoardType(boardType, pageNo, PAGE_SIZE);
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardType", boardType);

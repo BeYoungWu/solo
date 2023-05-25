@@ -105,7 +105,7 @@ public class BoardController {
 	
 	// 게시글 목록 조회
 	@GetMapping(path = { "/list" })
-	public String showList(@RequestParam(defaultValue = "-1") int boardType, Model model) {
+	public String showList(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, Model model) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
@@ -114,9 +114,8 @@ public class BoardController {
 //			return "/board/error";
 		}
 		
-		// RequestParam pageNo 해야함
-		
-		List<BoardDto> boards = boardService.findByBoardType(boardType);
+		List<BoardDto> boards = boardService.findByBoardType(boardType, pageNo, PAGE_SIZE);
+		Long boardCount = boardService.countBoardByBoardType(boardType);
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardType", boardType);

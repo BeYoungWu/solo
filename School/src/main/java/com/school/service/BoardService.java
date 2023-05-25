@@ -50,7 +50,10 @@ public interface BoardService {
 	public void insertBoard(BoardDto board);
 
 	// 게시글 목록 조회
-	public List<BoardDto> findByBoardType(int i);
+	public List<BoardDto> findByBoardType(int i, int pageNo, int pageSize);
+	
+	// 게시글 개수 조회
+	public Long countBoardByBoardType(int boardType);
 
 	// 게시글 상세 조회
 	public BoardDto findByBoardNo(int boardNo);
@@ -63,6 +66,7 @@ public interface BoardService {
 
 	// 게시글 삭제
 	public void deleteBoard(int boardNo);
+
 	
 
 }

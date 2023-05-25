@@ -36,9 +36,12 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시글 목록 조회
 	@Override
-	public List<BoardDto> findByBoardType(int i) {
+	public List<BoardDto> findByBoardType(int i, int pageNo, int pageSize) {
 		
-		List<BoardEntity> boardsEntity = boardRepository.findByBoardTypeOrderByBoardNoDesc(i);
+		int from = (pageNo -1) * pageSize;
+		int count = pageSize;
+		
+		List<BoardEntity> boardsEntity = boardRepository.findByBoardType(i, from, count);
 		ArrayList<BoardDto> boards = new ArrayList<>();
 		for (BoardEntity boardEntity : boardsEntity) {
 			boards.add(boardEntityToDto(boardEntity));
@@ -46,6 +49,15 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boards;
 		
+	}
+	
+	// 게시글 개수 조회
+	@Override
+	public Long countBoardByBoardType(int boardType) {
+		
+		Long BoardCount = boardRepository.countByBoardType(boardType);
+		
+		return boardCount;
 	}
 
 	// 게시글 상세 조회
@@ -120,6 +132,7 @@ public class BoardServiceImpl implements BoardService {
 		boardRepository.deleteById(boardNo);
 		
 	}
+
 
 	
 	
