@@ -185,9 +185,9 @@
 				</div>
 				<hr>
 				<div class="buttons">
-					<button type="button" onclick=" location.href='/admin/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }' ">수정</button>
+					<button type="button" onclick=" location.href='/admin/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }&pageNo=${ pageNo }' ">수정</button>
 					<button type="button" class="deleteBtn">삭제</button>
-					<button type="button" onclick=" location.href='/admin/board/list?boardType=${ boardType }' ">목록으로</button>
+					<button type="button" onclick=" location.href='/admin/board/list?boardType=${ boardType }&pageNo=${ pageNo }' ">목록으로</button>
 				</div>
 			</div>
 		</div>
@@ -202,7 +202,7 @@ $(".deleteBtn").on('click', function(){
 	const ok = confirm("게시글을 삭제하시겠습니까?")
 	if (!ok) return;
 	
-	location.href = '/admin/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }';
+	location.href = '/admin/board/delete?boardType=${ boardType }&boardNo=${ board.boardNo }&pageNo=${ pageNo }';
 });
 </script>   
 <!-- Placed at the end of the document so the pages load faster -->

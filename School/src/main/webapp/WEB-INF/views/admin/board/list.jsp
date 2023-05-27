@@ -108,7 +108,7 @@
 						</c:otherwise>
 						</c:choose>
 						<td style="text-align:left;">
-							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }" style="color:black;text-decoration:none;">
+							<a href="detail?boardType=${ boardType }&boardNo=${ board.boardNo }&pageNo=${ pageNo }" style="color:black;text-decoration:none;">
 								${ board.title }
 							</a>
 							<c:if test="${ board.fileNo != 0 }">
@@ -123,6 +123,11 @@
 					</tbody>
 				</table>
 			</form>
+			<br><br>
+			
+			${ pager }
+			
+			<br /><br /><br /><br />
 			</div>
 		</div>
     </div>

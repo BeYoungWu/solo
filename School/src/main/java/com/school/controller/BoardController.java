@@ -122,15 +122,15 @@ public class BoardController {
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardType", boardType);
-		model.addAttribute("pager", pager);
 		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pager", pager);
 		
 		return "/board/list";
 	}
 	
 	// 게시글 상세 조회
 	@GetMapping(path = { "/detail" })
-	public String showDetail(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String showDetail(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
 		if (boardType == -1 || boardNo == -1) {
 			model.addAttribute("error_type", "writeForm");
@@ -147,8 +147,9 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("file", file);
-		
+
 		return "/board/detail";
 	}
 	
@@ -204,7 +205,7 @@ public class BoardController {
 	
 	// 게시글 수정 폼
 	@GetMapping(path = { "/modify" })
-	public String showModify(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
+	public String showModify(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
 		if (boardType == -1 || boardNo == -1) {
 			model.addAttribute("error_type", "writeForm");
@@ -218,6 +219,7 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("file", file);
 		
 		return "/board/modify";
@@ -225,7 +227,7 @@ public class BoardController {
 	
 	// 게시글 수정
 	@PostMapping(path = { "/modify" })
-	public String modify(@RequestParam(defaultValue = "-1") int boardType, Long prevFileNo, BoardDto board, @RequestParam("file") MultipartFile file) {
+	public String modify(int pageNo, int boardType, Long prevFileNo, BoardDto board, @RequestParam("file") MultipartFile file) {
 		
 		if (boardType == -1) {
 			return "redirect:/home";
@@ -273,12 +275,12 @@ public class BoardController {
 		
 		boardService.modifyBoard(board);
 		
-		return "redirect:/board/detail?boardType=" + boardType + "&boardNo=" + board.getBoardNo();
+		return "redirect:/board/detail?boardType=" + boardType + "&boardNo=" + board.getBoardNo() + "&pageNo="+ pageNo;
 	}
 	
 	// 게시글 삭제
 	@GetMapping(path = { "/delete" })
-	public String delete(@RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo) {
+	public String delete(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo) {
 		
 		if (boardType == -1 || boardNo == -1) {
 			return "redirect:/home";
@@ -289,7 +291,7 @@ public class BoardController {
 		
 		boardService.deleteBoard(boardNo);
 		
-		return "redirect:/board/list?boardType=" + boardType;
+		return "redirect:/board/list?boardType=" + boardType + "&pageNo=" + pageNo;
 	}
 	
 }

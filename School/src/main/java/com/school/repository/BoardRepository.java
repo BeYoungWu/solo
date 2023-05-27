@@ -16,7 +16,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 
 	// 게시글 목록 조회
 	@Query(value = "SELECT * FROM " +
-				   "(SELECT ROW_NUMBER() OVER (ORDER BY board_no DESC) AS rn, tbl_board.* " +
+				   "(SELECT ROW_NUMBER() OVER (ORDER BY CASE WHEN notice = 'true' THEN 0 ELSE 1 END, board_no DESC) AS rn, tbl_board.* " +
 				   "FROM tbl_board " +
 				   "WHERE board_type = :boardType) " +
 				   "WHERE rn BETWEEN :f AND :c",

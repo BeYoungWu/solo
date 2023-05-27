@@ -43,6 +43,7 @@
 			<form action="modify" id="modify-form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
 			<input type="hidden" name="prevFileNo" value="${ board.fileNo }">
+			<input type="hidden" name="pageNo" value="${ pageNo }">
 			<table class="table table-bordered">
 				<tr>
 					<td style="vertical-align:middle">게시글 분류</td>
@@ -125,7 +126,7 @@
 			</table>
 			<div class="buttons"> 
 				<button type="submit" id="modify">등록</button>
-				<button type="button" onclick=" location.href='/admin/board/detail?boardType=${ boardType }&boardNo=${ board.boardNo }' ">취소</button>
+				<button type="button" onclick=" location.href='/admin/board/detail?boardType=${ boardType }&boardNo=${ board.boardNo }&pageNo=${ pageNo }' ">취소</button>
 			</div>
 			</form>
 			</div>
