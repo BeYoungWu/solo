@@ -87,7 +87,12 @@
 				</tr>
 				<tr>
 					<td>첨부파일</td>
-					<td><input type="file" name="file"></td>
+					<td><input type="file" name="file" id="file" onchange="setDetailImage(event);"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="images_container"></div>
+					</td>
 				</tr>
 				<tr>
 					<td style="vertical-align:middle">내용</td>
@@ -105,6 +110,38 @@
 </div>
 
 <script>
+//첨부파일 미리보기
+function setDetailImage(event) {
+  var file = event.target.files[0];
+  var container = document.getElementById('images_container');
+
+  // 이전에 표시된 이미지 삭제
+  container.innerHTML = '';
+
+  // 선택된 파일의 미리보기 이미지 표시
+  if (file && file.type.startsWith('image/')) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      var img = document.createElement('img');
+      img.src = e.target.result;
+      img.classList.add('preview-image');
+      container.appendChild(img);
+    };
+
+    reader.readAsDataURL(file);
+
+    // 이미지 미리보기 행 보이기
+    document.getElementById('preview-row').style.display = 'table-row';
+  } else {
+    // 이미지 미리보기 행 숨기기
+    document.getElementById('preview-row').style.display = 'none';
+  }
+}
+
+// 파일 선택 이벤트 감지
+document.getElementById('file-input').addEventListener('change', setDetailImage);
+
 // 등록 버튼 클릭시 alert
 $("#submit").on('click', function(){
 	const ok = confirm("등록하시겠습니까?");

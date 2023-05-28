@@ -169,13 +169,13 @@
 				</div>
 				<hr>
 				</c:if>
+				<c:if test="${file.savedFileName.endsWith('.jpg') || file.savedFileName.endsWith('.jpeg') || file.savedFileName.endsWith('.png') || file.savedFileName.endsWith('.gif')}">
 				<br><br><br>
-				<%-- <div class="img">
-				<c:if test="">
+				<div class="img">
 				<img src="/resources/img/board/${ file.savedFileName }">
-				</c:if>
-				</div> --%>
+				</div>
 				<br><br><br>
+				</c:if>
 				<div class="items">
 					<div class="item">
 <c:set var="enter" value="
