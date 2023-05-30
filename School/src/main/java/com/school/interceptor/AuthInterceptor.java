@@ -35,20 +35,56 @@ public class AuthInterceptor implements HandlerInterceptor {
 		int accountType = account.getUserType();
 		
 		if (accountType == 0) { // 일반회원인 경우
-			// 전부 불가
+			if (uri.contains("/board") 	||
+				uri.contains("/admin")) {
+
+				String unauthorizedMessage = "회원유형이 해당되지 않습니다"; // 경고 메시지 설정
+
+		        // 세션에 경고 메시지 저장
+		        req.getSession().setAttribute("unauthorizedMessage", unauthorizedMessage);
+		        
+		        // 리다이렉트할 경로 설정
+		        String redirectPath = "/home?error=unauthorized";
+		        resp.sendRedirect(redirectPath);
+		        return false;
+			}
 		}
 		
-		if (accountType == 1) { // 학생회원인 경우
-			// 학생코너만 사용가능 나머지는 불가
-		}
-		
-		if (accountType == 2) { // 학부모회원인 경우
-			// 학부모코너만 사용가능 나머지는 불가
-		}
-		
-		if (accountType == 3) { // 교사회원인 경우
-			// 관리자페이지만 불가
-		}
+//		if (accountType == 1) { // 학생회원인 경우
+//			if (uri.contains("/board/list?boardType=6") 	||
+//				uri.contains("/board/list?boardType=7")     ||
+//				uri.contains("/board/list?boardType=8")) {
+//				
+//				String unauthorizedMessage = "회원유형이 해당되지 않습니다"; // 경고 메시지 설정
+//
+//		        // 세션에 경고 메시지 저장
+//		        req.getSession().setAttribute("unauthorizedMessage", unauthorizedMessage);
+//		        
+//		        // 리다이렉트할 경로 설정
+//		        String redirectPath = "/home?error=unauthorized";
+//		        resp.sendRedirect(redirectPath);
+//		        return false;
+//			}
+//		}
+//		
+//		if (accountType == 2) { // 학부모회원인 경우
+//			if (uri.contains("/board/list?boardType=6") 	||
+//				uri.contains("/board/list?boardType=9")     ||
+//				uri.contains("/board/list?boardType=10")    ||
+//				uri.contains("/board/list?boardType=11")    ||
+//				uri.contains("/board/list?boardType=12")) {
+//				
+//				String unauthorizedMessage = "회원유형이 해당되지 않습니다"; // 경고 메시지 설정
+//
+//		        // 세션에 경고 메시지 저장
+//		        req.getSession().setAttribute("unauthorizedMessage", unauthorizedMessage);
+//		        
+//		        // 리다이렉트할 경로 설정
+//		        String redirectPath = "/home?error=unauthorized";
+//		        resp.sendRedirect(redirectPath);
+//		        return false;
+//			}
+//		}
 		
 		if (accountType != 4) { // 관리자가 아닌  사용자
 			if(uri.contains("/admin")) { // 관리자가 아니면 볼 수 없음

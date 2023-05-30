@@ -79,9 +79,22 @@
 	
 	<div class="container text-center">	
 		<div class="row">
+			<c:choose>
+			<c:when test="${ boardType eq 0 or boardType eq 1 or boardType eq 2 or boardType eq 3 or boardType eq 4 or boardType eq 5 or boardType eq 6 or boardType eq 9 or boardType eq 10 or boardType eq 11 or boardType eq 12 }">
+			<c:if test="${ not empty loginuser and loginuser.userType eq 3 or loginuser.userType eq 4 }">
 			<div class="write-btn">
 				<button onclick=" location.href='/board/write?boardType=${ boardType }' ">글쓰기</button>
 			</div>
+			</c:if>
+			</c:when>
+			<c:when test="${ boardType eq 7 or boardType eq 8 }">
+			<c:if test="${ not empty loginuser and loginuser.userType eq 2 or loginuser.userType eq 3 or loginuser.userType eq 4 }">
+			<div class="write-btn">
+				<button onclick=" location.href='/board/write?boardType=${ boardType }' ">글쓰기</button>
+			</div>
+			</c:if>
+			</c:when>
+			</c:choose>
 			<div class="col-lg-12">
 			<form>
 				<table class="table">
