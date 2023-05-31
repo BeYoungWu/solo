@@ -7,6 +7,7 @@ public class AccountDto {
 	
 	private String userId;
 	private String passwd;
+	private String userName;
 	private int wantType;
 	private int userType;
 	private String postCode;

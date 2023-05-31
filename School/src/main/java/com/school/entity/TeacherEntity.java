@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import com.school.dto.TeacherDto;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Entity(name = "tbl_teacher")
@@ -53,9 +54,6 @@ public class TeacherEntity {
 	@Column
 	private Long fileNo;
 	
-//	@OneToOne
-//	@PrimaryKeyJoinColumn
-//	private FileEntity file;
 	
 	
 	

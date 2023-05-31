@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>관리자페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -24,17 +27,39 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">관리자 페이지</h2>
+				<h2 class="pageTitle">회원 관리</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	
-	<div class="contatiner">
+	<div class="contatiner text-center">
 		<div class="row">
 			<div class="col-lg-12">
-			<h2>학교소개 - 등록 / 수정 관리</h2>
-			<h2>게시판 - 공지 등록 / 게시물 관리</h2>				
+				<table>
+					<thead>
+					<tr>
+						<th>이름</th>
+						<th>아이디</th>
+						<th>신청회원구분</th>
+						<th>회원구분</th>
+						<th>신청관리</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>${ user.userName }</td>
+						<td>${ user.userId }</td>
+						<td>${ user.wantType }</td>
+						<td>${ user.userType }</td>
+						<td>
+							<c:if test="${ user.wantType not eq user.userType }">
+							<button>승인</button>
+							</c:if>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

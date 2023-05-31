@@ -11,6 +11,7 @@ public interface AccountService {
 		
 		accountDto.setUserId(accountEntity.getUserId());
 		accountDto.setPasswd(accountEntity.getPasswd());
+		accountDto.setUserName(accountEntity.getUserName());
 		accountDto.setWantType(accountEntity.getWantType());
 		accountDto.setUserType(accountEntity.getUserType());
 		accountDto.setPostCode(accountEntity.getPostCode());
@@ -27,6 +28,7 @@ public interface AccountService {
 		AccountEntity accountEntity = AccountEntity.builder()
 												   .userId(accountDto.getUserId())
 												   .passwd(accountDto.getPasswd())
+												   .userName(accountDto.getUserName())
 												   .wantType(accountDto.getWantType())
 												   .userType(accountDto.getUserType())
 												   .postCode(accountDto.getPostCode())
