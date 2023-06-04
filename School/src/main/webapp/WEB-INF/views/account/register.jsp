@@ -62,6 +62,14 @@
 						<h3>회원정보</h3>
 						<div class="information-except">
 							<div class="information-left">
+								<label for="userName">이름</label>
+							</div>
+							<div class="information-right">
+								<input type="text" class="userName" name="userName" id="userName" placeholder="실명 정확히 기재" minlength="2">
+							</div>
+						</div>
+						<div class="information-except">
+							<div class="information-left">
 								<label for="userId">아이디</label>
 							</div>
 							<div class="information-right">
@@ -104,12 +112,12 @@
 								<label for="address">주소</label>
 							</div>
 							<div class="information-right-except">
-								<input type="text" name="postCode" id="sample6_postcode" placeholder="우편번호" style="width:100px;">
+								<input type="text" name="postCode" class="hide-cursor" id="sample6_postcode" placeholder="우편번호" style="width:100px;">
 								<input type="hidden" name="address" id="address">
 								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample6_address" placeholder="주소"><br>
+								<input type="text" class="hide-cursor" id="sample6_address" readonly><br>
 								<input type="text" id="sample6_detailAddress" placeholder="상세주소"><br>
-								<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+								<input type="text" class="hide-cursor" id="sample6_extraAddress" readonly>
 							</div>
 						</div>
 						<div class="information">

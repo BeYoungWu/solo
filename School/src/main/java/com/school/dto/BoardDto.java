@@ -11,7 +11,8 @@ public class BoardDto {
 	private int boardType;
 	private String notice;
 	private String title;
-	private String writer;
+	private String writerId;
+	private String writerName;
 	private String content;
 	private Timestamp writeDate;
 	private Timestamp modifyDate;

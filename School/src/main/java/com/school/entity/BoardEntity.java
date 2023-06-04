@@ -38,7 +38,8 @@ public class BoardEntity {
 		this.boardType = board.getBoardType();
 		this.notice = board.getNotice();
 		this.title = board.getTitle();
-		this.writer = board.getWriter();
+		this.writerId = board.getWriterId();
+		this.writerName = board.getWriterName();
 		this.content = board.getContent();
 		this.writeDate = board.getWriteDate();
 		this.modifyDate = board.getModifyDate();
@@ -52,7 +53,8 @@ public class BoardEntity {
 		board.setBoardType(boardType);
 		board.setNotice(notice);
 		board.setTitle(title);
-		board.setWriter(writer);
+		board.setWriterId(writerId);
+		board.setWriterName(writerName);
 		board.setContent(content);
 		board.setWriteDate(writeDate);
 		board.setModifyDate(modifyDate);
@@ -76,7 +78,10 @@ public class BoardEntity {
 	private String title;
 	
 	@Column(nullable = false)
-	private String writer;
+	private String writerId;
+	
+	@Column(nullable = false)
+	private String writerName;
 	
 	@Column(length = 3000)
 	private String content;

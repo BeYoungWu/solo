@@ -116,7 +116,7 @@
 							</c:if>
 						</td>
 						<td><fmt:formatDate value="${ board.writeDate }" pattern="yyyy/MM/dd" /></td>
-						<td>${ board.writer }</td>
+						<td>${ board.writerName }</td>
 						<td>${ board.readCount }</td>
 					</tr>
 					</c:forEach>

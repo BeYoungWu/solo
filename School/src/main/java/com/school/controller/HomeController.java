@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.school.dto.AccountDto;
 import com.school.dto.ContactDto;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
+import com.school.service.AccountService;
 import com.school.service.AdminService;
 import com.school.service.BoardService;
 import com.school.service.ContactService;
@@ -37,6 +39,10 @@ public class HomeController {
 	@Autowired
 	@Qualifier("adminService")
 	private AdminService adminService;
+	
+	@Autowired
+	@Qualifier("accountService")
+	private AccountService accountService;
 	
 	@GetMapping(path = { "/", "/home" })
 	public String home() {
@@ -162,7 +168,12 @@ public class HomeController {
 	
 	// 관리자 페이지
 	@GetMapping(path = { "/admin" })
-	public String admin() {
+	public String admin(Model model) {
+		
+		List<AccountDto> users = accountService.findAllUsers();
+		
+		model.addAttribute("users", users);
+		
 		return "/admin";
 	}
 	

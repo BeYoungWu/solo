@@ -12,12 +12,10 @@ table {
 	margin-top: 50px;
 }
 
-.writer {
+.writerName {
 	border: none;
-}
-
-.writer:focus {
 	outline: none;
+	caret-color: transparent;
 }
 
 .preview-image {

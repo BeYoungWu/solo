@@ -23,6 +23,7 @@
 						<li>
 							<h7>
 							${ loginuser.userId }
+							(${ loginuser.userName })
 							님
 							</h7>
 						</li>
@@ -44,6 +45,7 @@
 						<li>
 							<h7>
 							${ loginuser.userId }
+							(${ loginuser.userName })
 							님
 							</h7>
 						</li>

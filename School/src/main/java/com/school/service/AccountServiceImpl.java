@@ -1,5 +1,8 @@
 package com.school.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -60,6 +63,19 @@ public class AccountServiceImpl implements AccountService {
 		}
 
 		return account;
+	}
+
+	// 모든 사용자 조회 (관리자)
+	@Override
+	public List<AccountDto> findAllUsers() {
+
+		List<AccountEntity> aes = accountRepository.findAll();
+		ArrayList<AccountDto> accounts = new ArrayList<>();
+		for (AccountEntity ae : aes) {
+			accounts.add(accountEntityToDto(ae));
+		}
+		
+		return accounts;
 	}
 
 	

@@ -140,7 +140,7 @@
 				</div>
 				<div class="items">
 					<div class="item">
-						${ board.writer }
+						${ board.writerName }
 						&nbsp;
 						·
 						&nbsp;

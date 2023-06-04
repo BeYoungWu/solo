@@ -40,6 +40,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 			<form action="write" id="submit-form" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="writerId" value="${ loginuser.userId }">
 			<table class="table table-bordered">
 				<tr>
 					<td style="vertical-align:middle">게시글 분류</td>
@@ -55,7 +56,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input name="writer" class="writer" value="${ loginuser.userId }" readonly></td>
+					<td><input class="writerName" name="writerName" value="${ loginuser.userName }" readonly></td>
 				</tr>
 				<tr>
 					<td>게시판</td>

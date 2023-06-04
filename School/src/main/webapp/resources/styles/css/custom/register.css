@@ -73,6 +73,13 @@ input[type=number] {
 	float: right;
 }
 
+.hide-cursor {
+	background-color: lightgray;
+	border: none;
+	outline: none;
+	caret-color: transparent;
+}
+
 .sample4_postcode {
 	width: 100px;
 }

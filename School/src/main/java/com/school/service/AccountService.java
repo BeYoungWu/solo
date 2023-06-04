@@ -1,5 +1,7 @@
 package com.school.service;
 
+import java.util.List;
+
 import com.school.dto.AccountDto;
 import com.school.entity.AccountEntity;
 
@@ -47,6 +49,9 @@ public interface AccountService {
 	
 	// 로그인
 	AccountDto findUserByIdAndPasswd(String userId, String passwd);
+
+	// 모든 사용자 조회 (관리자)
+	List<AccountDto> findAllUsers();
 
 	
 
