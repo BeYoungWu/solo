@@ -39,8 +39,8 @@
 	<div class="container text-center">		 
 		<div class="row">
 			<div class="col-lg-12">
-			<!-- <form action="write" method="post" enctype="multipart/form-data"> -->
 			<form action="modify" id="modify-form" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="writerId" value="${ board.writerId }">
 			<input type="hidden" name="boardNo" value="${ board.boardNo }">
 			<input type="hidden" name="prevFileNo" value="${ board.fileNo }">
 			<input type="hidden" name="pageNo" value="${ pageNo }">
@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input name="writer" class="writer" value="${ board.writer }" readonly></td>
+					<td><input name="writerName" class="writerName" value="${ board.writerName }" readonly></td>
 				</tr>
 				<tr>
 					<td>게시판</td>

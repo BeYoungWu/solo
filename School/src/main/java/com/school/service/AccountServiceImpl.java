@@ -78,6 +78,15 @@ public class AccountServiceImpl implements AccountService {
 		return accounts;
 	}
 
+	// 모든 사용자 수 조회
+	@Override
+	public Long countAllUser() {
+
+		Long userCount = accountRepository.count();
+		
+		return userCount;
+	}
+
 	
 
 	

@@ -128,12 +128,19 @@
 								</c:choose>
 							</button>
 						</div>
+						<c:choose>
+						<c:when test="${ board.notice eq 'true' }">
+						<h3><span class="badge bg-secondary" style="vertical-align:middle;">공지</span>&nbsp;&nbsp;${ board.title }</h3>
+						</c:when>
+						<c:otherwise>
 						<h3>${ board.title }</h3>
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="items">
 					<div class="item">
-						${ board.writer }
+						${ board.writerName }
 						&nbsp;
 						·
 						&nbsp;
@@ -178,7 +185,7 @@
 				</div>
 				<hr>
 				<div class="buttons">
-					<c:if test="${ not empty loginuser and loginuser.userId eq board.writer }">
+					<c:if test="${ not empty loginuser and loginuser.userId eq board.writerId }">
 					<button type="button" onclick=" location.href='/board/modify?boardType=${ boardType }&boardNo=${ board.boardNo }&pageNo=${ pageNo }' ">수정</button>
 					<button type="button" class="deleteBtn">삭제</button>
 					</c:if>

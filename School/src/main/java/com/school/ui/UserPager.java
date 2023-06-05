@@ -1,20 +1,18 @@
 package com.school.ui;
 
-public class ThePager {
+public class UserPager {
 	
 	private int pageSize;//한 페이지당 데이터 개수
 	private int pagerSize;//번호로 보여주는 페이지 Link 개수
 	private Long dataCount;//총 데이터 수
 	
 	private int pageNo;//현재 페이지 번호
-	private int boardType;// 현재 게시판 타입
 	private long pageCount;//총 페이지 수
 	
 	private String linkUrl;//페이저가 포함되는 페이지의 주소
 	
 	
-	public ThePager(Long boardCount, int pageNo, int boardType,
-		int pageSize, int pagerSize, String linkUrl) {
+	public UserPager(Long boardCount, int pageNo, int pageSize, int pagerSize, String linkUrl) {
 		
 		this.linkUrl = linkUrl;
 		
@@ -22,7 +20,6 @@ public class ThePager {
 		this.pageSize = pageSize;
 		this.pagerSize = pagerSize;
 		this.pageNo = pageNo;
-		this.boardType = boardType;
 		pageCount = 
 			(boardCount / pageSize) + ((boardCount % pageSize) > 0 ? 1 : 0); 
 	}
@@ -33,11 +30,11 @@ public class ThePager {
 		//1. 처음, 이전 항목 만들기
 		if (pageNo > 1) {
 			linkString.append(
-				String.format("<a href='%s?pageNo=1&boardType=%d'><<</a>",linkUrl,boardType));
+				String.format("<a href='%s?pageNo=1'><<</a>",linkUrl));
 			linkString.append("&nbsp;");
 			linkString.append("&nbsp;");
 			linkString.append(String.format(
-				"<a href='%s?pageNo=%d&boardType=%d'><</a>", linkUrl, pageNo - 1,boardType));
+				"<a href='%s?pageNo=%d'><</a>", linkUrl, pageNo - 1));
 			linkString.append("&nbsp;");
 		} else {
 			linkString.append("<span style='color:lightgray'><<</span>");
@@ -58,7 +55,7 @@ public class ThePager {
 				linkString.append(String.format("%d", i));
 			} else { 
 				linkString.append(String.format(
-					"<a href='%s?pageNo=%d&boardType=%d'>%d</a>", linkUrl, i, boardType,i));
+					"<a href='%s?pageNo=%d'>%d</a>", linkUrl, i, i));
 			}
 			linkString.append("&nbsp;");
 		}
@@ -67,11 +64,11 @@ public class ThePager {
 		if (pageNo < pageCount) {
 			linkString.append("&nbsp;");
 			linkString.append(String.format(
-				"<a href='%s?pageNo=%d&boardType=%d'>></a>",linkUrl, pageNo + 1, boardType));
+				"<a href='%s?pageNo=%d'>></a>",linkUrl, pageNo + 1));
 			linkString.append("&nbsp;");
 			linkString.append("&nbsp;");
 			linkString.append(String.format(
-				"<a href='%s?pageNo=%d&boardType=%d'>>></a>", linkUrl, pageCount, boardType));
+				"<a href='%s?pageNo=%d'>>></a>", linkUrl, pageCount));
 		} else {
 			linkString.append("<span style='color:lightgray'>></span>");
 			linkString.append("&nbsp;");

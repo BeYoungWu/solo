@@ -53,6 +53,9 @@ public interface AccountService {
 	// 모든 사용자 조회 (관리자)
 	List<AccountDto> findAllUsers();
 
+	// 모든 사용자 수 조회
+	Long countAllUser();
+
 	
 
 	

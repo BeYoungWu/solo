@@ -13,6 +13,9 @@
 <meta name="author" content="http://webthemez.com" />
 
 <jsp:include page="/WEB-INF/views/module/admin-common-css.jsp" />
+<link href="/resources/styles/css/custom/admin.css" rel="stylesheet" />
+ 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -36,7 +39,11 @@
 	<div class="contatiner text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<table>
+				<form id="userType-agree-form" action="/admin/adminUser" method="post">
+					<input type="hidden" name="userId">
+					<input type="hidden" name="pageNo" value="${ pageNo }">
+				</form>
+				<table class="table">
 					<thead>
 					<tr>
 						<th>이름</th>
@@ -47,27 +54,54 @@
 					</tr>
 					</thead>
 					<tbody>
-					<%-- <c:forEach var="user" items="${ users }">
+					<c:forEach var="user" items="${ users }">
 					<tr>
 						<td>${ user.userName }</td>
 						<td>${ user.userId }</td>
 						<td>${ user.wantType }</td>
 						<td>${ user.userType }</td>
+						<c:choose>
+						<c:when test="${ user.wantType eq user.userType }">
 						<td>
-							<c:if test="${ user.wantType not eq user.userType }">
-							<button>승인</button>
-							</c:if>
+						완료
 						</td>
+						</c:when>
+						<c:otherwise>
+						<td>
+						<button class="agree-btn">승인</button>
+						</td>
+						</c:otherwise>
+						</c:choose>
 					</tr>
-					</c:forEach> --%>
+					</c:forEach>
 					</tbody>
 				</table>
+			<br><br>
+			
+			${ pager }
+			
+			<br /><br /><br /><br />
 			</div>
 		</div>
 	</div>
 	
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
+
+<%-- JS --%>
+<script type="text/javascript">
+$(function() {
+	$('.agree-btn').on('click', function(event) {
+		const tr = $(this).parent().parent();
+		const userId = tr.find("td:eq(1)").text();
+		
+		$('input[name=userId]').val(userId);
+		$('#userType-agree-form').submit();
+	});
+});
+</script>
+<%-- END --%>
+
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

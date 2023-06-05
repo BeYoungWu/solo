@@ -47,6 +47,15 @@ public class AdminController {
 	@Qualifier("contactService")
 	private ContactService contactService;
 	
+	// 회원관리
+	@PostMapping(path = { "/adminUser" })
+	public String adminUser() {
+		
+		// 신청타입 -> 유저타입 변경해주기
+		
+		return "redirect:/admin";
+	}
+	
 	// 교직원소개 관리 페이지
 	@GetMapping(path = { "/aboutAdmin" })
 	public String aboutAdmin(Model model) {

@@ -22,7 +22,7 @@ import com.school.dto.BoardDto;
 import com.school.dto.FileDto;
 import com.school.service.BoardService;
 import com.school.service.FileService;
-import com.school.ui.ThePager;
+import com.school.ui.BoardPager;
 import com.school.util.MD5Generator;
 import com.school.view.BoardDownloadView;
 
@@ -108,7 +108,7 @@ public class BoardController {
 	@GetMapping(path = { "/list" })
 	public String showList(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, Model model) {
 		
-		if (boardType == -1) {
+		if (pageNo == -1 || boardType == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
@@ -118,7 +118,7 @@ public class BoardController {
 		List<BoardDto> boards = boardService.findByBoardType(boardType, pageNo, PAGE_SIZE);
 		Long boardCount = boardService.countBoardByBoardType(boardType);
 		
-		ThePager pager = new ThePager(boardCount, pageNo, boardType, PAGE_SIZE, PAGER_SIZE, LINK_URL);
+		BoardPager pager = new BoardPager(boardCount, pageNo, boardType, PAGE_SIZE, PAGER_SIZE, LINK_URL);
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardType", boardType);
@@ -132,8 +132,8 @@ public class BoardController {
 	@GetMapping(path = { "/detail" })
 	public String showDetail(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
-		if (boardType == -1 || boardNo == -1) {
-			model.addAttribute("error_type", "writeForm");
+		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
+//			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
 			return "redirect:/home";
@@ -207,7 +207,7 @@ public class BoardController {
 	@GetMapping(path = { "/modify" })
 	public String showModify(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
-		if (boardType == -1 || boardNo == -1) {
+		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
 			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
@@ -282,7 +282,7 @@ public class BoardController {
 	@GetMapping(path = { "/delete" })
 	public String delete(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo) {
 		
-		if (boardType == -1 || boardNo == -1) {
+		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
