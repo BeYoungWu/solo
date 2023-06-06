@@ -39,7 +39,7 @@
 	<div class="contatiner text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form id="userType-agree-form" action="/admin/adminUser" method="post">
+				<form id="userType-agree-form" action="/admin/adminUserType" method="post">
 					<input type="hidden" name="userId">
 					<input type="hidden" name="pageNo" value="${ pageNo }">
 				</form>

@@ -29,6 +29,10 @@ input[type=number] {
 	width: 80px;
 }
 
+input[name=userName] {
+	width: 173px;
+}
+
 .wantType {
 	display: flex;
 	justify-content: center;

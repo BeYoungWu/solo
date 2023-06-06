@@ -24,6 +24,7 @@ import com.school.common.Util;
 import com.school.dto.ContactDto;
 import com.school.dto.FileDto;
 import com.school.dto.TeacherDto;
+import com.school.service.AccountService;
 import com.school.service.AdminService;
 import com.school.service.ContactService;
 import com.school.service.FileService;
@@ -47,11 +48,15 @@ public class AdminController {
 	@Qualifier("contactService")
 	private ContactService contactService;
 	
-	// 회원관리
-	@PostMapping(path = { "/adminUser" })
-	public String adminUser() {
+	@Autowired
+	@Qualifier("accountService")
+	private AccountService accountService;
+	
+	// 회원 신청 관리
+	@PostMapping(path = { "/adminUserType" })
+	public String adminUserType(String userId) {
 		
-		// 신청타입 -> 유저타입 변경해주기
+		accountService.adminUserType(userId);
 		
 		return "redirect:/admin";
 	}

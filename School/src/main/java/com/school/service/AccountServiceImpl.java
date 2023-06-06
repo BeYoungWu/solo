@@ -87,6 +87,15 @@ public class AccountServiceImpl implements AccountService {
 		return userCount;
 	}
 
+	// 회원 신청 관리
+	@Override
+	public void adminUserType(String userId) {
+
+		AccountEntity ae = accountRepository.findByUserId(userId);
+		accountRepository.adminUserType(userId, ae.getWantType());
+		
+	}
+
 	
 
 	

@@ -112,7 +112,7 @@
 								<label for="address">주소</label>
 							</div>
 							<div class="information-right-except">
-								<input type="text" name="postCode" class="hide-cursor" id="sample6_postcode" placeholder="우편번호" style="width:100px;">
+								<input type="text" name="postCode" class="hide-cursor" id="sample6_postcode" placeholder="우편번호" style="width:100px;" readonly>
 								<input type="hidden" name="address" id="address">
 								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 								<input type="text" class="hide-cursor" id="sample6_address" readonly><br>

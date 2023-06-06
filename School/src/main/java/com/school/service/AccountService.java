@@ -56,9 +56,7 @@ public interface AccountService {
 	// 모든 사용자 수 조회
 	Long countAllUser();
 
-	
-
-	
-
+	// 회원 신청 관리
+	void adminUserType(String userId);
 	
 }
