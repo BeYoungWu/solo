@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+form {
+	margin-top: 100px;
+	border: 1px solid lightgray;
+}
+
+
+button[type=submit] {
+	margin-bottom: 20px;
+}
+
+/* input type number hide arrow */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+	width: 80px;
+}
+
+input[name=userName] {
+	width: 176px;
+}
+
+.informations {
+	align-items: center;
+}
+
+.information {
+	width: 450px;
+	height: 30px;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	flex: float;
+}
+
+.information-left {
+	float: left;
+}
+
+.information-right {
+	float: right;
+}
+
+.hide-cursor {
+	background-color: lightgray;
+	border: none;
+	outline: none;
+	caret-color: transparent;
+}
+
+
+
+
+
+
+

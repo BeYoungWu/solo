@@ -1,5 +1,7 @@
 package com.school.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +92,12 @@ public class AccountController {
 	@GetMapping(path = { "/findId" })
 	public String showFindIdForm() {
 		return "account/findId";
+	}
+	
+	@PostMapping(path = { "/findId" })
+	public List<AccountDto> findId(String userName, int phone1, int phone2, int phone3) {
+		
+		return null;
 	}
 	
 	// 비밀번호 찾기 페이지 이동

@@ -144,9 +144,6 @@
 								<input type="number" name="phone3" id="phone3" maxlength="4" oninput="maxLengthCheck(this)">
 							</div>
 						</div>
-						<div class="information">
-						
-						</div>
 					</div>
 					<button type="submit" class="register-btn">가입하기</button>
 				</form>
@@ -159,190 +156,190 @@
 
 <%-- JS --%>
 <script>
-	//input type number maxlength (전화번호 4자리)
-	function maxLengthCheck(object) {
-		if (object.value.length > object.maxLength) {
-			// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
-			object.value = object.value.slice(0, object.maxLength);
-		}
+//input type number maxlength (전화번호 4자리)
+function maxLengthCheck(object) {
+	if (object.value.length > object.maxLength) {
+		// object.maxLength : 매개변수 오브젝트의 maxLength 속성 값
+		object.value = object.value.slice(0, object.maxLength);
 	}
+}
 </script>
 
 <script type="text/javascript">
-	$(function() {
+$(function() {
+	
+	// 아이디 중복 확인 (ajax 비동기 방식)
+	$('.checkId-btn').on('click', function(event) {
 		
-		// 아이디 중복 확인 (ajax 비동기 방식)
-		$('.checkId-btn').on('click', function(event) {
-			
-			const userId = $('input[name=userId]').val();
+		const userId = $('input[name=userId]').val();
 
-			// 아무것도 입력하지 않았을 경우 + 4자리 미만 입력시
-			if (userId.length < 4) {
-				$('input[name=checkIdResult]').val("4자리 이상 입력해주십시오");
-				$('input[name=checkIdResult]').css({
-					'color': 'red'
-				});
-				return false;
-			}
-			
-			// 영어, 숫자 외에 입력했을 경우
-			var regType = /^[A-Za-z0-9]*$/;
-			if (!regType.test(userId)) {
-				$('input[name=checkIdResult]').val("영문, 숫자만 가능합니다");
-				$('input[name=checkIdResult]').css({
-					'color': 'red'
-				});
-				return false;
-			}
-			
-			// ajax로 데이터 조회 -> 조회된 결과를 띄움
-			$.ajax({
-				"method":"POST",
-				"url":"/account/checkId",
-				"data": {userId: userId},
-				"success":function(data, xhr, status ){
-					if (data.userId != null) {
-						$('input[name=checkIdResult]').val("이미 존재하는 아이디입니다");
-						$('input[name=checkIdResult]').css({
-							'color': 'red'
-						});
-					} else {
-						$('input[name=checkIdResult]').val("사용 가능한 아이디입니다");
-						$('input[name=checkIdResult]').css({
-							'color': 'blue'
-						});
-					}
-				},
-				"error":function(xhr, status, err){
-					alert("오류");
-				}
-			});
-		});
-		
-		// 유효성 검사
-		$('.register-btn').on('click', function(event) {
-
-			var userId = document.getElementById("userId");
-			var checkIdResult = document.getElementById("checkIdResult");
-			var passwd = document.getElementById("passwd");
-			var checkPasswd = document.getElementById("checkPasswd");
-			var passwdSameCheck = document.getElementById("passwdSameCheck");
-			var postCode = document.getElementById("sample6_postcode");
-			var address1 = document.getElementById("sample6_address");
-			var address2 = document.getElementById("sample6_detailAddress");
-			var address3 = document.getElementById("sample6_extraAddress");
-			var phone1 = document.getElementById("phone1");
-			var phone2 = document.getElementById("phone2");
-			var phone3 = document.getElementById("phone3");
-			
-			// 입력창이 비어있거나 제대로 입력되지 않은 경우
-			if(!userId.value) {
-				alert("아이디를 입력하세요")
-				userId.focus();
-				return false;
-			}
-			if(!checkIdResult.value) {
-				alert("중복확인을 하세요")
-				return false;
-			}
-			if(checkIdResult.value != "사용 가능한 아이디입니다") {
-				alert("아이디를 확인해주세요")
-				userId.focus();
-				return false;
-			}
-			if(!passwd.value) {
-				alert("비밀번호를 입력하세요")
-				passwd.focus();
-				return false;
-			}
-			if(!checkPasswd.value) {
-				alert("비밀번호 확인을 입력하세요")
-				checkPasswd.focus();
-				return false;
-			}
-			if(passwdSameCheck.value == "일치하지 않습니다") {
-				alert("비밀번호가 일치하지 않습니다");
-				return false;
-			}
-			if(!postCode.value) {
-				alert("주소를 선택하세요")
-				return false;
-			}
-			if(!address2.value) {
-				alert("상세주소를 입력하세요")
-				address2.focus();
-				return false;
-			}
-			if(!phone2.value || phone2.value.length < 4) {
-				alert("전화번호를 입력하세요")
-				phone2.focus();
-				return false;
-			}
-			if(!phone3.value || phone3.value.length < 4) {
-				alert("전화번호를 입력하세요")
-				phone3.focus();
-				return false;
-			}
-			
-			// 중복확인 결과 이미 존재하는 아이디인데 가입 누른 경우
-			if (checkIdResult.value == "이미 존재하는 아이디입니다") {
-				alert("사용할 수 없는 아이디입니다")
-				return false;
-			}
-			
-			// 비밀번호 확인 결과 일치하지 않는데 가입 누른 경우
-			if (passwdSameCheck.value == "일치하지 않습니다") {
-				alert("비밀번호가 일치하지 않습니다");
-				checkPasswd.focus();
-				return false;
-			}
-
-			$('input[name=address]').val(address1.value + " " + address2.value + address3.value);
-				
-			return document.register.submit();
-		});
-		
-		// input[name=userId] 변화 감지 유효성 검사 (onchange)
-		$('.userId').on('change', function(event) {
-			
-			$('input[name=checkIdResult]').val("중복확인을 해주세요");
+		// 아무것도 입력하지 않았을 경우 + 4자리 미만 입력시
+		if (userId.length < 4) {
+			$('input[name=checkIdResult]').val("4자리 이상 입력해주십시오");
 			$('input[name=checkIdResult]').css({
 				'color': 'red'
 			});
-			
-		});
+			return false;
+		}
 		
-		// 비밀번호 일치 확인 + 유효성 검사 (onchange)
-		$('.checkPasswd').on('change', function(event) {
-			
-			var passwd = document.getElementById("passwd").value;
-			var checkPasswd = document.getElementById("checkPasswd").value;
-			
-			if (passwd != '' && checkPasswd != '') {
-				// 비밀번호 일치 확인
-				if (passwd == checkPasswd) {
-					$('input[name=passwdSameCheck]').val("일치합니다");
-					$('input[name=passwdSameCheck]').css({
+		// 영어, 숫자 외에 입력했을 경우
+		var regType = /^[A-Za-z0-9]*$/;
+		if (!regType.test(userId)) {
+			$('input[name=checkIdResult]').val("영문, 숫자만 가능합니다");
+			$('input[name=checkIdResult]').css({
+				'color': 'red'
+			});
+			return false;
+		}
+		
+		// ajax로 데이터 조회 -> 조회된 결과를 띄움
+		$.ajax({
+			"method":"POST",
+			"url":"/account/checkId",
+			"data": {userId: userId},
+			"success":function(data, xhr, status ){
+				if (data.userId != null) {
+					$('input[name=checkIdResult]').val("이미 존재하는 아이디입니다");
+					$('input[name=checkIdResult]').css({
+						'color': 'red'
+					});
+				} else {
+					$('input[name=checkIdResult]').val("사용 가능한 아이디입니다");
+					$('input[name=checkIdResult]').css({
 						'color': 'blue'
 					});
 				}
-				else {
-					$('input[name=passwdSameCheck]').val("일치하지 않습니다");
-					$('input[name=passwdSameCheck]').css({
-						'color': 'red'
-					});
-				}
-				// 4자리 미만 입력시
-				if (passwd.length < 4 || checkPasswd < 4) {
-					$('input[name=passwdSameCheck]').val("4자리 이상 입력해주십시오");
-					$('input[name=passwdSameCheck]').css({
-						'color': 'red'
-					});
-				}
+			},
+			"error":function(xhr, status, err){
+				alert("오류");
 			}
+		});
+	});
+	
+	// 유효성 검사
+	$('.register-btn').on('click', function(event) {
+
+		var userId = document.getElementById("userId");
+		var checkIdResult = document.getElementById("checkIdResult");
+		var passwd = document.getElementById("passwd");
+		var checkPasswd = document.getElementById("checkPasswd");
+		var passwdSameCheck = document.getElementById("passwdSameCheck");
+		var postCode = document.getElementById("sample6_postcode");
+		var address1 = document.getElementById("sample6_address");
+		var address2 = document.getElementById("sample6_detailAddress");
+		var address3 = document.getElementById("sample6_extraAddress");
+		var phone1 = document.getElementById("phone1");
+		var phone2 = document.getElementById("phone2");
+		var phone3 = document.getElementById("phone3");
+		
+		// 입력창이 비어있거나 제대로 입력되지 않은 경우
+		if(!userId.value) {
+			alert("아이디를 입력하세요")
+			userId.focus();
+			return false;
+		}
+		if(!checkIdResult.value) {
+			alert("중복확인을 하세요")
+			return false;
+		}
+		if(checkIdResult.value != "사용 가능한 아이디입니다") {
+			alert("아이디를 확인해주세요")
+			userId.focus();
+			return false;
+		}
+		if(!passwd.value) {
+			alert("비밀번호를 입력하세요")
+			passwd.focus();
+			return false;
+		}
+		if(!checkPasswd.value) {
+			alert("비밀번호 확인을 입력하세요")
+			checkPasswd.focus();
+			return false;
+		}
+		if(passwdSameCheck.value == "일치하지 않습니다") {
+			alert("비밀번호가 일치하지 않습니다");
+			return false;
+		}
+		if(!postCode.value) {
+			alert("주소를 선택하세요")
+			return false;
+		}
+		if(!address2.value) {
+			alert("상세주소를 입력하세요")
+			address2.focus();
+			return false;
+		}
+		if(!phone2.value || phone2.value.length < 4) {
+			alert("전화번호를 입력하세요")
+			phone2.focus();
+			return false;
+		}
+		if(!phone3.value || phone3.value.length < 4) {
+			alert("전화번호를 입력하세요")
+			phone3.focus();
+			return false;
+		}
+		
+		// 중복확인 결과 이미 존재하는 아이디인데 가입 누른 경우
+		if (checkIdResult.value == "이미 존재하는 아이디입니다") {
+			alert("사용할 수 없는 아이디입니다")
+			return false;
+		}
+		
+		// 비밀번호 확인 결과 일치하지 않는데 가입 누른 경우
+		if (passwdSameCheck.value == "일치하지 않습니다") {
+			alert("비밀번호가 일치하지 않습니다");
+			checkPasswd.focus();
+			return false;
+		}
+
+		$('input[name=address]').val(address1.value + " " + address2.value + address3.value);
+			
+		return document.register.submit();
+	});
+	
+	// input[name=userId] 변화 감지 유효성 검사 (onchange)
+	$('.userId').on('change', function(event) {
+		
+		$('input[name=checkIdResult]').val("중복확인을 해주세요");
+		$('input[name=checkIdResult]').css({
+			'color': 'red'
 		});
 		
 	});
+	
+	// 비밀번호 일치 확인 + 유효성 검사 (onchange)
+	$('.checkPasswd').on('change', function(event) {
+		
+		var passwd = document.getElementById("passwd").value;
+		var checkPasswd = document.getElementById("checkPasswd").value;
+		
+		if (passwd != '' && checkPasswd != '') {
+			// 비밀번호 일치 확인
+			if (passwd == checkPasswd) {
+				$('input[name=passwdSameCheck]').val("일치합니다");
+				$('input[name=passwdSameCheck]').css({
+					'color': 'blue'
+				});
+			}
+			else {
+				$('input[name=passwdSameCheck]').val("일치하지 않습니다");
+				$('input[name=passwdSameCheck]').css({
+					'color': 'red'
+				});
+			}
+			// 4자리 미만 입력시
+			if (passwd.length < 4 || checkPasswd < 4) {
+				$('input[name=passwdSameCheck]').val("4자리 이상 입력해주십시오");
+				$('input[name=passwdSameCheck]').css({
+					'color': 'red'
+				});
+			}
+		}
+	});
+	
+});
 </script>
 
 <%-- KAKAO 주소 API --%>
