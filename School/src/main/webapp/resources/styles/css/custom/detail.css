@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+img {
+	max-width: 600px;
+}
+
 .item {
 	display: flex;
 }

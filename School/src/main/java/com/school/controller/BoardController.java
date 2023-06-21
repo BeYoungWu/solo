@@ -108,7 +108,7 @@ public class BoardController {
 	@GetMapping(path = { "/list" })
 	public String showList(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, Model model) {
 		
-		if (pageNo == -1 || boardType == -1) {
+		if (boardType == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
@@ -132,7 +132,7 @@ public class BoardController {
 	@GetMapping(path = { "/detail" })
 	public String showDetail(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
-		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
+		if (boardType == -1 || boardNo == -1) {
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
@@ -207,7 +207,7 @@ public class BoardController {
 	@GetMapping(path = { "/modify" })
 	public String showModify(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
-		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
+		if (boardType == -1 || boardNo == -1) {
 			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
 //			return "/board/error";
@@ -282,7 +282,7 @@ public class BoardController {
 	@GetMapping(path = { "/delete" })
 	public String delete(@RequestParam(defaultValue = "-1") int pageNo, @RequestParam(defaultValue = "-1") int boardType, @RequestParam(defaultValue = "-1") int boardNo) {
 		
-		if (pageNo == -1 || boardType == -1 || boardNo == -1) {
+		if (boardType == -1 || boardNo == -1) {
 			return "redirect:/home";
 //			model.addAttribute("error_type", "writeForm");
 //			model.addAttribute("message", "잘못된 요청 : 글 번호 또는 페이지 번호가 없습니다.");
