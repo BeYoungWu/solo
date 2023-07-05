@@ -94,10 +94,15 @@ public class AccountController {
 		return "account/findId";
 	}
 	
+	// 아이디 찾기
 	@PostMapping(path = { "/findId" })
-	public List<AccountDto> findId(String userName, int phone1, int phone2, int phone3) {
+	public String findId(AccountDto account, Model model) {
 		
-		return null;
+		List<AccountDto> accounts = accountService.findUserId(account);
+		
+		model.addAttribute("accounts", accounts);
+		
+		return "account/findIdResult";
 	}
 	
 	// 비밀번호 찾기 페이지 이동

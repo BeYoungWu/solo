@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>아이디 찾기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -30,48 +33,31 @@
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-lg-12">
-				<form action="findId" method="post">
-				<div class="informations">
-					<div class="information">
-						<div class="information-left">
-							<label for="userName">이름</label>
-						</div>
-						<div class="information-right">
-							<input type="text" name="userName" id="userName">
-						</div>
-					</div>
-					<div class="information">
-						<div class="information-left">
-							<label for="phone1">전화번호</label>
-						</div>
-						<div class="information-right">
-							<input type="hidden" name="phone">
-							<select name="phone1" class="form-select" aria-label="Default select example" style="width:80px">
-								<option selected value="010">010</option>
-								<option value="011">011</option>
-								<option value="012">012</option>
-								<option value="013">013</option>
-								<option value="014">014</option>
-								<option value="015">015</option>
-								<option value="016">016</option>
-								<option value="017">017</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-							</select>
-							&nbsp;&nbsp;
-							<input type="number" name="phone2" id="phone2" maxlength="4" oninput="maxLengthCheck(this)">
-							&nbsp;&nbsp;
-							<input type="number" name="phone3" id="phone3" maxlength="4" oninput="maxLengthCheck(this)">
-						</div>
-					</div>
+				<form>
+				<c:choose>
+				<c:when test="">
+				<div class="result">
+				<table>
+					<c:forEach var="account" items="${ accounts }">
+					<tr>
+						<td>아이디</td>
+						<td>${ account.userId }</td>
+					</tr>
+					</c:forEach>
+				</table>
 				</div>
 				<button type="submit" class="find-btn" data-toggle="modal" data-target="#findIdResult">아이디 찾기</button>
+				</c:when>
+				<c:otherwise>
+				조회 결과가 없습니다
+				<button type="submit" class="">돌아가기</button>
+				</c:otherwise>
+				</c:choose>
 				</form>
 			</div>
 		</div>
 	</div>
 	
-</div>
 
 <%-- JS --%>
 <script>
@@ -97,7 +83,7 @@ $(function() {
 	
 		// 아무것도 입력하지 않았을 경우 + 2자리 미만 입력시
 		if (userNameVal.length < 2) {
-			alert("이름을 입력하세요");
+			alert("이름을 다시 입력하세요");
 			userName.focus();
 			return false;
 		}

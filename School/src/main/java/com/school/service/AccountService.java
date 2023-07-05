@@ -58,5 +58,8 @@ public interface AccountService {
 
 	// 회원 신청 관리
 	void adminUserType(String userId);
+
+	// 아이디 찾기
+	List<AccountDto> findUserId(AccountDto account);
 	
 }

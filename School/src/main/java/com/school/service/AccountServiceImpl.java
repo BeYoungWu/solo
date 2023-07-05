@@ -96,6 +96,19 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+	// 아이디 찾기
+	@Override
+	public List<AccountDto> findUserId(AccountDto account) {
+		
+		List<AccountEntity> aes = accountRepository.findUserId(accountDtoToEntity(account));
+		ArrayList<AccountDto> accounts = new ArrayList<>();
+		for (AccountEntity ae : aes) {
+			accounts.add(accountEntityToDto(ae));
+		}
+		
+		return null;
+	}
+
 	
 
 	

@@ -54,6 +54,10 @@ input[name=userName] {
 	caret-color: transparent;
 }
 
+.result {
+	padding: 30px;
+}
+
 
 
 
