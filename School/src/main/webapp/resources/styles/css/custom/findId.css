@@ -5,8 +5,11 @@ form {
 	border: 1px solid lightgray;
 }
 
-
 button[type=submit] {
+	margin-bottom: 20px;
+}
+
+button[type=button] {
 	margin-bottom: 20px;
 }
 
@@ -55,7 +58,11 @@ input[name=userName] {
 }
 
 .result {
-	padding: 30px;
+	padding: 50px;
+}
+
+.none {
+	padding: 50px;
 }
 
 

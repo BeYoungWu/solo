@@ -27,8 +27,8 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Integer>
 	void adminUserType(@Param("userId") String userId, @Param("wantType") int wantType);
 
 	// 아이디 찾기
-//	@Query("SELECT a.userId, a.userName FROM tbl_account a WHERE a.userName=:#{#ae.userName} AND a.phone=:#{#ae.phone} ")
-//	List<AccountEntity> findUserId(@Param("ae") AccountEntity account);
+	@Query("SELECT a FROM tbl_account a WHERE a.userName=:#{#ae.userName} AND a.phone=:#{#ae.phone} ")
+	List<AccountEntity> findUserId(@Param("ae") AccountEntity account);
 
 	
 }

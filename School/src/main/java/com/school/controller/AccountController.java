@@ -99,7 +99,7 @@ public class AccountController {
 	public String findId(AccountDto account, Model model) {
 		
 		List<AccountDto> accounts = accountService.findUserId(account);
-		
+		System.out.println(accounts);
 		model.addAttribute("accounts", accounts);
 		
 		return "account/findIdResult";

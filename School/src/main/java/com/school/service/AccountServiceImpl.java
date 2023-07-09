@@ -106,7 +106,7 @@ public class AccountServiceImpl implements AccountService {
 			accounts.add(accountEntityToDto(ae));
 		}
 		
-		return null;
+		return accounts;
 	}
 
 	
