@@ -45,7 +45,9 @@
 						</div>
 						<button type="submit" id="login_btn">로그인</button>
 					</form>
-					<br><hr>
+					<br>
+					회원이 아니시면 <a href="/account/register">회원가입</a>을 눌러주십시오
+					<hr>
 					<div class="find">
 						<div>
 							<a href="/account/findId">아이디 찾기</a>

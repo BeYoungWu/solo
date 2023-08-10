@@ -44,12 +44,13 @@
 					</c:if>
 					<c:if test="${status.index < ts}">
 						<div class="col-md-3 col-sm-6">
-							<div class="teacher">
-								<img class="img-responsive" src="/resources/img/teacher/${tnf.value.savedFileName}" alt="" style="width:260px;height:340px;">
-								<h4>${tnf.value.teacherName}</h4>
-								<span class="deg">${tnf.value.subject}</span>
+								<div class="teacher">
+									<img class="img-responsive" src="/resources/img/teacher/${tnf.file.savedFileName}" alt="" style="width:260px;height:340px;">									
+									<h4>${ tnf.teacher.teacherName }</h4>
+									<span class="deg">${ tnf.teacher.subject }</span>
+									<br><br>
+								</div>
 							</div>
-						</div>
 					</c:if>
 				</c:forEach>
 				</div>
