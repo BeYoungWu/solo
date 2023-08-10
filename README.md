@@ -52,14 +52,13 @@ X
 ## ⌨ What I Made ⌨
 <h3>[ 사용자 모드 ]<h3>
 <h3>1. 메인화면</h3>
-<h4>ㅁㄴㅇㄹ (전체)</h4>
 <img src="">
 <br><br>
 
 <br>
 
 <h3>2. 회원가입 / 로그인</h3>
-<h4>2-1. 회원가입 화면</h4>
+<h4>2-1. 회원가입 페이지</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/ec741183-75b1-47ee-a18b-b7b8003de041">
 <br><br>
 <h4>2-2. 아이디 중복확인</h4>
@@ -71,13 +70,13 @@ X
 <h4>2-4. 주소 입력</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/647b29b2-596c-4310-8a73-fc8b3b33dbab">
 <br><br>
-<h4>2-5. 로그인 화면</h4>
+<h4>2-5. 로그인 페이지</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/3335bf4b-4551-4cf3-af65-c8927bb7d00b">
 <br><br>
-<h4>2-5. 아이디 찾기 화면</h4>
+<h4>2-5. 아이디 찾기 페이지</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/9294949b-83e8-4c0d-a55b-cba4cd05d784">
 <br><br>
-<h4>2-5. 아이디 찾기 결과</h4>
+<h4>2-5. 아이디 찾기 결과 페이지</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/57fb8f55-02ea-45ad-8ae1-1118d36c9fc0">
 <br><br>
 
@@ -89,7 +88,7 @@ X
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/882c7be3-5662-4343-b0b7-ce57c5b8edba">
 <br><br>
 <h4>3-2. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가</h4>
-<img src="">
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/d5684824-15bd-459f-9534-b171fa3c27e6">
 <br><br>
 
 <br>
@@ -101,10 +100,10 @@ X
 <h4>4-2. 게시글 조회 - 이미지 첨부파일 미리보기, 첨부파일 다운로드</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/48dc2d98-99a8-4d8e-bc9d-e7e2b9f77031">
 <br><br>
-<h4>4-3. 글쓰기</h4>
+<h4>4-3. 게시글 작성</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/a57f6ec8-f297-49f6-b166-e5d810f93466">
 <br><br>
-<h4>4-4. 글쓰기 - 이미지 첨부파일 미리보기</h4>
+<h4>4-4. 게시글 작성 - 이미지 첨부파일 미리보기</h4>
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/138b06ce-144a-404d-b3b2-5034225ff347">
 <br><br>
 <h4>4-5. 게시글 수정</h4>
@@ -117,33 +116,79 @@ X
 <br>
 
 <h3>5. 문의하기</h3>
-<h4>5-1. ㅁㄴㅇㄹ</h4>
-<img src="">
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/af47d290-fd47-4a65-86eb-c18b83564b4b">
 <br><br>
 
 <hr>
 
 <h3>[ 관리자 모드 ]<h3>
 <h3>1. 메인화면</h3>
-<h4>ㅁㄴㅇㄹ (전체)</h4>
+<h4>1-1. 회원 관리 (승인 전)</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/659066c5-82a6-457f-801e-a03b07c1582a">
+<br><br>
+<h4>1-2. 회원 관리 (승인 후)</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/659066c5-82a6-457f-801e-a03b07c1582a">
+<br><br>
+
+<br>
+
+<h3>2. 이미지 등록</h3>
+<h4>2-1. 교직원 등록 페이지</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/faa1c32a-85e7-461e-969d-2c525ad7c4da">
+<br><br>
+<h4>2-2. 교직원 등록 페이지 - 교사 등록</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/f977daca-5f63-4653-8cb2-bc07c69f04c0">
+<br><br>
+<h4>2-3. 교직원 등록 페이지 - 교사 수정</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/07e425fa-6950-4444-a6a5-50f3e3450157">
+<br><br>
+<h4>2-4. 교직원 등록 페이지 - 교사 삭제</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/7e017d70-cdaf-4ca5-9302-1b0c7bfda9aa">
+<br><br>
+<h4>2-5. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 (등록 전)</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/168578a6-c5e7-48d7-9d2e-011fcc5d92fb">
+<br><br>
+<h4>2-6. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 (등록 후)</h4>
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/9c3c6467-cf4e-4112-8a40-d74c6f2601d7">
+<br><br>
+<h4>2-7. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 등록</h4>
+<img src="">
+<br><br>
+<h4>2-8. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 수정</h4>
+<img src="">
+<br><br>
+<h4>2-9. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 삭제</h4>
 <img src="">
 <br><br>
 
 <br>
 
-<h3>2. 이미지 소개</h3>
-<h4>2-1. 교직원 소개</h4>
+<h3>3. 게시판</h3>
+<h4>3-1. 게시글 목록</h4>
 <img src="">
 <br><br>
-<h4>2-2. 교육 목표, 학교 연혁, 학교 현황, 학교 상징, 학교 교가</h4>
+<h4>3-2. 게시글 조회</h4>
+<img src="">
+<br><br>
+<h4>3-3. 게시글 작성</h4>
+<img src="">
+<br><br>
+<h4>3-4. 게시글 수정 (관리자 권한으로 모든 게시글 수정 가능)</h4>
+<img src="">
+<br><br>
+<h4>3-5. 게시글 조회 (관리자 권한으로 모든 게시글 삭제 가능)</h4>
 <img src="">
 <br><br>
 
 <br>
 
-
-
-
+<h3>4. 문의 관리</h3>
+<h4>4-1. </h4>
+<img src="">
+<br><br>
+<h4>4-2. </h4>
+<img src="">
+<br><br>
 
 
 

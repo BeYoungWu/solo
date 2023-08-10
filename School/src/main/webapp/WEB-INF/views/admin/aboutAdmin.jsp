@@ -7,7 +7,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<title>교직원소개</title>
+<title>교직원 등록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">교직원 소개</h2>
+				<h2 class="pageTitle">교직원 등록</h2>
 			</div>
 		</div>
 	</div>
