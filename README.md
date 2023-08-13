@@ -152,13 +152,13 @@ X
 <img src="https://github.com/BeYoungWu/solo/assets/116334811/9c3c6467-cf4e-4112-8a40-d74c6f2601d7">
 <br><br>
 <h4>2-7. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 등록</h4>
-<img src="">
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/ab757898-800e-4b2b-99f1-9bdcf436f108">
 <br><br>
 <h4>2-8. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 수정</h4>
-<img src="">
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/bb122ee8-8c8c-4f04-8bec-9110d32b038e">
 <br><br>
 <h4>2-9. 교육목표, 학교연혁, 학교현황, 학교상징, 학교교가 등록 - 이미지 삭제</h4>
-<img src="">
+<img src="https://github.com/BeYoungWu/solo/assets/116334811/8353e999-f053-4443-a28c-513b8dfe73bb">
 <br><br>
 
 <br>
