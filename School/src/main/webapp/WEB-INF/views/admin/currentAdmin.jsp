@@ -102,7 +102,7 @@
 					</button>
 				</div>
 				<form id="modifyCurrent" action="modifyCurrent" method="post" enctype="multipart/form-data">
-				<div>
+				<div class="originalFile">
 					등록된 파일 : <input name="prevUserFileName" disabled>
 					<input type="hidden" name="prevFileNo">
 				</div>
